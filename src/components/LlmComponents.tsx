@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Code, Cpu, ShieldAlert, ChevronRight } from 'lucide-react';
+import { Code, Cpu, ShieldAlert, ChevronRight, Scissors, LayoutGrid, Eye, Percent, Sliders, Heart } from 'lucide-react';
 
 interface LlmComponent {
   id: string;
@@ -9,6 +9,7 @@ interface LlmComponent {
   math?: string;
   importance: string;
   codeSnippet: string;
+  icon: any;
 }
 
 export default function LlmComponents() {
@@ -19,6 +20,7 @@ export default function LlmComponents() {
       id: 'tokenization',
       name: 'Tokenization & Vocab',
       role: 'Text Preprocessing & Mapping',
+      icon: Scissors,
       description: 'Breaks down raw string text into discrete numerical units (tokens) using algorithms like Byte-Pair Encoding (BPE) or WordPiece. These indices map directly to entries in the model\'s predefined vocabulary matrix.',
       math: 'x_text \\longrightarrow [t_1, t_2, ..., t_n] \\quad where \\quad t_i \\in \\{0, 1, ..., |V|-1\\}',
       importance: 'Determines the model\'s language support, handling of code syntax, spelling awareness, and context window efficiency (compression ratio).',
@@ -36,6 +38,7 @@ print(decoded_text) # "Antigravity is coding."`
       id: 'embeddings',
       name: 'Semantic Embeddings',
       role: 'Dimensional Vector Space Mapping',
+      icon: LayoutGrid,
       description: 'Translates token integers into dense continuous vector representations. This projects words into a high-dimensional vector space (e.g., 4096 or 8192 dimensions) where geometric distance represents semantic similarity.',
       math: 'E(t_i) = W_e \\cdot e_{t_i} \\quad where \\quad W_e \\in \\mathbb{R}^{d_{model} \\times |V|}',
       importance: 'Initializes the semantic meanings and features of tokens. Positional Embeddings (e.g., RoPE) are added here to provide the order/sequence coordinates of each token.',
@@ -53,6 +56,7 @@ print(vectors.shape) # torch.Size([1, 2, 4096])`
       id: 'attention',
       name: 'Multi-Head Attention',
       role: 'Contextual Routing & Relationship Mapping',
+      icon: Eye,
       description: 'The core algorithm of the Transformer. Enables each token in a sequence to dynamic score and aggregate information from all other tokens. By using Query, Key, and Value vectors, the model forms context pathways dynamically.',
       math: 'Attention(Q, K, V) = \\text{softmax}\\left(\\frac{Q K^T}{\\sqrt{d_k}}\\right) V',
       importance: 'Enables long-range dependencies, syntax resolving, co-reference mapping, and dynamic context learning across millions of tokens.',
@@ -72,6 +76,7 @@ def self_attention(Q, K, V, mask=None):
       id: 'mlp',
       name: 'MLP / Feed-Forward Network',
       role: 'Feature Extraction & Fact Storage',
+      icon: Cpu,
       description: 'Applied token-wise after the attention layers. Consists of linear projection layers separated by a non-linear activation function (like SwiGLU or GELU). Act as the database where the model stores facts and general representations.',
       math: 'SwiGLU(x) = (x W_1 \\otimes \\text{swish}(x W_2)) W_3',
       importance: 'Holds the vast majority of the static knowledge, rules, and facts learned by the network during pretraining.',
@@ -90,6 +95,7 @@ def self_attention(Q, K, V, mask=None):
       id: 'norm',
       name: 'LayerNorm & Residuals',
       role: 'Signal Preservation & Numerical Stability',
+      icon: Sliders,
       description: 'Residual (skip) connections add inputs directly to output layers, allowing raw signals to bypass attention/MLP. Normalization layers (RMSNorm) scale weights, keeping activations from exploding or vanishing.',
       math: 'RMSNorm(x) = \\frac{x}{\\sqrt{\\frac{1}{d}\\sum_{i=1}^d x_i^2 + \\epsilon}} \\odot \\gamma',
       importance: 'Without residual connections and layer normalization, deep models (e.g. 70B+ parameters) cannot train because gradients would vanish in early layers.',
@@ -107,7 +113,8 @@ class RMSNorm(nn.Module):
     {
       id: 'alignment',
       name: 'Alignment (RLHF & DPO)',
-      role: 'Safety, Instruction-Following & Persona Tuning',
+      role: 'Safety & Instruction-Following',
+      icon: Heart,
       description: 'Post-training methods used to align base models to follow user instructions safely. Supervised Fine-Tuning (SFT) is followed by Reinforcement Learning from Human Feedback (RLHF) or Direct Preference Optimization (DPO).',
       math: '\\mathcal{L}_{DPO}(\\pi_\\theta; \\pi_{ref}) = -\\mathbb{E}_{(x, y_w, y_l)} \\left[ \\log \\sigma \\left( \\beta \\log \\frac{\\pi_\\theta(y_w|x)}{\\pi_{ref}(y_w|x)} - \\beta \\log \\frac{\\pi_\\theta(y_l|x)}{\\pi_{ref}(y_l|x)} \\right) \\right]',
       importance: 'Transforms a raw text-continuation statistical model into a helpful assistant, setting tone, reducing toxicity, and enabling system instructions.',
@@ -131,6 +138,7 @@ trainer = SFTTrainer(
       id: 'quantization',
       name: 'Quantization & Optimizations',
       role: 'Hardware Scaling & VRAM Reduction',
+      icon: Percent,
       description: 'Downscales precision representation of parameters from standard FP32 or BF16 to lower bitweights (FP8, FP4, INT8, INT4). Algorithms like AWQ (Activation-aware Weight Quantization) minimize perplexity degradation.',
       math: 'q = \\text{clamp}\\left( \\text{round}\\left( \\frac{w}{scale} \\right) + zero\\_point, q_{min}, q_{max} \\right)',
       importance: 'Enables deploying massive models on consumer hardware or scaling concurrent user requests. For example, running a 70B model requires ~140GB VRAM in BF16, but only ~38GB in INT4.',
@@ -151,141 +159,127 @@ quantize_config = BaseQuantizeConfig(
 
   return (
     <div className="animate-fade-in">
-      <div className="glass" style={{ padding: '2rem', marginBottom: '2rem' }}>
-        <h1 className="font-tech glow-text" style={{ fontSize: '2rem', fontWeight: 800, background: 'linear-gradient(to right, #ff007f, #7000ff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: '0.5rem' }}>
-          LLM ARCHITECTURE & LAYERS
+      {/* Title Header */}
+      <div className="glass" style={{ padding: '1.5rem 2rem', marginBottom: '1.5rem' }}>
+        <h1 className="title-header">
+          LLM Architecture
         </h1>
-        <p style={{ color: 'var(--text-secondary)' }}>
-          An interactive engineering deep-dive into the mechanical components that power modern Autoregressive Large Language Models.
+        <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', marginTop: '0.2rem' }}>
+          Interactive trace of forward pass layer mechanics in modern Autoregressive transformers.
         </p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: '2rem' }}>
-        {/* Navigation Sidebar */}
-        <div className="glass" style={{ padding: '1rem', height: 'fit-content' }}>
-          <h3 style={{ fontSize: '0.9rem', color: 'var(--text-muted)', textTransform: 'uppercase', paddingLeft: '0.75rem', marginBottom: '1rem', letterSpacing: '1px' }}>
-            Forward Pass Pipeline
-          </h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            {componentsList.map((comp, index) => (
-              <button
-                key={comp.id}
-                onClick={() => setActiveTab(comp.id)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  width: '100%',
-                  padding: '1rem 0.75rem',
-                  borderRadius: '8px',
-                  background: activeTab === comp.id ? 'rgba(255, 0, 127, 0.1)' : 'transparent',
-                  border: '1px solid',
-                  borderColor: activeTab === comp.id ? 'var(--accent-magenta)' : 'transparent',
-                  color: activeTab === comp.id ? 'var(--text-primary)' : 'var(--text-secondary)',
-                  textAlign: 'left',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <span style={{ 
-                    width: '24px', 
-                    height: '24px', 
-                    borderRadius: '50%', 
-                    background: activeTab === comp.id ? 'var(--accent-magenta)' : 'var(--border-color)',
-                    color: '#060913',
+      {/* Horizontal Step Progression Bar (No side panel clutter) */}
+      <div className="glass" style={{ padding: '1rem 1.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
+        {componentsList.map((comp, index) => {
+          const StepIcon = comp.icon;
+          const isSelected = activeTab === comp.id;
+          return (
+            <div key={comp.id} style={{ display: 'flex', alignItems: 'center' }}>
+              <div className="tooltip">
+                <button
+                  onClick={() => setActiveTab(comp.id)}
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    background: isSelected ? 'var(--accent-blue)' : 'transparent',
+                    color: isSelected ? '#ffffff' : 'var(--text-secondary)',
+                    border: '1px solid',
+                    borderColor: isSelected ? 'transparent' : 'var(--border-color)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '0.8rem',
-                    fontWeight: 700
-                  }}>
-                    {index + 1}
-                  </span>
-                  <div>
-                    <div style={{ fontWeight: 600, fontSize: '0.9rem' }}>{comp.name}</div>
-                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{comp.role}</div>
-                  </div>
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  <StepIcon size={16} />
+                </button>
+                <span className="tooltip-text">
+                  {index + 1}. {comp.name}
+                </span>
+              </div>
+              {index < componentsList.length - 1 && (
+                <ChevronRight size={14} style={{ margin: '0 0.5rem', color: 'var(--text-muted)' }} />
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Detailed Inspector Card */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+        <div className="glass" style={{ padding: '2rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
+            <span className="badge badge-cyan" style={{ fontSize: '0.65rem' }}>LAYER STAGE</span>
+            <span className="badge badge-blue" style={{ fontSize: '0.65rem' }}>{activeComponent.role}</span>
+          </div>
+
+          <h2 style={{ fontSize: '1.4rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.75rem' }}>
+            {activeComponent.name}
+          </h2>
+
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
+            {activeComponent.description}
+          </p>
+
+          {/* Core Formula Block */}
+          {activeComponent.math && (
+            <div className="font-mono" style={{ 
+              background: '#0d1220', 
+              border: '1px solid var(--border-color)', 
+              padding: '1rem 1.25rem', 
+              borderRadius: '6px', 
+              marginBottom: '1.5rem',
+              color: 'var(--accent-cyan)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              overflowX: 'auto'
+            }}>
+              <Cpu size={16} style={{ color: 'var(--accent-cyan)', minWidth: '16px' }} />
+              <div>
+                <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.15rem', fontFamily: "'Space Grotesk', sans-serif" }}>
+                  Core Formula
                 </div>
-                <ChevronRight size={16} style={{ opacity: activeTab === comp.id ? 1 : 0.3 }} />
-              </button>
-            ))}
+                <code>{activeComponent.math}</code>
+              </div>
+            </div>
+          )}
+
+          {/* Importance details */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', borderLeft: '3px solid var(--accent-blue)', paddingLeft: '1rem', marginTop: '1rem' }}>
+            <div style={{ display: 'flex', gap: '0.35rem', alignItems: 'center', fontWeight: 600, fontSize: '0.85rem', color: 'var(--text-primary)' }}>
+              <ShieldAlert size={14} style={{ color: 'var(--accent-blue)' }} />
+              Engineering Impact
+            </div>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', lineHeight: '1.4' }}>
+              {activeComponent.importance}
+            </p>
           </div>
         </div>
 
-        {/* Detailed Inspector Display */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          {/* Card Meta */}
-          <div className="glass" style={{ padding: '2rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
-              <span className="badge badge-magenta">Layer Component</span>
-              <span className="badge badge-purple">{activeComponent.role}</span>
-            </div>
-
-            <h2 className="glow-text font-tech" style={{ fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>
-              {activeComponent.name}
-            </h2>
-
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: '1.7', marginBottom: '1.5rem' }}>
-              {activeComponent.description}
-            </p>
-
-            {/* Formula Block */}
-            {activeComponent.math && (
-              <div style={{ 
-                background: 'rgba(0,0,0,0.25)', 
-                border: '1px solid var(--border-color)', 
-                padding: '1.25rem', 
-                borderRadius: '8px', 
-                marginBottom: '1.5rem',
-                fontFamily: 'monospace',
-                fontSize: '1rem',
-                color: 'var(--accent-cyan)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1rem',
-                overflowX: 'auto'
-              }}>
-                <Cpu size={20} style={{ minWidth: '20px' }} />
-                <div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Core Formula / Concept</div>
-                  <code>{activeComponent.math}</code>
-                </div>
-              </div>
-            )}
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', fontWeight: 600, color: 'var(--text-primary)' }}>
-                <ShieldAlert size={16} style={{ color: 'var(--accent-magenta)' }} />
-                Architectural Importance
-              </div>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.5', paddingLeft: '1.5rem' }}>
-                {activeComponent.importance}
-              </p>
-            </div>
+        {/* Python Reference Implementation */}
+        <div className="glass" style={{ padding: '1.25rem 1.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.75rem', color: 'var(--accent-cyan)' }}>
+            <Code size={14} />
+            <span style={{ fontWeight: 500, fontSize: '0.8rem' }}>Reference Implementation (PyTorch / Py)</span>
           </div>
-
-          {/* Implementation Code */}
-          <div className="glass" style={{ padding: '1.5rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: 'var(--accent-cyan)' }}>
-              <Code size={18} />
-              <span style={{ fontWeight: 600, fontSize: '0.9rem' }}>PyTorch / Python Implementation Reference</span>
-            </div>
-            
-            <pre style={{ 
-              background: '#040810', 
-              color: '#a5b4fc', 
-              padding: '1.25rem', 
-              borderRadius: '8px', 
-              fontSize: '0.85rem', 
-              lineHeight: '1.6', 
-              overflowX: 'auto',
-              border: '1px solid var(--border-color)',
-              fontFamily: 'Courier New, Courier, monospace'
-            }}>
-              <code>{activeComponent.codeSnippet}</code>
-            </pre>
-          </div>
+          
+          <pre style={{ 
+            background: '#050811', 
+            color: '#a5b4fc', 
+            padding: '1rem', 
+            borderRadius: '6px', 
+            fontSize: '0.75rem', 
+            lineHeight: '1.5', 
+            overflowX: 'auto',
+            border: '1px solid var(--border-color)',
+            fontFamily: 'Courier New, Courier, monospace'
+          }}>
+            <code>{activeComponent.codeSnippet}</code>
+          </pre>
         </div>
       </div>
     </div>
