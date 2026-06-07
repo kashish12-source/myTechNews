@@ -33,27 +33,35 @@ const FLUFF_BLACKLIST = [
   /\bshow hn: check out my gaming channel\b/i, /\bcat video\b/i
 ];
 
-// Heuristic category classifier
+// Heuristic category classifier using keyword mappings for efficiency and readability
 function classifyCategory(title, content) {
   const text = `${title} ${content}`.toLowerCase();
   
-  if (text.includes('gpu') || text.includes('nvidia') || text.includes('h100') || text.includes('b200') || text.includes('tpu') || text.includes('trillium') || text.includes('hardware') || text.includes('silicon') || text.includes('chip') || text.includes('cuda') || text.includes('hardware') || text.includes('processor')) {
+  const keywords = {
+    'hardware-gpus': ['gpu', 'nvidia', 'h100', 'b200', 'tpu', 'trillium', 'hardware', 'silicon', 'chip', 'cuda', 'processor'],
+    'mlops-devops': ['mlops', 'devops', 'kubernetes', 'k8s', 'docker', 'ci/cd', 'jenkins', 'pipeline', 'orchestration', 'kubeflow', 'monitoring', 'weights & biases', 'mlflow'],
+    'dev-tools': ['ide', 'antigravity', 'editor', 'coding', 'copilot', 'typescript', 'rust', 'compiler', 'git', 'github', 'vscode'],
+    'ai-models': ['model', 'llm', 'claude', 'gemini', 'gpt', 'llama', 'stable diffusion', 'generative', 'ai', 'deep learning', 'rl', 'reinforcement learning'],
+    'big-tech': ['google', 'apple', 'microsoft', 'meta', 'amazon', 'alphabet', 'openai', 'anthropic']
+  };
+
+  if (keywords['hardware-gpus'].some(kw => text.includes(kw))) {
     return 'hardware-gpus';
   }
-  if (text.includes('mlops') || text.includes('devops') || text.includes('kubernetes') || text.includes('k8s') || text.includes('docker') || text.includes('ci/cd') || text.includes('jenkins') || text.includes('pipeline') || text.includes('orchestration') || text.includes('kubeflow') || text.includes('monitoring') || text.includes('weights & biases') || text.includes('mlflow')) {
+  if (keywords['mlops-devops'].some(kw => text.includes(kw))) {
     return 'mlops-devops';
   }
-  if (text.includes('ide') || text.includes('antigravity') || text.includes('editor') || text.includes('coding') || text.includes('copilot') || text.includes('typescript') || text.includes('rust') || text.includes('compiler') || text.includes('git') || text.includes('github') || text.includes('vscode')) {
+  if (keywords['dev-tools'].some(kw => text.includes(kw))) {
     return 'dev-tools';
   }
-  if (text.includes('google') || text.includes('apple') || text.includes('microsoft') || text.includes('meta') || text.includes('amazon') || text.includes('alphabet') || text.includes('openai') || text.includes('anthropic')) {
-    // If it mentions Big Tech but also specific model things, classify model first, otherwise big-tech
-    if (text.includes('model') || text.includes('claude') || text.includes('gemini') || text.includes('gpt') || text.includes('llama')) {
-      return 'ai-models';
-    }
-    return 'big-tech';
+  
+  const hasBigTech = keywords['big-tech'].some(kw => text.includes(kw));
+  const hasAIModel = keywords['ai-models'].some(kw => text.includes(kw));
+  
+  if (hasBigTech) {
+    return hasAIModel ? 'ai-models' : 'big-tech';
   }
-  if (text.includes('model') || text.includes('llm') || text.includes('claude') || text.includes('gemini') || text.includes('gpt') || text.includes('llama') || text.includes('stable diffusion') || text.includes('generative') || text.includes('ai') || text.includes('deep learning') || text.includes('rl') || text.includes('reinforcement learning')) {
+  if (hasAIModel) {
     return 'ai-models';
   }
   
@@ -139,7 +147,7 @@ function preFilterArticles(rawArticles) {
   });
 }
 
-// AI-powered summarizer and classification
+// AI-powered summarizer and classification (optimized with parallel processing)
 async function summarizeAndEnrichWithGemini(articlesList) {
   if (!aiClient) {
     console.log('No Gemini API client initialized. Using heuristic summarization.');
@@ -153,10 +161,9 @@ async function summarizeAndEnrichWithGemini(articlesList) {
     }));
   }
 
-  console.log(`Leveraging Gemini to process and summarize ${articlesList.length} articles...`);
-  const enrichedArticles = [];
-
-  for (const art of articlesList) {
+  console.log(`Leveraging Gemini to process and summarize ${articlesList.length} articles in parallel...`);
+  
+  const promises = articlesList.map(async (art) => {
     try {
       // Run quick structured analysis query using gemini-2.5-flash
       const prompt = `Analyze this technology article:
@@ -184,7 +191,7 @@ Respond ONLY with a JSON object in this exact format:
       const parsedData = JSON.parse(responseText);
 
       if (parsedData.isSeriousTechNews) {
-        enrichedArticles.push({
+        return {
           id: Math.random().toString(36).substring(2, 9),
           title: art.title,
           url: art.url,
@@ -194,13 +201,14 @@ Respond ONLY with a JSON object in this exact format:
           summary: parsedData.summary,
           importance: parsedData.importance || 'medium',
           sentiment: parsedData.sentiment || 'neutral'
-        });
+        };
       } else {
         console.log(`[GEMINI FILTERED OUT]: "${art.title}" (Classified as fluff/meme)`);
+        return null;
       }
     } catch (err) {
       console.warn(`Gemini processing failed for "${art.title}". Falling back to heuristics.`, err.message);
-      enrichedArticles.push({
+      return {
         id: Math.random().toString(36).substring(2, 9),
         title: art.title,
         url: art.url,
@@ -210,51 +218,63 @@ Respond ONLY with a JSON object in this exact format:
         summary: art.contentSnippet ? art.contentSnippet.slice(0, 280) + '...' : 'Read details at the source.',
         importance: 'medium',
         sentiment: 'neutral'
-      });
+      };
     }
-  }
+  });
 
-  return enrichedArticles;
+  const results = await Promise.all(promises);
+  return results.filter(Boolean);
+}
+
+// De-duplicate articles by normalized title or URL
+function deduplicateArticles(articles) {
+  const seenUrls = new Set();
+  const seenTitles = new Set();
+  return articles.filter(art => {
+    if (!art.title || !art.url) return false;
+    const url = art.url.toLowerCase().trim();
+    // Normalize title: lowercase, remove non-alphanumeric characters and collapse spaces
+    const normTitle = art.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+    
+    if (seenUrls.has(url) || seenTitles.has(normTitle)) {
+      console.log(`[DEDUPLICATED]: "${art.title}"`);
+      return false;
+    }
+    seenUrls.add(url);
+    seenTitles.add(normTitle);
+    return true;
+  });
 }
 
 export async function aggregateNews() {
   console.log('Initiating technology news aggregation pipeline...');
   
-  // 1. Gather all raw articles
-  const rawFeeds = [];
-  
-  // Hacker News Feed
-  const hn = await fetchRssFeed('https://news.ycombinator.com/rss', 'Hacker News');
-  rawFeeds.push(...hn);
+  // 1. Gather all raw articles in parallel
+  console.log('Fetching all feeds concurrently...');
+  const [hn, lobs, pg, arxiv, tc] = await Promise.all([
+    fetchRssFeed('https://news.ycombinator.com/rss', 'Hacker News'),
+    fetchRssFeed('https://lobste.rs/rss', 'Lobsters'),
+    scrapePaulGrahamArticles(),
+    fetchRssFeed('https://export.arxiv.org/api/query?search_query=cat:cs.LG+OR+cat:cs.AI&sortBy=lastUpdatedDate&sortOrder=descending&max_results=8', 'arXiv AI/ML'),
+    fetchRssFeed('https://techcrunch.com/category/artificial-intelligence/feed/', 'TechCrunch AI')
+  ]);
 
-  // Lobsters Feed
-  const lobs = await fetchRssFeed('https://lobste.rs/rss', 'Lobsters');
-  rawFeeds.push(...lobs);
-
-  // Paul Graham Articles
-  const pg = await scrapePaulGrahamArticles();
-  rawFeeds.push(...pg);
-
-  // arXiv ML Feed (arXiv export API serves atom/rss)
-  const arxiv = await fetchRssFeed('http://export.arxiv.org/api/query?search_query=cat:cs.LG+OR+cat:cs.AI&sortBy=lastUpdatedDate&sortOrder=descending&max_results=8', 'arXiv AI/ML');
-  rawFeeds.push(...arxiv);
-
-  // TechCrunch AI Category Feed
-  const tc = await fetchRssFeed('https://techcrunch.com/category/artificial-intelligence/feed/', 'TechCrunch AI');
-  rawFeeds.push(...tc);
-
+  const rawFeeds = [...hn, ...lobs, ...pg, ...arxiv, ...tc];
   console.log(`Gathered ${rawFeeds.length} articles from all feeds. Pre-filtering...`);
   
   // 2. Run heuristics filter
   const preFiltered = preFilterArticles(rawFeeds);
-  console.log(`Pre-filtered down to ${preFiltered.length} serious items. Compiling/Enriching...`);
+  
+  // 3. De-duplicate articles
+  const uniqueArticles = deduplicateArticles(preFiltered);
+  console.log(`Filtered and de-duplicated down to ${uniqueArticles.length} serious unique items. Compiling/Enriching...`);
 
   // Limit number of concurrent articles processed to avoid API limits (keep top 15 newest articles)
-  const sortedArticles = preFiltered
+  const sortedArticles = uniqueArticles
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 15);
 
-  // 3. Summarize and Categorize (via Gemini or heuristics)
+  // 4. Summarize and Categorize (via Gemini or heuristics in parallel)
   const enrichedArticles = await summarizeAndEnrichWithGemini(sortedArticles);
   
   console.log(`News aggregation complete. Compiled ${enrichedArticles.length} clean technical updates.`);
@@ -266,13 +286,13 @@ export async function aggregateNews() {
 
   // Write to client cache location
   const clientCachePath = path.join(__dirname, '../src/data/news-cache.json');
-  fs.mkdirSync(path.dirname(clientCachePath), { recursive: true });
-  fs.writeFileSync(clientCachePath, JSON.stringify(cacheData, null, 2));
+  await fs.promises.mkdir(path.dirname(clientCachePath), { recursive: true });
+  await fs.promises.writeFile(clientCachePath, JSON.stringify(cacheData, null, 2));
   console.log(`Successfully updated client local cache file at: ${clientCachePath}`);
 
   // Write to server local cache location
   const serverCachePath = path.join(__dirname, 'news-cache.json');
-  fs.writeFileSync(serverCachePath, JSON.stringify(cacheData, null, 2));
+  await fs.promises.writeFile(serverCachePath, JSON.stringify(cacheData, null, 2));
 
   return cacheData;
 }

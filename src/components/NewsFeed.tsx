@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Search, RefreshCw, ExternalLink, Calendar, AlertCircle, Sparkles, Globe, Cpu, Building2, Code, Workflow, Server } from 'lucide-react';
 import fallbackData from '../data/news-cache.json';
 
@@ -14,6 +14,15 @@ export interface Article {
   importance?: string;
 }
 
+const CATEGORIES = [
+  { id: 'all', label: 'All Updates', icon: Globe },
+  { id: 'ai-models', label: 'ML Models & AI', icon: Cpu },
+  { id: 'big-tech', label: 'Big Tech', icon: Building2 },
+  { id: 'dev-tools', label: 'Dev Tools & Coding', icon: Code },
+  { id: 'mlops-devops', label: 'MLOps & DevOps', icon: Workflow },
+  { id: 'hardware-gpus', label: 'Hardware & GPUs', icon: Server }
+];
+
 export default function NewsFeed() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(false);
@@ -22,15 +31,6 @@ export default function NewsFeed() {
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedArticle, setExpandedArticle] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string>('');
-
-  const categories = [
-    { id: 'all', label: 'All Updates', icon: Globe },
-    { id: 'ai-models', label: 'ML Models & AI', icon: Cpu },
-    { id: 'big-tech', label: 'Big Tech', icon: Building2 },
-    { id: 'dev-tools', label: 'Dev Tools & Coding', icon: Code },
-    { id: 'mlops-devops', label: 'MLOps & DevOps', icon: Workflow },
-    { id: 'hardware-gpus', label: 'Hardware & GPUs', icon: Server }
-  ];
 
   const fetchNews = async (forceRefresh = false) => {
     setLoading(true);
@@ -59,20 +59,27 @@ export default function NewsFeed() {
   };
 
   useEffect(() => {
-    fetchNews();
+    Promise.resolve().then(() => {
+      fetchNews();
+    });
   }, []);
 
   const handleRefresh = () => {
     fetchNews(true);
   };
 
-  const filteredArticles = articles.filter(article => {
-    const matchesCategory = selectedCategory === 'all' || article.category === selectedCategory;
-    const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          article.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          article.source.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  const filteredArticles = useMemo(() => {
+    const query = searchQuery.toLowerCase().trim();
+    return articles.filter(article => {
+      const matchesCategory = selectedCategory === 'all' || article.category === selectedCategory;
+      if (!query) return matchesCategory;
+      return matchesCategory && (
+        article.title.toLowerCase().includes(query) || 
+        article.summary.toLowerCase().includes(query) ||
+        article.source.toLowerCase().includes(query)
+      );
+    });
+  }, [articles, selectedCategory, searchQuery]);
 
   const getCategoryIcon = (cat: string) => {
     switch(cat) {
@@ -148,7 +155,7 @@ export default function NewsFeed() {
 
           {/* Iconised Category Selection bar */}
           <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-            {categories.map((cat) => {
+            {CATEGORIES.map((cat) => {
               const IconComp = cat.icon;
               const isSelected = selectedCategory === cat.id;
               return (
@@ -209,7 +216,7 @@ export default function NewsFeed() {
                         <CatIcon size={12} />
                       </span>
                       <span className="tooltip-text">
-                        {categories.find(c => c.id === article.category)?.label || article.category}
+                        {CATEGORIES.find(c => c.id === article.category)?.label || article.category}
                       </span>
                     </div>
 

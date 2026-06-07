@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { ShieldCheck, Info, Search, Code, CheckCircle, Zap, ArrowRight, Workflow, Paintbrush, FileText, LayoutGrid } from 'lucide-react';
 
 interface ReplacementTask {
@@ -14,12 +14,7 @@ interface ReplacementTask {
   samplePrompt: string;
 }
 
-export default function ReplacementMatrix() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedRole, setSelectedRole] = useState<string>('all');
-  const [activeTaskInfo, setActiveTaskInfo] = useState<string | null>(null);
-
-  const roles = [
+const roles = [
     { id: 'all', label: 'All Roles', icon: LayoutGrid },
     { id: 'dev', label: 'Software Engineers', icon: Code },
     { id: 'devops', label: 'DevOps & MLOps', icon: Workflow },
@@ -114,13 +109,23 @@ export default function ReplacementMatrix() {
     }
   ];
 
-  const filteredTasks = tasks.filter(task => {
-    const matchesRole = selectedRole === 'all' || task.role === selectedRole;
-    const matchesSearch = task.taskName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          task.replacementTool.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          task.workflow.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesRole && matchesSearch;
-  });
+export default function ReplacementMatrix() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedRole, setSelectedRole] = useState<string>('all');
+  const [activeTaskInfo, setActiveTaskInfo] = useState<string | null>(null);
+
+  const filteredTasks = useMemo(() => {
+    const query = searchQuery.toLowerCase().trim();
+    return tasks.filter(task => {
+      const matchesRole = selectedRole === 'all' || task.role === selectedRole;
+      if (!query) return matchesRole;
+      return matchesRole && (
+        task.taskName.toLowerCase().includes(query) ||
+        task.replacementTool.toLowerCase().includes(query) ||
+        task.workflow.toLowerCase().includes(query)
+      );
+    });
+  }, [selectedRole, searchQuery]);
 
   const getLevelBadgeClass = (level: string) => {
     switch (level) {

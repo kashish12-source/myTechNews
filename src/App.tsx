@@ -33,7 +33,7 @@ export default function App() {
         } else {
           setServerOnline(false);
         }
-      } catch (e) {
+      } catch {
         setServerOnline(false);
       }
     };

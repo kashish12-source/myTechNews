@@ -16,44 +16,46 @@ app.use(express.json());
 
 const cacheFilePath = path.join(__dirname, 'news-cache.json');
 
-// Helper to check cache status and read it
-function getCachedNews() {
-  if (fs.existsSync(cacheFilePath)) {
-    try {
-      const raw = fs.readFileSync(cacheFilePath, 'utf8');
-      return JSON.parse(raw);
-    } catch (err) {
-      console.error('Error reading cache file:', err.message);
-      return null;
+let memoryCache = null;
+
+// Helper to load cache into memory asynchronously to avoid blocking the event loop
+async function loadCache() {
+  try {
+    if (fs.existsSync(cacheFilePath)) {
+      const raw = await fs.promises.readFile(cacheFilePath, 'utf8');
+      memoryCache = JSON.parse(raw);
+      console.log('Loaded tech news cache successfully into memory.');
     }
+  } catch (err) {
+    console.error('Error loading/parsing cache file:', err.message);
   }
-  return null;
 }
 
-// API Route: Get latest news from cache
+// API Route: Get latest news from memory cache
 app.get('/api/news', async (req, res) => {
-  const cache = getCachedNews();
-  
-  if (!cache) {
-    // If no cache, trigger aggregation synchronously
-    console.log('No news cache found. Compiling initial feeds...');
+  if (!memoryCache) {
+    console.log('No news cache found in memory. Compiling initial feeds...');
     try {
       const data = await aggregateNews();
+      memoryCache = data;
       return res.json(data);
     } catch (err) {
       return res.status(500).json({ error: 'Failed to aggregate news on initial start', details: err.message });
     }
   }
 
-  // If cache exists, serve it
-  res.json(cache);
+  // Serve the in-memory cache instantly
+  res.json(memoryCache);
 
   // Background refresh check: if cache is older than 6 hours, trigger refresh silently
-  const cacheAgeMs = Date.now() - new Date(cache.lastUpdated).getTime();
+  const cacheAgeMs = Date.now() - new Date(memoryCache.lastUpdated).getTime();
   const sixHoursMs = 6 * 60 * 60 * 1000;
   if (cacheAgeMs > sixHoursMs) {
     console.log(`Cache is ${(cacheAgeMs / 3600000).toFixed(1)} hours old. Triggering background update...`);
-    aggregateNews().catch(err => console.error('Background aggregation error:', err.message));
+    aggregateNews().then(data => {
+      memoryCache = data;
+      console.log('Background cache updated successfully.');
+    }).catch(err => console.error('Background aggregation error:', err.message));
   }
 });
 
@@ -62,6 +64,7 @@ app.post('/api/refresh', async (req, res) => {
   console.log('Manual refresh requested via API...');
   try {
     const data = await aggregateNews();
+    memoryCache = data;
     res.json(data);
   } catch (err) {
     console.error('Manual refresh aggregation failed:', err.message);
@@ -73,11 +76,15 @@ app.post('/api/refresh', async (req, res) => {
 app.listen(PORT, async () => {
   console.log(`MyTechNews Server running at http://localhost:${PORT}`);
   
+  // Load initial cache file into memory
+  await loadCache();
+  
   // If no cache exists, run initial aggregation immediately on server boot
-  if (!fs.existsSync(cacheFilePath)) {
+  if (!memoryCache) {
     console.log('No cache file detected on server boot. Executing initial scrape...');
     try {
-      await aggregateNews();
+      const data = await aggregateNews();
+      memoryCache = data;
     } catch (err) {
       console.error('Initial boot-time aggregation failed:', err.message);
     }

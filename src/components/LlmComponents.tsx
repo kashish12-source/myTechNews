@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import type { LucideIcon } from 'lucide-react';
 import { Code, Cpu, ShieldAlert, ChevronRight, Scissors, LayoutGrid, Eye, Percent, Sliders, Heart } from 'lucide-react';
 
 interface LlmComponent {
@@ -9,13 +10,10 @@ interface LlmComponent {
   math?: string;
   importance: string;
   codeSnippet: string;
-  icon: any;
+  icon: LucideIcon;
 }
 
-export default function LlmComponents() {
-  const [activeTab, setActiveTab] = useState<string>('tokenization');
-
-  const componentsList: LlmComponent[] = [
+const componentsList: LlmComponent[] = [
     {
       id: 'tokenization',
       name: 'Tokenization & Vocab',
@@ -154,6 +152,9 @@ quantize_config = BaseQuantizeConfig(
 # (Typically integrated into DevOps/MLOps pipelines before deployment)`
     }
   ];
+
+export default function LlmComponents() {
+  const [activeTab, setActiveTab] = useState<string>('tokenization');
 
   const activeComponent = componentsList.find(c => c.id === activeTab) || componentsList[0];
 
