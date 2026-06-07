@@ -138,6 +138,35 @@ body {
   width: 100%;
 }
 
+/* Navigation Icon Helper */
+.nav-icon {
+  margin-right: 4px;
+}
+
+.bookmarks-panel {
+  display: flex;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 680px) {
+  .top-navbar {
+    padding: 0 1rem;
+    height: 56px;
+  }
+  .nav-label {
+    display: none; /* Hide labels */
+  }
+  .nav-icon {
+    margin-right: 0 !important; /* Center the icon */
+  }
+  .bookmarks-panel {
+    display: none !important; /* Hide bookmarks to fit screen */
+  }
+  .container {
+    padding: 1.25rem 1rem; /* Increase reading width */
+  }
+}
+
 /* Typography styles */
 .font-mono {
   font-family: 'IBM Plex Mono', monospace;
@@ -203,6 +232,13 @@ body.light-theme .tooltip .tooltip-text {
 
 .tooltip-bottom:hover .tooltip-text {
   transform: translate(-50%, 4px);
+}
+
+/* Disable tooltips on touch devices to avoid sticky click state */
+@media (hover: none) {
+  .tooltip .tooltip-text {
+    display: none !important;
+  }
 }
 
 /* Micro-animations */

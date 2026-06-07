@@ -96,8 +96,8 @@ export default function App() {
                 fontSize: '0.75rem'
               }}
             >
-              <Newspaper size={14} style={{ marginRight: '4px' }} />
-              <span>Feed</span>
+              <Newspaper size={14} className="nav-icon" />
+              <span className="nav-label">Feed</span>
             </button>
             <span className="tooltip-text">Daily Updates Feed</span>
           </div>
@@ -115,8 +115,8 @@ export default function App() {
                 fontSize: '0.75rem'
               }}
             >
-              <Layers size={14} style={{ marginRight: '4px' }} />
-              <span>Architecture</span>
+              <Layers size={14} className="nav-icon" />
+              <span className="nav-label">Architecture</span>
             </button>
             <span className="tooltip-text">LLM Core Components</span>
           </div>
@@ -134,8 +134,8 @@ export default function App() {
                 fontSize: '0.75rem'
               }}
             >
-              <TableProperties size={14} style={{ marginRight: '4px' }} />
-              <span>Matrix</span>
+              <TableProperties size={14} className="nav-icon" />
+              <span className="nav-label">Matrix</span>
             </button>
             <span className="tooltip-text">AI Replacement Matrix</span>
           </div>
@@ -145,7 +145,7 @@ export default function App() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           
           {/* Quick Platform Bookmarks */}
-          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', borderRight: '1px solid var(--border-color)', paddingRight: '1rem' }}>
+          <div className="bookmarks-panel" style={{ gap: '0.5rem', alignItems: 'center', borderRight: '1px solid var(--border-color)', paddingRight: '1rem' }}>
             <div className="tooltip tooltip-bottom">
               <a 
                 href="https://news.ycombinator.com/" 
