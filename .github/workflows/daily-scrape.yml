@@ -1,0 +1,39 @@
+name: Daily News Scrape
+
+on:
+  schedule:
+    # 12:20 AM UTC is 5:50 AM IST (Indian Standard Time, UTC +5:30)
+    - cron: '20 0 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  scrape-and-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Server & Client Dependencies
+        run: |
+          npm install
+          cd server
+          npm install
+
+      - name: Execute Scraper
+        run: |
+          node scripts/update-news.mjs
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Commit and Push Updated Cache
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/news-cache.json
+          git commit -m "chore: auto-update daily tech news cache [skip ci]" || echo "No changes to commit"
+          git push
