@@ -7,6 +7,9 @@ import { fileURLToPath } from 'url';
 
 dotenv.config();
 
+// Disable TLS verification to avoid certificate issues with feeds like Netflix Tech Blog
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -104,6 +107,80 @@ async function scrapePaulGrahamArticles() {
     console.error('Error parsing Paul Graham essays, returning empty array:', err.message);
     return [];
   }
+}
+
+// Scrape NITI Aayog's What's New page
+async function scrapeNitiAayog() {
+  console.log('Fetching NITI Aayog reports...');
+  const url = 'https://niti.gov.in/whats-new';
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    const html = await response.text();
+    
+    // Parse links matching href="/whats-new/[slug]"
+    const regex = /href="(\/whats-new\/[^"]+)"[^>]*>([^<]+)<\/a>/g;
+    let match;
+    const articles = [];
+    
+    while ((match = regex.exec(html)) !== null) {
+      const href = match[1].trim();
+      let title = match[2].trim();
+      
+      // Clean HTML entities like &#039; -> '
+      title = title.replace(/&#039;/g, "'").replace(/&amp;/g, "&").replace(/&quot;/g, '"');
+      
+      articles.push({
+        title: title,
+        url: `https://niti.gov.in${href}`,
+        source: 'NITI Aayog',
+        contentSnippet: `NITI Aayog policy report and strategic national roadmap: ${title}. Link: https://niti.gov.in${href}`,
+        date: new Date().toISOString()
+      });
+    }
+    
+    return articles.slice(0, 5);
+  } catch (err) {
+    console.error('Error parsing NITI Aayog essays, returning empty array:', err.message);
+    return [];
+  }
+}
+
+// Fetch OpenReview papers from active submissions
+async function fetchOpenReviewPapers() {
+  console.log('Fetching OpenReview papers...');
+  // Fetch from ICLR 2024 and NeurIPS 2024 submissions
+  const urls = [
+    'https://api2.openreview.net/notes?invitation=ICLR.cc/2024/Conference/-/Submission&limit=5',
+    'https://api2.openreview.net/notes?invitation=NeurIPS.cc/2024/Conference/-/Submission&limit=5'
+  ];
+  
+  const papers = [];
+  for (const url of urls) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) continue;
+      const data = await response.json();
+      if (data && data.notes) {
+        for (const note of data.notes) {
+          const title = note.content?.title?.value || note.content?.title || '';
+          const abstract = note.content?.abstract?.value || note.content?.abstract || '';
+          if (title) {
+            papers.push({
+              title: title,
+              url: `https://openreview.net/forum?id=${note.id}`,
+              source: 'OpenReview',
+              contentSnippet: abstract ? abstract.slice(0, 300) : `OpenReview paper: ${title}`,
+              date: note.tcdate ? new Date(note.tcdate).toISOString() : new Date().toISOString()
+            });
+          }
+        }
+      }
+    } catch (err) {
+      console.error(`Failed to fetch OpenReview from ${url}:`, err.message);
+    }
+  }
+  return papers;
 }
 
 // Scrape RSS feed helper
@@ -249,17 +326,48 @@ function deduplicateArticles(articles) {
 export async function aggregateNews() {
   console.log('Initiating technology news aggregation pipeline...');
   
-  // 1. Gather all raw articles in parallel
+  // 1. Gather all raw articles in parallel using Promise.allSettled for failure tolerance
   console.log('Fetching all feeds concurrently...');
-  const [hn, lobs, pg, arxiv, tc] = await Promise.all([
+  const feedPromises = [
     fetchRssFeed('https://news.ycombinator.com/rss', 'Hacker News'),
     fetchRssFeed('https://lobste.rs/rss', 'Lobsters'),
     scrapePaulGrahamArticles(),
     fetchRssFeed('https://export.arxiv.org/api/query?search_query=cat:cs.LG+OR+cat:cs.AI&sortBy=lastUpdatedDate&sortOrder=descending&max_results=8', 'arXiv AI/ML'),
-    fetchRssFeed('https://techcrunch.com/category/artificial-intelligence/feed/', 'TechCrunch AI')
-  ]);
+    fetchRssFeed('https://techcrunch.com/category/artificial-intelligence/feed/', 'TechCrunch AI'),
+    
+    // 17 New sources:
+    fetchRssFeed('https://news.google.com/rss/search?q=site:gartner.com/en/insights&hl=en-US&gl=US&ceid=US:en', 'Gartner Insights'),
+    fetchRssFeed('https://www.forrester.com/blogs/feed/', 'Forrester Bold'),
+    fetchRssFeed('https://news.google.com/rss/search?q=site:mckinsey.com/capabilities/mckinsey-digital/our-insights&hl=en-US&gl=US&ceid=US:en', 'McKinsey Digital'),
+    fetchRssFeed('https://news.google.com/rss/search?q=site:bain.com/insights&hl=en-US&gl=US&ceid=US:en', 'Bain Insights'),
+    scrapeNitiAayog(),
+    fetchRssFeed('https://www.amazon.science/index.rss', 'Amazon Science'),
+    fetchRssFeed('https://netflixtechblog.com/feed', 'Netflix Tech Blog'),
+    fetchRssFeed('https://news.google.com/rss/search?q=site:uber.com/blog/engineering&hl=en-US&gl=US&ceid=US:en', 'Uber Engineering'),
+    fetchRssFeed('https://stripe.com/blog/feed.rss', 'Stripe Engineering'),
+    fetchRssFeed('https://blog.pragmaticengineer.com/rss/', 'Pragmatic Engineer'),
+    fetchRssFeed('https://stratechery.com/feed/', 'Stratechery'),
+    fetchRssFeed('https://techcrunch.com/category/enterprise/feed/', 'TechCrunch Enterprise'),
+    fetchRssFeed('https://restofworld.org/feed/', 'Rest of World'),
+    fetchRssFeed('https://export.arxiv.org/api/query?search_query=cat:cs.OH+OR+cat:cs.SE+OR+cat:cs.CL&sortBy=lastUpdatedDate&sortOrder=descending&max_results=5', 'arXiv Computer Science'),
+    fetchOpenReviewPapers(),
+    fetchRssFeed('https://ourworldindata.org/feed', 'Our World In Data'),
+    fetchRssFeed('https://news.google.com/rss/search?q=site:blog.feedly.com&hl=en-US&gl=US&ceid=US:en', 'Feedly Blog')
+  ];
 
-  const rawFeeds = [...hn, ...lobs, ...pg, ...arxiv, ...tc];
+  const results = await Promise.allSettled(feedPromises);
+  const rawFeeds = [];
+  
+  results.forEach((result, idx) => {
+    if (result.status === 'fulfilled') {
+      if (Array.isArray(result.value)) {
+        rawFeeds.push(...result.value);
+      }
+    } else {
+      console.error(`Feed at index ${idx} failed to aggregate:`, result.reason);
+    }
+  });
+
   console.log(`Gathered ${rawFeeds.length} articles from all feeds. Pre-filtering...`);
   
   // 2. Run heuristics filter
@@ -269,10 +377,10 @@ export async function aggregateNews() {
   const uniqueArticles = deduplicateArticles(preFiltered);
   console.log(`Filtered and de-duplicated down to ${uniqueArticles.length} serious unique items. Compiling/Enriching...`);
 
-  // Limit number of concurrent articles processed to avoid API limits (keep top 15 newest articles)
+  // Limit number of concurrent articles processed to avoid API limits (keep top 30 newest articles)
   const sortedArticles = uniqueArticles
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 15);
+    .slice(0, 30);
 
   // 4. Summarize and Categorize (via Gemini or heuristics in parallel)
   const enrichedArticles = await summarizeAndEnrichWithGemini(sortedArticles);
