@@ -255,7 +255,7 @@ export default function ReplacementMatrix() {
               </button>
 
               {activeTaskInfo === task.id && (
-                <div className="animate-fade-in" style={{ background: '#0d1220', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '1rem', marginTop: '0.5rem' }}>
+                <div className="animate-fade-in" style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '1rem', marginTop: '0.5rem' }}>
                   <div style={{ marginBottom: '0.75rem' }}>
                     <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '0.25rem', marginBottom: '0.2rem' }}>
                       <Info size={12} />
@@ -271,7 +271,7 @@ export default function ReplacementMatrix() {
                       <Code size={12} />
                       Target Prompt Example
                     </div>
-                    <pre style={{ background: '#050811', color: 'var(--accent-cyan)', padding: '0.75rem', borderRadius: '4px', fontSize: '0.75rem', overflowX: 'auto', border: '1px solid var(--border-color)', whiteSpace: 'pre-wrap', fontFamily: 'monospace' }}>
+                    <pre style={{ background: 'var(--bg-code)', color: 'var(--accent-cyan)', padding: '0.75rem', borderRadius: '4px', fontSize: '0.75rem', overflowX: 'auto', border: '1px solid var(--border-color)', whiteSpace: 'pre-wrap', fontFamily: 'monospace' }}>
                       {task.samplePrompt}
                     </pre>
                   </div>

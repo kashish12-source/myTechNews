@@ -2,21 +2,22 @@
 
 :root {
   font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  line-height: 1.5;
+  line-height: 1.65;
   font-weight: 400;
 
   color-scheme: dark;
-  color: #e2e8f0;
+  color: #cbd5e1;
   background-color: #090d16;
 
-  /* Refined, eye-friendly Matte palette */
+  /* Theme variables (Dark theme default) */
   --bg-primary: #090d16;
   --bg-secondary: #0f1422;
   --bg-card: #131929;
   --bg-card-hover: #182033;
+  --bg-code: #050811;
   
-  --border-color: rgba(255, 255, 255, 0.05);
-  --border-hover: rgba(255, 255, 255, 0.12);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.18);
   
   /* Softer Accents (low eye strain) */
   --accent-cyan: #38bdf8;
@@ -25,9 +26,9 @@
   --accent-amber: #f59e0b;
   --accent-rose: #f43f5e;
   
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #475569;
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
   
   --shadow-main: 0 4px 20px 0 rgba(0, 0, 0, 0.25);
   
@@ -37,12 +38,37 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Light Theme Variables */
+body.light-theme {
+  color-scheme: light;
+  color: #334155;
+  background-color: #f8fafc; /* Soft off-white to prevent glare */
+
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --bg-code: #e2e8f0;
+  
+  --border-color: rgba(15, 23, 42, 0.08);
+  --border-hover: rgba(15, 23, 42, 0.16);
+  
+  --accent-blue: #4f46e5;
+  
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  
+  --shadow-main: 0 4px 15px 0 rgba(15, 23, 42, 0.05);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   scrollbar-width: thin;
   scrollbar-color: var(--border-hover) var(--bg-primary);
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
 /* Custom Scrollbar */
@@ -65,7 +91,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #090d16;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
   overflow-x: hidden;
 }
 
@@ -85,34 +112,42 @@ body {
 
 /* Layout Utilities */
 .dashboard-grid {
-  display: grid;
-  grid-template-columns: 80px 1fr; /* Narrow Icon-Only Sidebar */
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
-@media (max-width: 768px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
+.top-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2.5rem;
+  height: 64px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 2.5rem 2rem;
+  padding: 2rem;
   width: 100%;
 }
 
 /* Typography styles */
 .font-mono {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.9em;
+  font-size: 0.85rem;
 }
 
 .title-header {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   color: var(--text-primary);
 }
@@ -133,8 +168,8 @@ body {
   border-radius: 4px;
   padding: 0.4rem 0.6rem;
   position: absolute;
-  z-index: 100;
-  bottom: 125%; /* Position above */
+  z-index: 200;
+  bottom: 125%; /* Position above by default */
   left: 50%;
   transform: translateX(-50%);
   opacity: 0;
@@ -147,23 +182,27 @@ body {
   pointer-events: none;
 }
 
+body.light-theme .tooltip .tooltip-text {
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
 .tooltip:hover .tooltip-text {
   visibility: visible;
   opacity: 1;
   transform: translate(-50%, -4px);
 }
 
-/* Tooltip Right positioning for sidebar */
-.tooltip-right .tooltip-text {
+/* Tooltip Bottom positioning for top header navbar */
+.tooltip-bottom .tooltip-text {
   bottom: auto;
-  left: 125%;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-left: 0;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.tooltip-right:hover .tooltip-text {
-  transform: translate(6px, -50%);
+.tooltip-bottom:hover .tooltip-text {
+  transform: translate(-50%, 4px);
 }
 
 /* Micro-animations */
@@ -194,6 +233,10 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
+body.light-theme .badge {
+  border: 1px solid rgba(15, 23, 42, 0.04);
+}
+
 .badge-cyan {
   background: rgba(56, 189, 248, 0.07);
   color: var(--accent-cyan);
@@ -221,7 +264,7 @@ body {
 
 /* Input Fields */
 input, select, textarea {
-  background: #0d1220;
+  background: var(--bg-primary);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
   padding: 0.6rem 0.8rem;
@@ -268,9 +311,18 @@ input:focus, select:focus, textarea:focus {
   color: var(--text-secondary);
 }
 
+body.light-theme .btn-secondary {
+  background: rgba(15, 23, 42, 0.03);
+  color: var(--text-secondary);
+}
+
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.06);
   border-color: var(--border-hover);
+}
+
+body.light-theme .btn-secondary:hover {
+  background: rgba(15, 23, 42, 0.06);
 }
 
 .btn-outline-neon {
@@ -285,9 +337,9 @@ input:focus, select:focus, textarea:focus {
 }
 
 .btn-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
   display: inline-flex;
   align-items: center;
   justify-content: center;

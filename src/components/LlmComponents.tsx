@@ -227,7 +227,7 @@ quantize_config = BaseQuantizeConfig(
           {/* Core Formula Block */}
           {activeComponent.math && (
             <div className="font-mono" style={{ 
-              background: '#0d1220', 
+              background: 'var(--bg-secondary)', 
               border: '1px solid var(--border-color)', 
               padding: '1rem 1.25rem', 
               borderRadius: '6px', 
@@ -268,7 +268,7 @@ quantize_config = BaseQuantizeConfig(
           </div>
           
           <pre style={{ 
-            background: '#050811', 
+            background: 'var(--bg-code)', 
             color: '#a5b4fc', 
             padding: '1rem', 
             borderRadius: '6px', 
