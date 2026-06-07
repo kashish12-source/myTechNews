@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { Search, RefreshCw, ExternalLink, Calendar, AlertCircle, Sparkles, Globe, Cpu, Building2, Code, Workflow, Server } from 'lucide-react';
 import fallbackData from '../data/news-cache.json';
 
@@ -14,15 +14,6 @@ export interface Article {
   importance?: string;
 }
 
-const CATEGORIES = [
-  { id: 'all', label: 'All Updates', icon: Globe },
-  { id: 'ai-models', label: 'ML Models & AI', icon: Cpu },
-  { id: 'big-tech', label: 'Big Tech', icon: Building2 },
-  { id: 'dev-tools', label: 'Dev Tools & Coding', icon: Code },
-  { id: 'mlops-devops', label: 'MLOps & DevOps', icon: Workflow },
-  { id: 'hardware-gpus', label: 'Hardware & GPUs', icon: Server }
-];
-
 export default function NewsFeed() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(false);
@@ -31,6 +22,38 @@ export default function NewsFeed() {
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedArticle, setExpandedArticle] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string>('');
+
+  const categories = [
+    { id: 'all', label: 'All Updates', icon: Globe },
+    { id: 'ai-models', label: 'ML Models & AI', icon: Cpu },
+    { id: 'big-tech', label: 'Big Tech', icon: Building2 },
+    { id: 'dev-tools', label: 'Dev Tools & Coding', icon: Code },
+    { id: 'mlops-devops', label: 'MLOps & DevOps', icon: Workflow },
+    { id: 'hardware-gpus', label: 'Hardware & GPUs', icon: Server }
+  ];
+
+  // Robust Date Parsers to prevent mobile Safari/Chrome RangeErrors
+  const formatDate = (dateStr: string) => {
+    try {
+      if (!dateStr) return 'Recent';
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return 'Recent';
+      return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    } catch {
+      return 'Recent';
+    }
+  };
+
+  const formatLastUpdated = (dateStr: string) => {
+    try {
+      if (!dateStr) return '';
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return '';
+      return d.toLocaleString();
+    } catch {
+      return '';
+    }
+  };
 
   const fetchNews = async (forceRefresh = false) => {
     setLoading(true);
@@ -45,11 +68,11 @@ export default function NewsFeed() {
       }
       const data = await response.json();
       setArticles(data.articles || []);
-      setLastUpdated(new Date(data.lastUpdated).toLocaleString());
+      setLastUpdated(formatLastUpdated(data.lastUpdated));
     } catch (err) {
       console.warn('Backend server not running. Falling back to static pre-seeded news database.', err);
       setArticles(fallbackData.articles || []);
-      setLastUpdated(new Date(fallbackData.lastUpdated).toLocaleString());
+      setLastUpdated(formatLastUpdated(fallbackData.lastUpdated));
       if (forceRefresh) {
         setError('Aggregator server offline. Showing pre-seeded daily archive.');
       }
@@ -59,27 +82,20 @@ export default function NewsFeed() {
   };
 
   useEffect(() => {
-    Promise.resolve().then(() => {
-      fetchNews();
-    });
+    fetchNews();
   }, []);
 
   const handleRefresh = () => {
     fetchNews(true);
   };
 
-  const filteredArticles = useMemo(() => {
-    const query = searchQuery.toLowerCase().trim();
-    return articles.filter(article => {
-      const matchesCategory = selectedCategory === 'all' || article.category === selectedCategory;
-      if (!query) return matchesCategory;
-      return matchesCategory && (
-        article.title.toLowerCase().includes(query) || 
-        article.summary.toLowerCase().includes(query) ||
-        article.source.toLowerCase().includes(query)
-      );
-    });
-  }, [articles, selectedCategory, searchQuery]);
+  const filteredArticles = articles.filter(article => {
+    const matchesCategory = selectedCategory === 'all' || article.category === selectedCategory;
+    const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          article.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          article.source.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   const getCategoryIcon = (cat: string) => {
     switch(cat) {
@@ -155,7 +171,7 @@ export default function NewsFeed() {
 
           {/* Iconised Category Selection bar */}
           <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-            {CATEGORIES.map((cat) => {
+            {categories.map((cat) => {
               const IconComp = cat.icon;
               const isSelected = selectedCategory === cat.id;
               return (
@@ -216,7 +232,7 @@ export default function NewsFeed() {
                         <CatIcon size={12} />
                       </span>
                       <span className="tooltip-text">
-                        {CATEGORIES.find(c => c.id === article.category)?.label || article.category}
+                        {categories.find(c => c.id === article.category)?.label || article.category}
                       </span>
                     </div>
 
@@ -233,7 +249,7 @@ export default function NewsFeed() {
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--text-muted)', fontSize: '0.7rem', fontFamily: 'monospace' }}>
                     <Calendar size={10} />
-                    {new Date(article.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' })}
+                    {formatDate(article.date)}
                   </div>
                 </div>
 
