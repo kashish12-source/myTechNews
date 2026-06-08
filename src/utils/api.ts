@@ -5,8 +5,5 @@
  *   which modern browsers exempt from Mixed Content secure/insecure connection blocks.
  */
 export const getApiUrl = (path: string): string => {
-  if (import.meta.env.DEV) {
-    return path;
-  }
-  return `http://127.0.0.1:3001${path}`;
+  return path;
 };

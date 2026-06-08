@@ -13,6 +13,14 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Support Private Network Access (PNA) preflight requests from public hosts (e.g. Vercel)
+app.use((req, res, next) => {
+  if (req.headers['access-control-request-private-network'] === 'true') {
+    res.setHeader('Access-Control-Allow-Private-Network', 'true');
+  }
+  next();
+});
+
 app.use(cors());
 app.use(express.json());
 
@@ -24,8 +32,34 @@ app.use((req, res, next) => {
   next();
 });
 
-const cacheFilePath = path.join(__dirname, 'news-cache.json');
-const usersFilePath = path.join(__dirname, 'users.json');
+const isVercel = process.env.VERCEL === '1' || !!process.env.VERCEL;
+
+function getWritablePath(filename) {
+  const defaultPath = path.join(__dirname, filename);
+  if (!isVercel) {
+    return defaultPath;
+  }
+  
+  const tmpPath = path.join('/tmp', filename);
+  // If the file doesn't exist in /tmp, copy it from the packaged directory
+  if (!fs.existsSync(tmpPath)) {
+    try {
+      if (fs.existsSync(defaultPath)) {
+        fs.copyFileSync(defaultPath, tmpPath);
+        console.log(`Copied ${filename} to /tmp`);
+      } else {
+        fs.writeFileSync(tmpPath, '[]');
+        console.log(`Created empty ${filename} in /tmp`);
+      }
+    } catch (err) {
+      console.error(`Error copying/creating ${filename} in /tmp:`, err.message);
+    }
+  }
+  return tmpPath;
+}
+
+const cacheFilePath = getWritablePath('news-cache.json');
+const usersFilePath = getWritablePath('users.json');
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecretkeyformytechnewsaggregator';
 
 async function readUsers() {
@@ -200,27 +234,31 @@ app.post('/api/refresh', authenticateToken, async (req, res) => {
   }
 });
 
-// Start listening
-app.listen(PORT, '::', async () => {
-  console.log(`MyTechNews Server running at http://localhost:${PORT}`);
-  
-  // Load initial cache file into memory
-  await loadCache();
-  
-  // If memory cache exists and is older than 15 minutes, or if no cache exists, run aggregation
-  if (memoryCache) {
-    const cacheAgeMs = Date.now() - new Date(memoryCache.lastUpdated).getTime();
-    const fifteenMinutesMs = 15 * 60 * 1000;
-    if (cacheAgeMs > fifteenMinutesMs) {
-      console.log(`Cache is ${(cacheAgeMs / 60000).toFixed(1)} minutes old on boot. Starting background update...`);
+// Load initial cache file into memory immediately on startup
+await loadCache();
+
+// Start listening if not running in serverless environment
+if (!process.env.VERCEL) {
+  app.listen(PORT, '::', async () => {
+    console.log(`MyTechNews Server running at http://localhost:${PORT}`);
+    
+    // If memory cache exists and is older than 15 minutes, or if no cache exists, run aggregation
+    if (memoryCache) {
+      const cacheAgeMs = Date.now() - new Date(memoryCache.lastUpdated).getTime();
+      const fifteenMinutesMs = 15 * 60 * 1000;
+      if (cacheAgeMs > fifteenMinutesMs) {
+        console.log(`Cache is ${(cacheAgeMs / 60000).toFixed(1)} minutes old on boot. Starting background update...`);
+        runAggregation()
+          .then(() => console.log('Boot background cache updated successfully.'))
+          .catch(err => console.error('Boot background aggregation error:', err.message));
+      }
+    } else {
+      console.log('No cache file detected on server boot. Executing initial scrape...');
       runAggregation()
-        .then(() => console.log('Boot background cache updated successfully.'))
-        .catch(err => console.error('Boot background aggregation error:', err.message));
+        .then(() => console.log('Initial boot-time aggregation complete.'))
+        .catch(err => console.error('Initial boot-time aggregation failed:', err.message));
     }
-  } else {
-    console.log('No cache file detected on server boot. Executing initial scrape...');
-    runAggregation()
-      .then(() => console.log('Initial boot-time aggregation complete.'))
-      .catch(err => console.error('Initial boot-time aggregation failed:', err.message));
-  }
-});
+  });
+}
+
+export default app;

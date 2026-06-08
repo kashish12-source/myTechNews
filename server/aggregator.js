@@ -392,15 +392,30 @@ export async function aggregateNews() {
     articles: enrichedArticles
   };
 
-  // Write to client cache location
-  const clientCachePath = path.join(__dirname, '../src/data/news-cache.json');
-  await fs.promises.mkdir(path.dirname(clientCachePath), { recursive: true });
-  await fs.promises.writeFile(clientCachePath, JSON.stringify(cacheData, null, 2));
-  console.log(`Successfully updated client local cache file at: ${clientCachePath}`);
+  const isVercel = process.env.VERCEL === '1' || !!process.env.VERCEL;
+
+  // Write to client cache location (only if not on Vercel)
+  if (!isVercel) {
+    const clientCachePath = path.join(__dirname, '../src/data/news-cache.json');
+    try {
+      await fs.promises.mkdir(path.dirname(clientCachePath), { recursive: true });
+      await fs.promises.writeFile(clientCachePath, JSON.stringify(cacheData, null, 2));
+      console.log(`Successfully updated client local cache file at: ${clientCachePath}`);
+    } catch (err) {
+      console.error('Error writing client cache file:', err.message);
+    }
+  }
 
   // Write to server local cache location
-  const serverCachePath = path.join(__dirname, 'news-cache.json');
-  await fs.promises.writeFile(serverCachePath, JSON.stringify(cacheData, null, 2));
+  const serverCachePath = isVercel 
+    ? path.join('/tmp', 'news-cache.json')
+    : path.join(__dirname, 'news-cache.json');
+  try {
+    await fs.promises.writeFile(serverCachePath, JSON.stringify(cacheData, null, 2));
+    console.log(`Successfully updated server cache file at: ${serverCachePath}`);
+  } catch (err) {
+    console.error('Error writing server cache file:', err.message);
+  }
 
   return cacheData;
 }
