@@ -201,7 +201,7 @@ app.post('/api/refresh', authenticateToken, async (req, res) => {
 });
 
 // Start listening
-app.listen(PORT, async () => {
+app.listen(PORT, '::', async () => {
   console.log(`MyTechNews Server running at http://localhost:${PORT}`);
   
   // Load initial cache file into memory

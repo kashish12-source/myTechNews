@@ -10,5 +10,9 @@
   {
     "email": "kashishvishnoi2006@gmail.com",
     "passwordHash": "$2b$10$LEOVV9mxPKrj0pVt0pqLw.mnRL9d3fBuZhR2KRd7xbBgkdDiTGCrW"
+  },
+  {
+    "email": "testuser@example.com",
+    "passwordHash": "$2b$10$LRI2fbYnSXGRZNQ3h6k13.qIdhNdz45f8OsUwUE3Ytxa9SHCgnXpK"
   }
 ]
