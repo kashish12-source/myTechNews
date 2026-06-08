@@ -52,7 +52,7 @@ export default function App() {
   useEffect(() => {
     const checkServer = async () => {
       try {
-        const headers = token ? { Authorization: `Bearer ${token}` } : {};
+        const headers: HeadersInit = token ? { Authorization: `Bearer ${token}` } : {};
         const res = await fetch('/api/news', { headers });
         setServerOnline(res.status === 200 || res.status === 401 || res.status === 403);
       } catch {
