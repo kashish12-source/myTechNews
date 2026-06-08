@@ -54,3 +54,13 @@ This document lists the step-by-step timeline of all requests, bug reports, diag
     *   [vite.config.ts](file:///c:/Users/Kashish/myTechNews/vite.config.ts) (proxy error/request/response logs).
     *   [server/users.json](file:///c:/Users/Kashish/myTechNews/server/users.json) (registered user `kashishvishnoi2006@gmail.com`).
     *   [handsoff/README.md](file:///c:/Users/Kashish/myTechNews/handsoff/README.md) (handover document).
+
+### 7. Monorepo Reorganization & FastAPI Migration (Current Session)
+*   **User Request**: Reorganize the app into separate frontend and backend directories, migrate the backend from Node/Express to FastAPI (Python) + PostgreSQL, revamp the frontend layout using React and Tailwind CSS v4 to model a premium news portal (ABP News / Times of India), resolve any bugs, and configure Vercel deployment.
+*   **Action**:
+    *   **Folder Restructure**: Reorganized the codebase into separate `frontend/` and `backend/` directories, and created root-level orchestrator files.
+    *   **FastAPI & SQLAlchemy Migration**: Created a Python FastAPI backend under `backend/app/` with JWT token support, bcrypt security, Pydantic schemas, and a database layer that dynamically connects to PostgreSQL (with a local SQLite fallback for out-of-the-box local development).
+    *   **RSS Scraper Pipeline Port**: Ported the news aggregator pipeline to Python (`backend/app/aggregator.py`), using BeautifulSoup for scraping NITI Aayog/Paul Graham index pages, feedparser for RSS streams, and google-generativeai for Gemini metadata summaries.
+    *   **ABP / TOI News UI Overhaul**: Upgraded the client to use React and Tailwind CSS v4 in the `frontend` workspace, adding localized date and weather widgets, a live-scrolling breaking news marquee, a Headline Hero featured card, and a Trending Now sidebar.
+    *   **Vercel Monorepo Build**: Created a unified root-level `vercel.json` and `api/index.py` Python entrypoint to route Vercel serverless requests to FastAPI, while statically bundling the React frontend.
+    *   **Verification**: Verified all FastAPI endpoints pass python unit tests and the frontend builds successfully without compiler warnings.

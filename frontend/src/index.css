@@ -1,27 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --color-slate-900: #0d111b;
+  --color-slate-950: #07090e;
+  --color-slate-850: #121826;
+  --color-slate-800: #182033;
+}
 
 :root {
-  font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-sans);
   line-height: 1.65;
   font-weight: 400;
 
   color-scheme: dark;
   color: #cbd5e1;
-  background-color: #090d16;
+  background-color: #07090e;
 
   /* Theme variables (Dark theme default) */
-  --bg-primary: #090d16;
-  --bg-secondary: #0f1422;
-  --bg-card: #131929;
+  --bg-primary: #07090e;
+  --bg-secondary: #0d111b;
+  --bg-card: #121826;
   --bg-card-hover: #182033;
   --bg-code: #050811;
   
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.18);
+  --border-color: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(255, 255, 255, 0.12);
   
   /* Softer Accents (low eye strain) */
-  --accent-cyan: #38bdf8;
-  --accent-blue: #6366f1;
+  --accent-cyan: #22d3ee;
+  --accent-blue: #3b82f6;
   --accent-emerald: #10b981;
   --accent-amber: #f59e0b;
   --accent-rose: #f43f5e;

@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+pg8000
+pydantic
+pydantic-settings
+pyjwt
+bcrypt
+beautifulsoup4
+feedparser
+google-generativeai
+python-dotenv
+httpx
+pytest
