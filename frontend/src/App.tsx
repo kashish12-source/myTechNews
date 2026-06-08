@@ -81,11 +81,11 @@ export default function App() {
       <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
         <header className="bg-slate-900 border-b border-slate-800 py-3 px-6 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <span className="bg-red-600 text-white px-3 py-1 font-extrabold tracking-wider rounded text-sm font-serif">
-              ABP TECH
+            <span className="bg-red-600 text-white px-3 py-1 font-extrabold tracking-wider rounded text-sm font-sans uppercase">
+              myTechNews
             </span>
             <span className="text-xs text-slate-400 font-semibold tracking-wider uppercase hidden sm:inline">
-              TechNews Intelligence Portal
+              Intelligence Portal
             </span>
           </div>
           
@@ -144,11 +144,11 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 py-7 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center gap-3">
-              <div className="bg-slate-950 border border-red-550/40 text-red-500 px-3.5 py-1 text-xl font-serif font-black tracking-widest rounded-lg shadow-md shadow-red-500/5 select-none hover:border-red-500/80 transition-colors">
-                ABP
+              <div className="bg-slate-950 border border-red-500/30 text-red-500 px-3.5 py-1 text-xl font-sans font-black tracking-tighter rounded-lg shadow-md shadow-red-500/5 select-none hover:border-red-500/80 transition-colors uppercase">
+                myTechNews
               </div>
               <span className="text-xl font-serif font-extrabold tracking-tight text-white">
-                TechDesk <span className="text-red-500 font-mono text-xs font-normal">v2.0</span>
+                Portal <span className="text-red-500 font-mono text-xs font-normal">v2.0</span>
               </span>
             </div>
             <p className="text-slate-500 text-[10px] mt-1.5 tracking-wider uppercase font-mono">
@@ -269,7 +269,7 @@ export default function App() {
       {/* Editorial Footer Section */}
       <footer className="bg-slate-950 border-t border-slate-900 py-8 text-center text-xs text-slate-500">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p>© {new Date().getFullYear()} ABP TechNews Intelligence Portal. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} myTechNews Portal. All rights reserved.</p>
           <div className="flex gap-4">
             <a href="https://news.ycombinator.com/" target="_blank" rel="noreferrer" className="hover:text-slate-400 transition-colors">Hacker News</a>
             <a href="https://lobste.rs/" target="_blank" rel="noreferrer" className="hover:text-slate-400 transition-colors">Lobsters</a>
