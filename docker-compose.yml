@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mytechnews-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - ENVIRONMENT=development
+      - PORT=3001
+      - DATABASE_URL=sqlite:///./my_tech_news.db
+      - JWT_SECRET=supersecretkeyformytechnewsaggregator
+      - GEMINI_API_KEY=
+    volumes:
+      # Mount the local SQLite database file to persist data on host
+      - ./my_tech_news.db:/workspace/my_tech_news.db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: mytechnews-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend

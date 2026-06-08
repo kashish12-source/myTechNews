@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { ShieldCheck, Info, Search, Code, CheckCircle, Zap, Workflow, Paintbrush, FileText, LayoutGrid, ChevronDown } from 'lucide-react';
+import { ShieldCheck, Search, Code, CheckCircle, Zap, Workflow, Paintbrush, FileText, LayoutGrid, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface ReplacementTask {
   id: string;
@@ -109,8 +109,14 @@ const tasks: ReplacementTask[] = [
   }
 ];
 
-export default function ReplacementMatrix() {
-  const [searchQuery, setSearchQuery] = useState('');
+interface ReplacementMatrixProps {
+  searchQuery?: string;
+}
+
+export default function ReplacementMatrix({ searchQuery: propSearchQuery }: ReplacementMatrixProps = {}) {
+  const [localSearchQuery, setLocalSearchQuery] = useState('');
+  const searchQuery = propSearchQuery !== undefined ? propSearchQuery : localSearchQuery;
+  const setSearchQuery = propSearchQuery !== undefined ? () => {} : setLocalSearchQuery;
   const [selectedRole, setSelectedRole] = useState<string>('all');
   const [activeTaskInfo, setActiveTaskInfo] = useState<string | null>(null);
 
@@ -127,49 +133,45 @@ export default function ReplacementMatrix() {
     });
   }, [selectedRole, searchQuery]);
 
-  const getLevelBadgeClass = (level: string) => {
-    switch (level) {
-      case 'Complete': return 'text-emerald-400 bg-emerald-950/40 border-emerald-900/30';
-      case 'Substantial': return 'text-cyan-400 bg-cyan-950/40 border-cyan-900/30';
-      default: return 'text-blue-400 bg-blue-950/40 border-blue-900/30';
-    }
+  const getRoleLabelColor = (_role: string) => {
+    return 'text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700';
   };
 
-  const getEaseBadgeClass = (ease: string) => {
-    switch (ease) {
-      case 'Easy': return 'text-emerald-400 bg-emerald-950/40 border-emerald-900/30';
-      case 'Medium': return 'text-cyan-400 bg-cyan-950/40 border-cyan-900/30';
-      default: return 'text-red-400 bg-red-950/40 border-red-900/30';
-    }
+  const getEaseBadgeClass = (_ease: string) => {
+    return 'text-slate-600 dark:text-slate-400 bg-transparent border border-slate-200 dark:border-slate-700';
   };
 
   return (
-    <div className="flex flex-col gap-6 animate-fade-in">
+    <div className="flex flex-col gap-6 animate-fade-in font-sans">
       
       {/* Title Panel */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
-        <h1 className="text-2xl font-serif font-bold text-white tracking-wide">
+      <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
+        <h2 className="text-xl font-bold text-[var(--text-primary)]">
           AI Replacement Matrix
-        </h1>
-        <p className="text-xs text-slate-400 mt-1">
+        </h2>
+        <p className="text-xs text-[var(--text-secondary)] mt-1.5">
           Compare workflow automation mappings across various engineering and technical roles.
         </p>
       </div>
 
       {/* Toolbar - Search & Filter */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 flex gap-4 items-center flex-wrap">
-        <div className="relative w-full sm:w-[220px]">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={14} />
-          <input 
-            type="text" 
-            placeholder="Search matrix..." 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-slate-950 text-slate-200 border border-slate-800 focus:border-red-600 rounded-lg pl-9 pr-4 py-1.5 text-xs outline-none transition-all placeholder:text-slate-500"
-          />
-        </div>
+      <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-4 flex gap-4 items-center flex-wrap shadow-sm">
+        {propSearchQuery === undefined && (
+          <>
+            <div className="relative w-full sm:w-[220px]">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={14} />
+              <input 
+                type="text" 
+                placeholder="Search matrix..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-[var(--bg-primary)] text-[var(--text-primary)] border border-[var(--border-color)] focus:border-[#1a73e8] rounded-lg pl-9 pr-4 py-1.5 text-xs outline-none transition-all placeholder:text-slate-550"
+              />
+            </div>
 
-        <div className="hidden sm:block w-px h-6 bg-slate-800"></div>
+            <div className="hidden sm:block w-px h-6 bg-[var(--border-color)]"></div>
+          </>
+        )}
 
         {/* Roles Selection Bar */}
         <div className="flex gap-2 items-center flex-wrap">
@@ -180,10 +182,10 @@ export default function ReplacementMatrix() {
               <button
                 key={r.id}
                 onClick={() => setSelectedRole(r.id)}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all border ${
+                className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold transition-all border cursor-pointer select-none ${
                   isSelected 
-                    ? 'bg-red-600 border-red-700 text-white shadow-md' 
-                    : 'bg-slate-950 border-slate-800 hover:border-slate-700 text-slate-400 hover:text-slate-200'
+                    ? 'bg-[#1a73e8] border-[#1a73e8] text-white shadow-sm' 
+                    : 'bg-[var(--bg-primary)] border-[var(--border-color)] hover:bg-[var(--border-hover)] text-[var(--text-secondary)]'
                 }`}
               >
                 <RoleIcon size={13} />
@@ -194,132 +196,121 @@ export default function ReplacementMatrix() {
         </div>
       </div>
 
-      {/* Tasks List */}
-      <div className="flex flex-col gap-4">
+      {/* Tasks List - Formatted exactly like coding news grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {filteredTasks.length === 0 ? (
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-10 text-center text-slate-400">
+          <div className="col-span-full bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-16 text-center text-[var(--text-secondary)] shadow-sm">
             <p className="text-sm">No automation mappings match your criteria.</p>
           </div>
         ) : (
-          filteredTasks.map((task) => (
-            <div key={task.id} className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col gap-4">
-              
-              <div className="flex justify-between items-start flex-wrap gap-2">
+          filteredTasks.map((task) => {
+            const isExpanded = activeTaskInfo === task.id;
+            const badgeClass = getRoleLabelColor(task.role);
+            const easeClass = getEaseBadgeClass(task.setupEase);
+
+            return (
+              <div 
+                key={task.id} 
+                className="google-news-card"
+              >
                 <div>
-                  <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded border border-red-900/30 text-red-400 bg-red-950/20">
-                    {roles.find(r => r.id === task.role)?.label || task.role}
-                  </span>
-                  <h3 className="text-base font-serif font-bold text-white mt-2">
+                  {/* Top Bar Badges */}
+                  <div className="flex justify-between items-center mb-3">
+                    <span className={`px-2.5 py-0.5 rounded border text-[9px] font-bold tracking-wide ${badgeClass}`}>
+                      {roles.find(r => r.id === task.role)?.label.split(' ')[0] || task.role}
+                    </span>
+                    <span className={`px-2 py-0.5 rounded text-[9px] font-semibold tracking-wide ${easeClass}`}>
+                      Complexity: {task.setupEase}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-sm md:text-base font-bold text-[var(--text-primary)] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] transition-colors leading-snug line-clamp-2 mb-2">
                     {task.taskName}
                   </h3>
+
+                  {/* Primary Tool */}
+                  <p className="text-xs text-[var(--text-primary)] font-semibold mb-2 flex items-center gap-1.5">
+                    <CheckCircle size={13} className="text-emerald-500 shrink-0" />
+                    <span>{task.replacementTool}</span>
+                  </p>
+
+                  {/* Summary / Workflow Brief */}
+                  <p className={`text-[var(--text-secondary)] text-xs leading-relaxed ${isExpanded ? '' : 'line-clamp-2'}`}>
+                    {task.workflow}
+                  </p>
                 </div>
 
-                <div className="flex gap-2 flex-wrap">
-                  <span className={`text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded border ${getLevelBadgeClass(task.replacementLevel)}`}>
-                    Auto: {task.replacementLevel}
-                  </span>
-                  <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded border text-cyan-400 bg-cyan-950/20 border-cyan-900/30 flex items-center gap-1">
-                    <Zap size={10} /> {task.productivityGain}
-                  </span>
-                </div>
-              </div>
+                {/* Footer Section */}
+                <div className="flex justify-between items-center mt-4 pt-3 border-t border-[var(--border-color)] text-[10px]">
+                  <button 
+                    onClick={() => setActiveTaskInfo(isExpanded ? null : task.id)}
+                    className="font-bold text-[#1a73e8] dark:text-[#8ab4f8] hover:underline flex items-center gap-0.5 cursor-pointer select-none bg-transparent border-none p-0"
+                  >
+                    <span>{isExpanded ? 'Collapse Details' : 'Read prompt'}</span>
+                    {isExpanded ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
+                  </button>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-slate-800/50 pt-4 text-xs">
-                <div>
-                  <div className="text-[10px] text-slate-500 uppercase font-semibold tracking-wider mb-1">
-                    Primary Tool Replacement
+                  <div className="flex items-center gap-2">
+                    <span className="text-[9px] font-bold text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded-full flex items-center gap-0.5 select-none">
+                      <Zap size={9} />
+                      <span>{task.productivityGain}</span>
+                    </span>
                   </div>
-                  <div className="text-slate-200 font-semibold flex items-center gap-1.5">
-                    <CheckCircle size={14} className="text-emerald-500 shrink-0" />
-                    {task.replacementTool}
-                  </div>
                 </div>
 
-                <div>
-                  <div className="text-[10px] text-slate-500 uppercase font-semibold tracking-wider mb-1">
-                    Setup Complexity
-                  </div>
-                  <span className={`text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded border ${getEaseBadgeClass(task.setupEase)}`}>
-                    {task.setupEase}
-                  </span>
-                </div>
-              </div>
-
-              {/* Expandable Prompt & Workflow */}
-              <div className="mt-1">
-                <button 
-                  className="w-full flex justify-between items-center px-4 py-2 border border-slate-800 bg-slate-950 hover:bg-slate-800/50 text-slate-400 hover:text-slate-200 rounded-lg text-xs font-semibold tracking-wide transition-all"
-                  onClick={() => setActiveTaskInfo(activeTaskInfo === task.id ? null : task.id)}
-                >
-                  <span>Integration Workflow & Prompts</span>
-                  <ChevronDown size={14} className={`transition-transform duration-200 ${activeTaskInfo === task.id ? 'rotate-180' : ''}`} />
-                </button>
-
-                {activeTaskInfo === task.id && (
-                  <div className="mt-3 bg-slate-950 border border-slate-800 rounded-lg p-4 flex flex-col gap-4 animate-fade-in">
-                    <div>
-                      <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider flex items-center gap-1 mb-1">
-                        <Info size={11} className="text-red-500" />
-                        <span>Automation Workflow</span>
-                      </div>
-                      <p className="text-xs text-slate-300 leading-relaxed">
-                        {task.workflow}
-                      </p>
-                    </div>
-
-                    <div>
-                      <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider flex items-center gap-1 mb-1.5">
-                        <Code size={11} className="text-cyan-500" />
-                        <span>Target Prompt Example</span>
-                      </div>
-                      <pre className="bg-slate-900 border border-slate-850 p-3 rounded-lg text-[11px] text-cyan-400 overflow-x-auto whitespace-pre-wrap font-mono leading-relaxed">
-                        {task.samplePrompt}
-                      </pre>
-                    </div>
+                {/* Expanded Details containing code prompt */}
+                {isExpanded && (
+                  <div className="mt-4 pt-3 border-t border-[var(--border-color)]/60 animate-fade-in flex flex-col gap-2">
+                    <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest select-none">
+                      Target Prompt Template:
+                    </span>
+                    <pre className="bg-[var(--bg-code)] border border-[var(--border-color)] p-3 rounded-lg text-[10px] text-[#00acc1] dark:text-[#78d9ec] overflow-x-auto whitespace-pre-wrap font-mono leading-relaxed select-all">
+                      {task.samplePrompt}
+                    </pre>
                   </div>
                 )}
               </div>
-
-            </div>
-          ))
+            );
+          })
         )}
       </div>
       
       {/* Benchmark Summary Table */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
-        <h3 className="text-base font-serif font-bold text-white mb-4 flex items-center gap-2 select-none">
+      <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
+        <h3 className="text-base font-bold text-[var(--text-primary)] mb-4 flex items-center gap-2 select-none">
           <ShieldCheck size={18} className="text-red-500" />
           <span>LLM Coding Benchmark Summary</span>
         </h3>
         
         <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-xs text-slate-300 text-left">
+          <table className="w-full border-collapse text-xs text-[var(--text-secondary)] text-left">
             <thead>
-              <tr className="border-b border-slate-850 text-slate-500 font-bold uppercase tracking-wider text-[10px]">
+              <tr className="border-b border-[var(--border-color)] text-slate-500 font-bold uppercase tracking-wider text-[10px]">
                 <th className="py-3 px-4">Capability</th>
                 <th className="py-3 px-4 text-red-500">Claude 3.5 Sonnet</th>
-                <th className="py-3 px-4 text-cyan-400">Gemini 2.5 Flash</th>
-                <th className="py-3 px-4 text-emerald-400">Antigravity (Agentic)</th>
+                <th className="py-3 px-4 text-cyan-500">Gemini 2.5 Flash</th>
+                <th className="py-3 px-4 text-emerald-500">Antigravity (Agentic)</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-850">
+            <tbody className="divide-y divide-[var(--border-color)]">
               <tr>
-                <td className="py-3 px-4 font-bold text-slate-200">Multi-file Coding</td>
+                <td className="py-3 px-4 font-bold text-[var(--text-primary)]">Multi-file Coding</td>
                 <td className="py-3 px-4">Substantial</td>
                 <td className="py-3 px-4">Medium</td>
-                <td className="py-3 px-4 font-semibold text-emerald-400">Complete</td>
+                <td className="py-3 px-4 font-semibold text-emerald-500">Complete</td>
               </tr>
               <tr>
-                <td className="py-3 px-4 font-bold text-slate-200">Context Size</td>
+                <td className="py-3 px-4 font-bold text-[var(--text-primary)]">Context Size</td>
                 <td className="py-3 px-4">200k tokens</td>
                 <td className="py-3 px-4">5,000k (5M) tokens</td>
                 <td className="py-3 px-4">Workspace Indexing</td>
               </tr>
               <tr>
-                <td className="py-3 px-4 font-bold text-slate-200">Execution Shell</td>
+                <td className="py-3 px-4 font-bold text-[var(--text-primary)]">Execution Shell</td>
                 <td className="py-3 px-4">No</td>
                 <td className="py-3 px-4">No</td>
-                <td className="py-3 px-4 font-semibold text-emerald-400">Yes (Sandbox)</td>
+                <td className="py-3 px-4 font-semibold text-emerald-500">Yes (Sandbox)</td>
               </tr>
             </tbody>
           </table>

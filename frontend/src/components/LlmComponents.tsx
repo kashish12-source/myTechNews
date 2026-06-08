@@ -55,7 +55,7 @@ print(vectors.shape) # torch.Size([1, 2, 4096])`
     name: 'Multi-Head Attention',
     role: 'Contextual Routing & Relationship Mapping',
     icon: Eye,
-    description: 'The core algorithm of the Transformer. Enables each token in a sequence to dynamic score and aggregate information from all other tokens. By using Query, Key, and Value vectors, the model forms context pathways dynamically.',
+    description: 'The core algorithm of the Transformer. Enables each token in a sequence to dynamically score and aggregate information from all other tokens. By using Query, Key, and Value vectors, the model forms context pathways dynamically.',
     math: 'Attention(Q, K, V) = \\text{softmax}\\left(\\frac{Q K^T}{\\sqrt{d_k}}\\right) V',
     importance: 'Enables long-range dependencies, syntax resolving, co-reference mapping, and dynamic context learning across millions of tokens.',
     codeSnippet: `import torch.nn.functional as F
@@ -75,7 +75,7 @@ def self_attention(Q, K, V, mask=None):
     name: 'MLP / Feed-Forward Network',
     role: 'Feature Extraction & Fact Storage',
     icon: Cpu,
-    description: 'Applied token-wise after the attention layers. Consists of linear projection layers separated by a non-linear activation function (like SwiGLU or GELU). Act as the database where the model stores facts and general representations.',
+    description: 'Applied token-wise after the attention layers. Consists of linear projection layers separated by a non-linear activation function (like SwiGLU or GELU). Acts as the database where the model stores facts and general representations.',
     math: 'SwiGLU(x) = (x W_1 \\otimes \\text{swish}(x W_2)) W_3',
     importance: 'Holds the vast majority of the static knowledge, rules, and facts learned by the network during pretraining.',
     codeSnippet: `class SwiGLUPackage(nn.Module):
@@ -159,20 +159,20 @@ export default function LlmComponents() {
   const activeComponent = componentsList.find(c => c.id === activeTab) || componentsList[0];
 
   return (
-    <div className="flex flex-col gap-6 animate-fade-in">
+    <div className="flex flex-col gap-6 animate-fade-in font-sans">
       
       {/* Title Header */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
-        <h1 className="text-2xl font-serif font-bold text-white tracking-wide">
+      <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
+        <h2 className="text-xl font-bold text-[var(--text-primary)]">
           LLM Architecture
-        </h1>
-        <p className="text-xs text-slate-400 mt-1">
+        </h2>
+        <p className="text-xs text-[var(--text-secondary)] mt-1.5">
           Interactive trace of forward pass layer mechanics in modern Autoregressive transformers.
         </p>
       </div>
 
       {/* Horizontal Step Progression Bar */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 flex items-center justify-center flex-wrap gap-2">
+      <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-4 flex items-center justify-center flex-wrap gap-2 shadow-sm">
         {componentsList.map((comp, index) => {
           const StepIcon = comp.icon;
           const isSelected = activeTab === comp.id;
@@ -180,80 +180,87 @@ export default function LlmComponents() {
             <div key={comp.id} className="flex items-center">
               <button
                 onClick={() => setActiveTab(comp.id)}
-                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all border ${
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all border cursor-pointer select-none ${
                   isSelected 
-                    ? 'bg-red-600 border-red-700 text-white shadow-md' 
-                    : 'bg-slate-950 border-slate-800 hover:border-slate-700 text-slate-400 hover:text-slate-200'
+                    ? 'bg-[#1a73e8] border-[#1a73e8] text-white shadow-sm' 
+                    : 'bg-[var(--bg-primary)] border-[var(--border-color)] hover:border-[#1a73e8] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                 }`}
                 title={`${index + 1}. ${comp.name}`}
               >
                 <StepIcon size={16} />
               </button>
               {index < componentsList.length - 1 && (
-                <ChevronRight size={14} className="mx-2 text-slate-600" />
+                <ChevronRight size={14} className="mx-2 text-slate-400" />
               )}
             </div>
           );
         })}
       </div>
 
-      {/* Detailed Inspector Panel */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Detailed Inspector Panel formatted exactly like DevTools/Coding cards */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
         
-        {/* Left Column: Explanations (2/3 width) */}
-        <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-6 md:p-8 flex flex-col gap-5">
-          <div className="flex items-center gap-2 flex-wrap text-xs">
-            <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded border border-cyan-900/30 text-cyan-400 bg-cyan-950/20">
-              Layer Stage
-            </span>
-            <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded border border-blue-900/30 text-blue-400 bg-blue-950/20">
-              {activeComponent.role}
-            </span>
+        {/* Left Column: Explanations (2/3 width) formatted as news card */}
+        <div className="lg:col-span-2 google-news-card p-6 flex flex-col justify-between">
+          <div>
+            {/* Header badges */}
+            <div className="flex justify-between items-center mb-3.5">
+              <span className="px-2.5 py-0.5 rounded border text-[9px] font-bold tracking-wider text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+                Layer Stage
+              </span>
+              <span className="px-2.5 py-0.5 rounded border text-[9px] font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+                {activeComponent.role}
+              </span>
+            </div>
+
+            {/* Title */}
+            <h3 className="text-base md:text-lg font-bold text-[var(--text-primary)] hover:text-[#1a73e8] mb-3 leading-snug">
+              {activeComponent.name}
+            </h3>
+
+            {/* Description */}
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+              {activeComponent.description}
+            </p>
+
+            {/* Math Box */}
+            {activeComponent.math && (
+              <div className="bg-[var(--bg-primary)] border border-[var(--border-color)] p-4 rounded-lg flex items-start gap-3 text-[#00acc1] dark:text-[#78d9ec] overflow-x-auto select-all mb-4">
+                <Cpu size={16} className="text-[#00acc1] dark:text-[#78d9ec] shrink-0 mt-0.5" />
+                <div className="min-w-0">
+                  <div className="text-[10px] text-[var(--text-muted)] uppercase font-bold tracking-wider mb-1">
+                    Core Formula
+                  </div>
+                  <code className="text-xs font-mono">{activeComponent.math}</code>
+                </div>
+              </div>
+            )}
           </div>
 
-          <h2 className="text-xl md:text-2xl font-serif font-bold text-white">
-            {activeComponent.name}
-          </h2>
-
-          <p className="text-sm text-slate-300 leading-relaxed">
-            {activeComponent.description}
-          </p>
-
-          {/* Math Block */}
-          {activeComponent.math && (
-            <div className="bg-slate-950 border border-slate-850 p-4 rounded-lg flex items-start gap-3 text-cyan-400 overflow-x-auto select-all">
-              <Cpu size={16} className="text-cyan-500 shrink-0 mt-0.5" />
-              <div className="min-w-0">
-                <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider mb-1">
-                  Core Formula
-                </div>
-                <code className="text-xs font-mono">{activeComponent.math}</code>
-              </div>
-            </div>
-          )}
-
-          {/* Engineering Impact */}
-          <div className="border-l-4 border-red-600 pl-4 py-1 flex flex-col gap-1.5 mt-2">
-            <div className="flex gap-1.5 items-center font-bold text-sm text-slate-200 uppercase tracking-wide">
-              <ShieldAlert size={15} className="text-red-500" />
+          {/* Footer border with impact */}
+          <div className="border-t border-[var(--border-color)] pt-4 mt-2 flex flex-col gap-2">
+            <div className="flex gap-1.5 items-center font-bold text-xs text-[#1a73e8] dark:text-[#8ab4f8] uppercase tracking-wide">
+              <ShieldAlert size={14} className="shrink-0" />
               <span>Engineering Impact</span>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
               {activeComponent.importance}
             </p>
           </div>
         </div>
 
-        {/* Right Column: Code snippet (1/3 width) */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col gap-4">
-          <div className="flex items-center gap-2 text-xs text-cyan-400 border-b border-slate-800 pb-3 font-semibold uppercase tracking-wider select-none">
-            <Code size={14} />
-            <span>PyTorch Reference Implementation</span>
+        {/* Right Column: Code snippet (1/3 width) formatted as news card */}
+        <div className="google-news-card p-5 flex flex-col gap-4">
+          <div>
+            <div className="flex items-center gap-2 text-xs text-[#00acc1] dark:text-[#78d9ec] border-b border-[var(--border-color)] pb-3 font-semibold uppercase tracking-wider select-none mb-3">
+              <Code size={14} />
+              <span>PyTorch Implementation</span>
+            </div>
+            
+            <pre className="bg-[var(--bg-code)] border border-[var(--border-color)] p-4 rounded-xl text-[11px] text-indigo-600 dark:text-indigo-300 overflow-x-auto whitespace-pre font-mono leading-relaxed select-all">
+              <code>{activeComponent.codeSnippet}</code>
+            </pre>
           </div>
-          
-          <pre className="bg-slate-950 border border-slate-850 p-4 rounded-xl text-[11px] text-indigo-300 overflow-x-auto whitespace-pre font-mono leading-relaxed flex-1">
-            <code>{activeComponent.codeSnippet}</code>
-          </pre>
         </div>
 
       </div>
