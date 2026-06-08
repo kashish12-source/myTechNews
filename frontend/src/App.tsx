@@ -35,9 +35,9 @@ export default function App() {
     localStorage.removeItem('email');
   };
 
-  // Theme state: dark by default, persists in local storage
+  // Theme state: light by default, persists in local storage
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    return (localStorage.getItem('theme') as 'dark' | 'light') || 'dark';
+    return (localStorage.getItem('theme') as 'dark' | 'light') || 'light';
   });
 
   // Apply theme class to document body
@@ -110,7 +110,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-red-600 selection:text-white transition-colors duration-150">
+    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-red-500 selection:text-white transition-colors duration-150">
       
       {/* Top Editorial Banner Bar (TOI / ABP Style) */}
       <header className="bg-slate-900 border-b border-slate-800 text-slate-300">
@@ -170,7 +170,7 @@ export default function App() {
             {/* Logout */}
             <button 
               onClick={handleLogout}
-              className="flex items-center gap-2 px-3 py-1.5 border border-red-950/40 bg-red-950/20 hover:bg-red-950/40 text-red-400 hover:text-red-300 rounded-lg text-xs font-semibold tracking-wider uppercase transition-all cursor-pointer"
+              className="flex items-center gap-2 px-3 py-1.5 border border-slate-850 hover:bg-slate-800 text-slate-400 hover:text-slate-100 rounded-lg text-xs font-semibold tracking-wider uppercase transition-all cursor-pointer"
             >
               <LogOut size={13} />
               <span>Log Out</span>
@@ -180,7 +180,7 @@ export default function App() {
 
         {/* Live Breaking News Ticker Section */}
         <div className="bg-slate-950/80 text-slate-300 font-semibold text-sm py-2 px-4 shadow-inner flex overflow-hidden border-y border-slate-900/60 backdrop-blur-sm">
-          <div className="flex items-center gap-1.5 shrink-0 bg-red-500/10 border border-red-500/20 text-red-500 px-2.5 py-0.5 rounded mr-4 select-none animate-pulse">
+          <div className="flex items-center gap-1.5 shrink-0 bg-rose-500/10 border border-rose-500/20 text-rose-500 px-2.5 py-0.5 rounded mr-4 select-none animate-pulse">
             <Radio size={12} />
             <span className="font-mono font-bold tracking-wider uppercase text-[9px]">Breaking News</span>
           </div>

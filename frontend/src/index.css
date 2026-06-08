@@ -6,10 +6,26 @@
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-mono: 'JetBrains Mono', monospace;
   
-  --color-slate-900: #0d111b;
-  --color-slate-950: #07090e;
-  --color-slate-850: #121826;
-  --color-slate-800: #182033;
+  --color-slate-950: var(--bg-primary);
+  --color-slate-900: var(--bg-secondary);
+  --color-slate-850: var(--border-color);
+  --color-slate-800: var(--border-hover);
+  
+  --color-slate-100: var(--text-primary);
+  --color-slate-200: var(--text-primary);
+  --color-slate-300: var(--text-secondary);
+  --color-slate-350: var(--text-secondary);
+  --color-slate-400: var(--text-muted);
+  --color-slate-450: var(--text-muted);
+  --color-slate-455: var(--text-muted);
+  --color-slate-500: var(--text-muted);
+  --color-slate-550: var(--text-muted);
+  --color-slate-555: var(--text-muted);
+  --color-slate-600: var(--text-muted);
+  --color-slate-605: var(--text-muted);
+  
+  --color-red-500: var(--accent-brand);
+  --color-red-600: var(--accent-brand-dark);
 }
 
 :root {
@@ -19,14 +35,14 @@
 
   color-scheme: dark;
   color: #cbd5e1;
-  background-color: #07090e;
+  background-color: #05080c;
 
   /* Theme variables (Dark theme default) */
-  --bg-primary: #07090e;
-  --bg-secondary: #0d111b;
-  --bg-card: #121826;
-  --bg-card-hover: #182033;
-  --bg-code: #050811;
+  --bg-primary: #05080c;
+  --bg-secondary: #0a0f18;
+  --bg-card: #0e1622;
+  --bg-card-hover: #152030;
+  --bg-code: #030508;
   
   --border-color: rgba(255, 255, 255, 0.05);
   --border-hover: rgba(255, 255, 255, 0.12);
@@ -38,11 +54,14 @@
   --accent-amber: #f59e0b;
   --accent-rose: #f43f5e;
   
+  --accent-brand: #ef4444;
+  --accent-brand-dark: #dc2626;
+  
   --text-primary: #ffffff;
   --text-secondary: #cbd5e1;
   --text-muted: #64748b;
   
-  --shadow-main: 0 4px 20px 0 rgba(0, 0, 0, 0.25);
+  --shadow-main: 0 4px 25px 0 rgba(0, 0, 0, 0.4);
   
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -50,28 +69,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Light Theme Variables */
+/* Light Theme Variables (Teal-White design from references) */
 body.light-theme {
   color-scheme: light;
-  color: #334155;
-  background-color: #f8fafc; /* Soft off-white to prevent glare */
+  color: #1e2522;
+  background-color: #f3f6f5;
 
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
+  --bg-primary: #f3f6f5;
+  --bg-secondary: #ffffff;
   --bg-card: #ffffff;
-  --bg-card-hover: #f1f5f9;
-  --bg-code: #e2e8f0;
+  --bg-card-hover: #f7faf8;
+  --bg-code: #e6eae8;
   
-  --border-color: rgba(15, 23, 42, 0.08);
-  --border-hover: rgba(15, 23, 42, 0.16);
+  --border-color: rgba(8, 90, 78, 0.08);
+  --border-hover: rgba(8, 90, 78, 0.15);
   
-  --accent-blue: #4f46e5;
+  --accent-blue: #085a4e;
+  --accent-cyan: #0891b2;
+  --accent-rose: #e11d48;
   
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
+  --accent-brand: #085a4e;
+  --accent-brand-dark: #06453b;
   
-  --shadow-main: 0 4px 15px 0 rgba(15, 23, 42, 0.05);
+  --text-primary: #0d1e1a;
+  --text-secondary: #2d3e3a;
+  --text-muted: #667672;
+  
+  --shadow-main: 0 4px 25px 0 rgba(8, 90, 78, 0.04);
 }
 
 * {

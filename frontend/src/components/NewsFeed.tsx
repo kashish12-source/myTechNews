@@ -159,7 +159,7 @@ export default function NewsFeed({ authToken, onAuthError, selectedCategory }: N
     if (!sentiment) return 'text-slate-400 bg-slate-800/40 border-slate-700/50';
     switch (sentiment) {
       case 'positive': return 'text-emerald-400 bg-emerald-950/30 border-emerald-900/30';
-      case 'negative': return 'text-red-400 bg-red-950/30 border-red-900/30';
+      case 'negative': return 'text-rose-500 bg-rose-500/10 border-rose-500/20';
       default: return 'text-slate-400 bg-slate-800/40 border-slate-700/50';
     }
   };
@@ -218,7 +218,7 @@ export default function NewsFeed({ authToken, onAuthError, selectedCategory }: N
       </div>
 
       {error && (
-        <div className="flex items-center gap-3 p-4 bg-red-950/20 border border-red-900/40 rounded-xl text-red-400 text-xs">
+        <div className="flex items-center gap-3 p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-500 text-xs">
           <AlertCircle size={16} className="shrink-0" />
           <span>{error}</span>
         </div>
@@ -515,8 +515,8 @@ export default function NewsFeed({ authToken, onAuthError, selectedCategory }: N
 
                     {/* Critical flag */}
                     {article.importance === 'high' && (
-                      <div className="mb-2 inline-flex items-center gap-1 text-[8px] bg-red-955/20 text-red-450 border border-red-900/20 px-1.5 py-0.5 rounded font-extrabold tracking-wider uppercase">
-                        <Sparkles size={8} className="text-red-500" />
+                      <div className="mb-2 inline-flex items-center gap-1 text-[8px] bg-rose-500/10 text-rose-500 border border-rose-500/20 px-1.5 py-0.5 rounded font-extrabold tracking-wider uppercase">
+                        <Sparkles size={8} className="text-rose-550 text-rose-500" />
                         <span>CRITICAL</span>
                       </div>
                     )}
