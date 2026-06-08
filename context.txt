@@ -12,3 +12,6 @@ agnet .md me yeh likha hai ki apko dry and solid principal ka use krnah ai
 yeh sab krke ek kaam aur krna hai ki onboard kro meko aur khud ko 
 
 akhri chiz understand dashoboard ki link do 
+
+
+https://github.com/dokploy/dokploy install dokploy in my antigravity 

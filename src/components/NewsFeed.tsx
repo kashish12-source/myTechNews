@@ -14,7 +14,12 @@ export interface Article {
   importance?: string;
 }
 
-export default function NewsFeed() {
+interface NewsFeedProps {
+  authToken: string | null;
+  onAuthError: () => void;
+}
+
+export default function NewsFeed({ authToken, onAuthError }: NewsFeedProps) {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(false);
   const [updating, setUpdating] = useState(false);
@@ -66,9 +71,22 @@ export default function NewsFeed() {
     try {
       const host = window.location.hostname || 'localhost';
       const endpoint = forceRefresh ? `http://${host}:3001/api/refresh` : `http://${host}:3001/api/news`;
+      
+      const headers: HeadersInit = {};
+      if (authToken) {
+        headers['Authorization'] = `Bearer ${authToken}`;
+      }
+
       const response = await fetch(endpoint, {
         method: forceRefresh ? 'POST' : 'GET',
+        headers
       });
+
+      if (response.status === 401 || response.status === 403) {
+        onAuthError();
+        return;
+      }
+
       if (!response.ok) {
         throw new Error('Failed to connect to local aggregator server.');
       }

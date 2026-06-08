@@ -83,6 +83,23 @@ npm run test
 
 ---
 
+## 🔒 Security & Authentication
+
+The project uses JWT (JSON Web Tokens) and bcrypt password hashing to protect endpoints and prevent unauthorized access.
+
+### Authentication Mechanics
+1. **User Schema**: Registered users are persisted in `server/users.json` with an email address and a bcrypt-hashed password.
+2. **Pre-seeded Admin User**:
+   * **Email**: `krishvishnoi@gmail.com`
+   * **Password**: `StrongPass@1`
+3. **Endpoint Protection**:
+   * Public routes: `/api/auth/register`, `/api/auth/login`.
+   * Protected routes: `/api/news`, `/api/refresh`. These require a `Bearer <token>` string in the `Authorization` header.
+4. **Middleware**:
+   * `authenticateToken` parses and verifies the token. If missing, it returns `401 Unauthorized`. If invalid or expired, it returns `403 Forbidden`.
+
+---
+
 ## 🔍 Tool Integrations
 
 Two key AI-assistance tools are configured in this repository to empower agents and coding workflows:

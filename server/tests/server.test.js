@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const serverEntry = path.join(__dirname, '../index.js');
 
-test('Express API integration check', async (t) => {
+test('Express API integration check with Authentication', async (t) => {
   console.log('Spawning test server on port 3002...');
   
   // Set mock GEMINI_API_KEY empty to trigger heuristic cache fallback in aggregator if run
@@ -46,9 +46,46 @@ test('Express API integration check', async (t) => {
 
   assert.ok(serverStarted, 'Server process should start successfully');
 
-  // Test /api/news endpoint
-  await t.test('GET /api/news returns cached news', async () => {
+  let authToken = '';
+
+  // 1. Verify that fetching without a token is blocked with 401
+  await t.test('GET /api/news without token returns 401 Unauthorized', async () => {
     const res = await fetch('http://localhost:3002/api/news');
+    assert.strictEqual(res.status, 401);
+    const body = await res.json();
+    assert.ok(body.error.includes('Access token required'), 'Should return clear unauth error message');
+  });
+
+  // 2. Verify login with correct admin credentials returns token
+  await t.test('POST /api/auth/login with correct admin credentials returns JWT', async () => {
+    const res = await fetch('http://localhost:3002/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: 'krishvishnoi@gmail.com', password: 'StrongPass@1' })
+    });
+    assert.strictEqual(res.status, 200);
+    const body = await res.json();
+    assert.ok(body.token, 'Should return a JWT token string');
+    assert.strictEqual(body.email, 'krishvishnoi@gmail.com');
+    authToken = body.token;
+  });
+
+  // 3. Verify login with incorrect credentials fails with 401
+  await t.test('POST /api/auth/login with incorrect credentials returns 401', async () => {
+    const res = await fetch('http://localhost:3002/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: 'krishvishnoi@gmail.com', password: 'WrongPassword' })
+    });
+    assert.strictEqual(res.status, 401);
+  });
+
+  // 4. Verify access is allowed when passing the authorization token
+  await t.test('GET /api/news with valid JWT returns 200 and news articles', async () => {
+    assert.ok(authToken, 'Should have a valid authentication token');
+    const res = await fetch('http://localhost:3002/api/news', {
+      headers: { 'Authorization': `Bearer ${authToken}` }
+    });
     assert.strictEqual(res.status, 200);
     const body = await res.json();
     assert.ok(Array.isArray(body.articles), 'Response articles should be an array');

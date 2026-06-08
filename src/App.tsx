@@ -1,13 +1,32 @@
 import { useState, useEffect } from 'react';
-import { Newspaper, Layers, TableProperties, Sun, Moon } from 'lucide-react';
+import { Newspaper, Layers, TableProperties, Sun, Moon, LogOut } from 'lucide-react';
 import NewsFeed from './components/NewsFeed';
 import LlmComponents from './components/LlmComponents';
 import ReplacementMatrix from './components/ReplacementMatrix';
+import Login from './components/Login';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<'feed' | 'llm' | 'matrix'>('feed');
   const [serverOnline, setServerOnline] = useState<boolean | null>(null);
   
+  // Auth state
+  const [token, setToken] = useState<string | null>(() => localStorage.getItem('token'));
+  const [userEmail, setUserEmail] = useState<string | null>(() => localStorage.getItem('email'));
+
+  const handleLoginSuccess = (newToken: string, newEmail: string) => {
+    setToken(newToken);
+    setUserEmail(newEmail);
+    localStorage.setItem('token', newToken);
+    localStorage.setItem('email', newEmail);
+  };
+
+  const handleLogout = () => {
+    setToken(null);
+    setUserEmail(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+  };
+
   // Theme state: dark by default, persists in local storage
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     return (localStorage.getItem('theme') as 'dark' | 'light') || 'dark';
@@ -28,9 +47,15 @@ export default function App() {
     const checkServer = async () => {
       try {
         const host = window.location.hostname || 'localhost';
-        const res = await fetch(`http://${host}:3001/api/news`);
-        if (res.ok) {
+        const headers: HeadersInit = {};
+        if (token) {
+          headers['Authorization'] = `Bearer ${token}`;
+        }
+        const res = await fetch(`http://${host}:3001/api/news`, { headers });
+        if (res.status === 200) {
           setServerOnline(true);
+        } else if (res.status === 401 || res.status === 403) {
+          setServerOnline(true); // Server is online but credentials check triggered
         } else {
           setServerOnline(false);
         }
@@ -41,7 +66,53 @@ export default function App() {
     checkServer();
     const interval = setInterval(checkServer, 10000);
     return () => clearInterval(interval);
-  }, []);
+  }, [token]);
+
+  if (!token) {
+    return (
+      <div className="dashboard-grid">
+        <header className="top-navbar" style={{ justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <span style={{ 
+              width: '36px', 
+              height: '36px', 
+              borderRadius: '6px', 
+              background: 'linear-gradient(135deg, var(--accent-blue), var(--accent-cyan))', 
+              color: '#ffffff',
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              fontWeight: 700, 
+              fontSize: '0.95rem',
+              fontFamily: "'Space Grotesk', sans-serif"
+            }}>
+              TN
+            </span>
+            <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-secondary)' }}>TechNews Gateway</span>
+          </div>
+          
+          <button 
+            className="btn btn-icon"
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            style={{
+              background: 'transparent',
+              color: 'var(--text-secondary)',
+              border: '1px solid var(--border-color)',
+              cursor: 'pointer',
+              width: '32px',
+              height: '32px',
+              borderRadius: '6px'
+            }}
+          >
+            {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+          </button>
+        </header>
+        <main className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Login onLoginSuccess={handleLoginSuccess} />
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="dashboard-grid">
@@ -245,12 +316,37 @@ export default function App() {
             </span>
           </div>
 
+          {/* Sign Out Button */}
+          <div className="tooltip tooltip-bottom">
+            <button 
+              className="btn"
+              onClick={handleLogout}
+              style={{
+                padding: '0.45rem 0.75rem',
+                borderRadius: '6px',
+                border: '1px solid rgba(244, 63, 94, 0.15)',
+                background: 'rgba(244, 63, 94, 0.05)',
+                color: 'var(--accent-rose)',
+                fontSize: '0.75rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+                cursor: 'pointer',
+                fontWeight: 600
+              }}
+            >
+              <LogOut size={12} />
+              <span>Sign Out</span>
+            </button>
+            <span className="tooltip-text">Log out ({userEmail})</span>
+          </div>
+
         </div>
       </header>
 
       {/* Main Workspace Frame */}
       <main className="container">
-        {activeTab === 'feed' && <NewsFeed />}
+        {activeTab === 'feed' && <NewsFeed authToken={token} onAuthError={handleLogout} />}
         {activeTab === 'llm' && <LlmComponents />}
         {activeTab === 'matrix' && <ReplacementMatrix />}
       </main>
