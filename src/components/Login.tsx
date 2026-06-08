@@ -39,13 +39,7 @@ export default function Login({ onLoginSuccess }: LoginProps) {
         throw new Error(data.error || 'Authentication request failed.');
       }
 
-      if (isLoginView) {
-        onLoginSuccess(data.token, data.email);
-      } else {
-        setSuccessMsg('Registration successful! You can now log in.');
-        setIsLoginView(true);
-        setPassword('');
-      }
+      onLoginSuccess(data.token, data.email);
     } catch (err: any) {
       setError(err.message || 'Server error. Please try again.');
     } finally {

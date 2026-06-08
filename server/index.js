@@ -127,7 +127,8 @@ app.post('/api/auth/register', async (req, res) => {
     users.push({ email, passwordHash });
     await writeUsers(users);
 
-    res.status(201).json({ message: 'User registered successfully.' });
+    const token = jwt.sign({ email }, JWT_SECRET, { expiresIn: '24h' });
+    res.status(201).json({ token, email, message: 'User registered successfully.' });
   } catch (err) {
     console.error('Registration error:', err);
     res.status(500).json({ error: 'Internal server error.' });

@@ -15,3 +15,5 @@ akhri chiz understand dashoboard ki link do
 
 
 https://github.com/dokploy/dokploy install dokploy in my antigravity 
+
+ek handsoff naam ka folder banao jisme appse jinti baat hui use manage kr sako taaki kuch bhi kaam krne me aapko koi dikkat na ho

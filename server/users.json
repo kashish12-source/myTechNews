@@ -6,5 +6,9 @@
   {
     "email": "testcitizen@example.com",
     "passwordHash": "$2b$10$D0giU4sUbgv9QCrrf2TTI.OBmFnaYjORnJFuYuvy2GEXSto4CXwSK"
+  },
+  {
+    "email": "kashishvishnoi2006@gmail.com",
+    "passwordHash": "$2b$10$LEOVV9mxPKrj0pVt0pqLw.mnRL9d3fBuZhR2KRd7xbBgkdDiTGCrW"
   }
 ]
