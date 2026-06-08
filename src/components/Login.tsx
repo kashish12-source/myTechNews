@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Mail, Lock, LogIn, UserPlus, AlertCircle, CheckCircle } from 'lucide-react';
+import { getApiUrl } from '../utils/api';
 
 interface LoginProps {
   onLoginSuccess: (token: string, email: string) => void;
@@ -27,7 +28,7 @@ export default function Login({ onLoginSuccess }: LoginProps) {
 
     try {
       const endpoint = isLoginView ? '/api/auth/login' : '/api/auth/register';
-      const response = await fetch(endpoint, {
+      const response = await fetch(getApiUrl(endpoint), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: trimmedEmail, password })

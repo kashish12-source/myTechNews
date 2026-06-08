@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Search, RefreshCw, ExternalLink, Calendar, AlertCircle, Sparkles, Globe, Cpu, Building2, Code, Workflow, Server } from 'lucide-react';
 import fallbackData from '../data/news-cache.json';
+import { getApiUrl } from '../utils/api';
 
 export interface Article {
   id: string;
@@ -76,7 +77,7 @@ export default function NewsFeed({ authToken, onAuthError }: NewsFeedProps) {
         headers['Authorization'] = `Bearer ${authToken}`;
       }
 
-      const response = await fetch(endpoint, {
+      const response = await fetch(getApiUrl(endpoint), {
         method: forceRefresh ? 'POST' : 'GET',
         headers
       });

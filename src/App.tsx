@@ -4,6 +4,7 @@ import NewsFeed from './components/NewsFeed';
 import LlmComponents from './components/LlmComponents';
 import ReplacementMatrix from './components/ReplacementMatrix';
 import Login from './components/Login';
+import { getApiUrl } from './utils/api';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<'feed' | 'llm' | 'matrix'>('feed');
@@ -53,7 +54,7 @@ export default function App() {
     const checkServer = async () => {
       try {
         const headers: HeadersInit = token ? { Authorization: `Bearer ${token}` } : {};
-        const res = await fetch('/api/news', { headers });
+        const res = await fetch(getApiUrl('/api/news'), { headers });
         setServerOnline(res.status === 200 || res.status === 401 || res.status === 403);
       } catch {
         setServerOnline(false);
