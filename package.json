@@ -6,7 +6,7 @@
     "install:frontend": "npm --prefix frontend install",
     "build:frontend": "npm --prefix frontend run build",
     "dev:frontend": "npm --prefix frontend run dev",
-    "start:backend": "uvicorn backend.app.main:app --host 127.0.0.1 --port 3001 --reload",
-    "test:backend": "pytest backend"
+    "start:backend": "venv\\Scripts\\uvicorn backend.app.main:app --host 127.0.0.1 --port 3001 --reload",
+    "test:backend": "venv\\Scripts\\pytest backend"
   }
 }
