@@ -16,6 +16,14 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
+// Request logging middleware
+app.use((req, res, next) => {
+  res.on('finish', () => {
+    console.log(`${req.method} ${req.url} - ${res.statusCode}`);
+  });
+  next();
+});
+
 const cacheFilePath = path.join(__dirname, 'news-cache.json');
 const usersFilePath = path.join(__dirname, 'users.json');
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecretkeyformytechnewsaggregator';
@@ -97,11 +105,13 @@ async function loadCache() {
 
 // API Route: Register user
 app.post('/api/auth/register', async (req, res) => {
-  const { email, password } = req.body;
+  const email = req.body.email?.trim().toLowerCase();
+  const { password } = req.body;
+
   if (!email || !password) {
     return res.status(400).json({ error: 'Email and password are required.' });
   }
-  
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return res.status(400).json({ error: 'Invalid email address format.' });
@@ -109,46 +119,42 @@ app.post('/api/auth/register', async (req, res) => {
 
   try {
     const users = await readUsers();
-    const existing = users.find(u => u.email.toLowerCase() === email.toLowerCase());
-    if (existing) {
+    if (users.some(u => u.email === email)) {
       return res.status(409).json({ error: 'Email address already registered.' });
     }
 
     const passwordHash = await bcrypt.hash(password, 10);
-    users.push({ email: email.toLowerCase(), passwordHash });
+    users.push({ email, passwordHash });
     await writeUsers(users);
 
     res.status(201).json({ message: 'User registered successfully.' });
   } catch (err) {
-    console.error('Registration error:', err.message);
-    res.status(500).json({ error: 'Internal server error during registration.' });
+    console.error('Registration error:', err);
+    res.status(500).json({ error: 'Internal server error.' });
   }
 });
 
 // API Route: Login user
 app.post('/api/auth/login', async (req, res) => {
-  const { email, password } = req.body;
+  const email = req.body.email?.trim().toLowerCase();
+  const { password } = req.body;
+
   if (!email || !password) {
     return res.status(400).json({ error: 'Email and password are required.' });
   }
 
   try {
     const users = await readUsers();
-    const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
-    if (!user) {
-      return res.status(401).json({ error: 'Invalid email or password.' });
-    }
-
-    const match = await bcrypt.compare(password, user.passwordHash);
-    if (!match) {
+    const user = users.find(u => u.email === email);
+    if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
       return res.status(401).json({ error: 'Invalid email or password.' });
     }
 
     const token = jwt.sign({ email: user.email }, JWT_SECRET, { expiresIn: '24h' });
     res.json({ token, email: user.email });
   } catch (err) {
-    console.error('Login error:', err.message);
-    res.status(500).json({ error: 'Internal server error during login.' });
+    console.error('Login error:', err);
+    res.status(500).json({ error: 'Internal server error.' });
   }
 });
 

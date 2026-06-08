@@ -15,7 +15,8 @@ export default function Login({ onLoginSuccess }: LoginProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !password) {
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail || !password) {
       setError('Please fill in all fields.');
       return;
     }
@@ -25,12 +26,11 @@ export default function Login({ onLoginSuccess }: LoginProps) {
     setLoading(true);
 
     try {
-      const host = window.location.hostname || 'localhost';
       const endpoint = isLoginView ? '/api/auth/login' : '/api/auth/register';
-      const response = await fetch(`http://${host}:3001${endpoint}`, {
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email: trimmedEmail, password })
       });
 
       const data = await response.json();
@@ -58,14 +58,14 @@ export default function Login({ onLoginSuccess }: LoginProps) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      minHeight: '80vh',
-      padding: '2rem',
+      width: '100%',
+      padding: '1rem',
       animation: 'fadeIn 0.5s ease-out'
     }}>
       <div className="glass" style={{
         width: '100%',
         maxWidth: '420px',
-        padding: '2.5rem',
+        padding: '2rem',
         borderRadius: '12px',
         boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
       }}>

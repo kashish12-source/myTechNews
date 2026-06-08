@@ -69,8 +69,7 @@ export default function NewsFeed({ authToken, onAuthError }: NewsFeedProps) {
     }
     setError(null);
     try {
-      const host = window.location.hostname || 'localhost';
-      const endpoint = forceRefresh ? `http://${host}:3001/api/refresh` : `http://${host}:3001/api/news`;
+      const endpoint = forceRefresh ? '/api/refresh' : '/api/news';
       
       const headers: HeadersInit = {};
       if (authToken) {

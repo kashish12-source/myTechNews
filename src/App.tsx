@@ -10,8 +10,14 @@ export default function App() {
   const [serverOnline, setServerOnline] = useState<boolean | null>(null);
   
   // Auth state
-  const [token, setToken] = useState<string | null>(() => localStorage.getItem('token'));
-  const [userEmail, setUserEmail] = useState<string | null>(() => localStorage.getItem('email'));
+  const [token, setToken] = useState<string | null>(() => {
+    const val = localStorage.getItem('token');
+    return (val === 'null' || val === 'undefined' || !val) ? null : val;
+  });
+  const [userEmail, setUserEmail] = useState<string | null>(() => {
+    const val = localStorage.getItem('email');
+    return (val === 'null' || val === 'undefined' || !val) ? null : val;
+  });
 
   const handleLoginSuccess = (newToken: string, newEmail: string) => {
     setToken(newToken);
@@ -46,19 +52,9 @@ export default function App() {
   useEffect(() => {
     const checkServer = async () => {
       try {
-        const host = window.location.hostname || 'localhost';
-        const headers: HeadersInit = {};
-        if (token) {
-          headers['Authorization'] = `Bearer ${token}`;
-        }
-        const res = await fetch(`http://${host}:3001/api/news`, { headers });
-        if (res.status === 200) {
-          setServerOnline(true);
-        } else if (res.status === 401 || res.status === 403) {
-          setServerOnline(true); // Server is online but credentials check triggered
-        } else {
-          setServerOnline(false);
-        }
+        const headers = token ? { Authorization: `Bearer ${token}` } : {};
+        const res = await fetch('/api/news', { headers });
+        setServerOnline(res.status === 200 || res.status === 401 || res.status === 403);
       } catch {
         setServerOnline(false);
       }
@@ -107,7 +103,7 @@ export default function App() {
             {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
           </button>
         </header>
-        <main className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <main className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 120px)' }}>
           <Login onLoginSuccess={handleLoginSuccess} />
         </main>
       </div>

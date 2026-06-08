@@ -2,5 +2,9 @@
   {
     "email": "krishvishnoi@gmail.com",
     "passwordHash": "$2b$10$kX/AcnJy1Cfrij/VYHzFYe9nWhP6ZeKR7fFZ5jUmJgxGdGaxbwPa2"
+  },
+  {
+    "email": "testcitizen@example.com",
+    "passwordHash": "$2b$10$D0giU4sUbgv9QCrrf2TTI.OBmFnaYjORnJFuYuvy2GEXSto4CXwSK"
   }
 ]
