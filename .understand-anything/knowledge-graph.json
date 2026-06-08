@@ -1,0 +1,153 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "myTechNews",
+    "languages": ["TypeScript", "JavaScript", "HTML", "CSS"],
+    "frameworks": ["React", "Express", "Vite"],
+    "description": "Tech news aggregator with Gemini AI summarization and filtering.",
+    "analyzedAt": "2026-06-08T11:25:00Z",
+    "gitCommitHash": "main"
+  },
+  "nodes": [
+    {
+      "id": "file:server/index.js",
+      "type": "file",
+      "name": "index.js",
+      "filePath": "server/index.js",
+      "summary": "Express API server listening on port 3001. Handles memory caching and endpoints /api/news and /api/refresh.",
+      "tags": ["backend", "express", "api"]
+    },
+    {
+      "id": "file:server/aggregator.js",
+      "type": "file",
+      "name": "aggregator.js",
+      "filePath": "server/aggregator.js",
+      "summary": "Core news scraping engine. Fetches news from 22 tech sources and parallel processes them using Gemini 2.5 Flash.",
+      "tags": ["backend", "scraper", "gemini"]
+    },
+    {
+      "id": "file:server/tests/aggregator.test.js",
+      "type": "file",
+      "name": "aggregator.test.js",
+      "filePath": "server/tests/aggregator.test.js",
+      "summary": "Unit tests for helper classification, filtering, and de-duplication functions in aggregator.js.",
+      "tags": ["test", "unit"]
+    },
+    {
+      "id": "file:server/tests/server.test.js",
+      "type": "file",
+      "name": "server.test.js",
+      "filePath": "server/tests/server.test.js",
+      "summary": "Integration tests spawning the Express app on port 3002, fetching news, and cleanly killing the child process.",
+      "tags": ["test", "integration"]
+    },
+    {
+      "id": "file:src/components/NewsFeed.tsx",
+      "type": "file",
+      "name": "NewsFeed.tsx",
+      "filePath": "src/components/NewsFeed.tsx",
+      "summary": "React component displaying the compiled news articles. Features a clean category selector and live filters.",
+      "tags": ["frontend", "react", "view"]
+    },
+    {
+      "id": "file:src/components/ReplacementMatrix.tsx",
+      "type": "file",
+      "name": "ReplacementMatrix.tsx",
+      "filePath": "src/components/ReplacementMatrix.tsx",
+      "summary": "AI replacement matrix dashboard component comparing model capabilities across technical roles.",
+      "tags": ["frontend", "react", "view"]
+    },
+    {
+      "id": "file:src/components/LlmComponents.tsx",
+      "type": "file",
+      "name": "LlmComponents.tsx",
+      "filePath": "src/components/LlmComponents.tsx",
+      "summary": "Interactive visualizer illustrating steps in the transformer forward pass architecture.",
+      "tags": ["frontend", "react", "view"]
+    },
+    {
+      "id": "file:AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "filePath": "AGENTS.md",
+      "summary": "Repository guidelines, architectural design (SOLID & DRY), and test harness setup.",
+      "tags": ["documentation"]
+    },
+    {
+      "id": "file:GEMINI.md",
+      "type": "document",
+      "name": "GEMINI.md",
+      "filePath": "GEMINI.md",
+      "summary": "Context7 platform rules and behaviors for fetching up-to-date documentation.",
+      "tags": ["documentation"]
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:server/index.js",
+      "target": "file:server/aggregator.js",
+      "type": "imports"
+    },
+    {
+      "source": "file:server/tests/aggregator.test.js",
+      "target": "file:server/aggregator.js",
+      "type": "tests"
+    },
+    {
+      "source": "file:server/tests/server.test.js",
+      "target": "file:server/index.js",
+      "type": "tests"
+    },
+    {
+      "source": "file:src/components/NewsFeed.tsx",
+      "target": "file:server/index.js",
+      "type": "calls"
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:backend",
+      "name": "Express Backend",
+      "description": "API routes and scraper pipeline",
+      "nodeIds": ["file:server/index.js", "file:server/aggregator.js"]
+    },
+    {
+      "id": "layer:frontend",
+      "name": "React Client",
+      "description": "Vite React dashboard components",
+      "nodeIds": ["file:src/components/NewsFeed.tsx", "file:src/components/ReplacementMatrix.tsx", "file:src/components/LlmComponents.tsx"]
+    },
+    {
+      "id": "layer:tests",
+      "name": "Tests",
+      "description": "Native unit and integration tests",
+      "nodeIds": ["file:server/tests/aggregator.test.js", "file:server/tests/server.test.js"]
+    },
+    {
+      "id": "layer:docs",
+      "name": "Documentation",
+      "description": "Guidelines and rules",
+      "nodeIds": ["file:AGENTS.md", "file:GEMINI.md"]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "Introduction",
+      "description": "Start by reading AGENTS.md to understand repo principles.",
+      "nodeIds": ["file:AGENTS.md"]
+    },
+    {
+      "order": 2,
+      "title": "Backend Aggregator",
+      "description": "Explore the backend routing and parallel scraping mechanics.",
+      "nodeIds": ["file:server/index.js", "file:server/aggregator.js"]
+    },
+    {
+      "order": 3,
+      "title": "Frontend Views",
+      "description": "Inspect the visual panels of our React frontend client.",
+      "nodeIds": ["file:src/components/NewsFeed.tsx", "file:src/components/ReplacementMatrix.tsx", "file:src/components/LlmComponents.tsx"]
+    }
+  ]
+}

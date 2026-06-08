@@ -1,0 +1,14 @@
+https://github.com/upstash/context7 pehele to aap islo padh kr is windows ke liye install kr lena 
+this will contain all the context 
+
+uderstand anything https://github.com/Lum1104/Understand-Anything yeh appko batayega ki appke codebase me kya hai isko bhi install kr lena continuously update bhi krna 
+
+please harness engg ka proper use krna hai  aur AGENTS.md me properly rakhna hai properly SOLID and DRY principal ka use krna hai 
+
+aur yeh repo kyunki boho
+agnet .md me yeh likha hai ki apko dry and solid principal ka use krnah ai 
+
+
+yeh sab krke ek kaam aur krna hai ki onboard kro meko aur khud ko 
+
+akhri chiz understand dashoboard ki link do 

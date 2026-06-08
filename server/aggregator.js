@@ -37,7 +37,7 @@ const FLUFF_BLACKLIST = [
 ];
 
 // Heuristic category classifier using keyword mappings for efficiency and readability
-function classifyCategory(title, content) {
+export function classifyCategory(title, content) {
   const text = `${title} ${content}`.toLowerCase();
   
   const keywords = {
@@ -202,7 +202,7 @@ async function fetchRssFeed(url, sourceName) {
 }
 
 // Clean and filter feed raw articles
-function preFilterArticles(rawArticles) {
+export function preFilterArticles(rawArticles) {
   return rawArticles.filter(art => {
     // 1. Title/link must exist
     if (!art.title || !art.url) return false;
@@ -304,7 +304,7 @@ Respond ONLY with a JSON object in this exact format:
 }
 
 // De-duplicate articles by normalized title or URL
-function deduplicateArticles(articles) {
+export function deduplicateArticles(articles) {
   const seenUrls = new Set();
   const seenTitles = new Set();
   return articles.filter(art => {
