@@ -27,7 +27,8 @@ export default function App() {
   useEffect(() => {
     const checkServer = async () => {
       try {
-        const res = await fetch('http://localhost:3001/api/news');
+        const host = window.location.hostname || 'localhost';
+        const res = await fetch(`http://${host}:3001/api/news`);
         if (res.ok) {
           setServerOnline(true);
         } else {

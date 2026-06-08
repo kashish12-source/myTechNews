@@ -17,6 +17,7 @@ export interface Article {
 export default function NewsFeed() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(false);
+  const [updating, setUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -56,10 +57,15 @@ export default function NewsFeed() {
   };
 
   const fetchNews = async (forceRefresh = false) => {
-    setLoading(true);
+    // Show spinner if we have no articles yet, or if it is a manual force refresh
+    const showSpinner = forceRefresh || articles.length === 0;
+    if (showSpinner) {
+      setLoading(true);
+    }
     setError(null);
     try {
-      const endpoint = forceRefresh ? 'http://localhost:3001/api/refresh' : 'http://localhost:3001/api/news';
+      const host = window.location.hostname || 'localhost';
+      const endpoint = forceRefresh ? `http://${host}:3001/api/refresh` : `http://${host}:3001/api/news`;
       const response = await fetch(endpoint, {
         method: forceRefresh ? 'POST' : 'GET',
       });
@@ -69,21 +75,40 @@ export default function NewsFeed() {
       const data = await response.json();
       setArticles(data.articles || []);
       setLastUpdated(formatLastUpdated(data.lastUpdated));
+      setUpdating(!!data.isSystemUpdating);
     } catch (err) {
       console.warn('Backend server not running. Falling back to static pre-seeded news database.', err);
       setArticles(fallbackData.articles || []);
       setLastUpdated(formatLastUpdated(fallbackData.lastUpdated));
+      setUpdating(false);
       if (forceRefresh) {
         setError('Aggregator server offline. Showing pre-seeded daily archive.');
       }
     } finally {
-      setLoading(false);
+      if (showSpinner) {
+        setLoading(false);
+      }
     }
   };
 
   useEffect(() => {
     fetchNews();
   }, []);
+
+  // Poll for updates if the backend is actively aggregating
+  useEffect(() => {
+    let timeoutId: number;
+    if (updating) {
+      timeoutId = window.setTimeout(() => {
+        fetchNews(false);
+      }, 4000);
+    }
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [updating]);
 
   const handleRefresh = () => {
     fetchNews(true);
@@ -149,6 +174,13 @@ export default function NewsFeed() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1rem', background: 'rgba(244,63,94,0.06)', border: '1px solid rgba(244,63,94,0.15)', borderRadius: '6px', color: 'var(--accent-rose)', fontSize: '0.8rem' }}>
             <AlertCircle size={14} />
             <span>{error} running on local backup database cache.</span>
+          </div>
+        )}
+
+        {updating && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1rem', background: 'rgba(6,182,212,0.06)', border: '1px solid rgba(6,182,212,0.15)', borderRadius: '6px', color: 'var(--accent-cyan)', fontSize: '0.8rem' }}>
+            <RefreshCw size={14} className="animate-spin" style={{ animation: 'spin 1.5s linear infinite' }} />
+            <span>Aggregator is fetching latest news updates in background...</span>
           </div>
         )}
 
