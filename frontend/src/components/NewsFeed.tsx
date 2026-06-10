@@ -156,7 +156,15 @@ export default function NewsFeed({
 
       if (response.ok) {
         const data = await response.json();
-        setArticles(data.articles || []);
+        const liveArticles = data.articles || [];
+
+        // If API returned OK but 0 articles on a hosted deployment, use bundled fallback
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        if (liveArticles.length === 0 && !isLocalhost && fallbackData.articles?.length > 0) {
+          setArticles(fallbackData.articles);
+        } else {
+          setArticles(liveArticles);
+        }
         setUpdating(!!data.isSystemUpdating);
         return;
       }
