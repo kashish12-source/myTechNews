@@ -1,37 +1,51 @@
 # Coding Agents Guidelines & System Architecture
 
-Welcome to the `myTechNews` repository. This document outlines the repository structure, software engineering guidelines (SOLID & DRY), the test suite (Engineering Harness), and AI integrations (`context7` and `Understand-Anything`).
+Welcome to the `myTechNews` repository. This document outlines the repository structure, software engineering guidelines (SOLID & DRY), the test suite (Engineering Harness), and AI integrations (`context7`, `Understand-Anything`, and `Dokploy`).
 
 ---
 
 ## 📂 Repository Structure
 
-The project is split into a modern React frontend and a lightweight Express backend.
+The project is structured as a monorepo containing a modern React frontend and a Python FastAPI backend.
 
 ```
 myTechNews/
-├── .agent/                  # Custom agent skills
-│   └── skills/find-docs/    # context7 query skill
-├── .github/workflows/       # GitHub Actions (daily cron scraping job)
-├── server/                  # Backend code
-│   ├── tests/               # Node.js native tests
-│   │   ├── aggregator.test.js
-│   │   └── server.test.js
-│   ├── aggregator.js        # Core tech scraper & pipeline
-│   ├── index.js             # Express API server & background caching
+├── .agent/                      # Custom agent skills
+│   ├── skills/find-docs/        # context7 query skill
+│   └── skills/understand/       # Codebase analyzer skill
+├── .github/workflows/           # GitHub Actions (daily cron scraping job)
+├── backend/                     # Backend code (FastAPI)
+│   ├── app/                     # Core application source
+│   │   ├── aggregator.py        # Core tech scraper & pipeline
+│   │   ├── auth.py              # Password hashing & JWT helper
+│   │   ├── database.py          # SQLAlchemy engine & session getter
+│   │   ├── main.py              # FastAPI router & endpoints
+│   │   ├── models.py            # Database tables schema
+│   │   └── schemas.py           # Pydantic schemas (validation/serialization)
+│   ├── tests/                   # Python unit tests
+│   │   └── test_aggregator.py
+│   └── requirements.txt
+├── frontend/                    # Frontend code (React + Vite + Tailwind CSS v4)
+│   ├── public/                  # Static assets & manifest.json
+│   ├── src/                     # Source folder
+│   │   ├── components/          # Portal dashboards
+│   │   │   ├── LlmComponents.tsx
+│   │   │   ├── Login.tsx
+│   │   │   ├── NewsFeed.tsx
+│   │   │   └── ReplacementMatrix.tsx
+│   │   ├── App.css
+│   │   ├── App.tsx
+│   │   ├── index.css
+│   │   ├── main.tsx
+│   │   └── utils/
+│   │       └── api.ts
 │   └── package.json
-├── src/                     # Frontend code (React + Vite + Tailwind/CSS)
-│   ├── components/          # Dashboard panels
-│   │   ├── LlmComponents.tsx
-│   │   ├── NewsFeed.tsx
-│   │   └── ReplacementMatrix.tsx
-│   ├── data/
-│   │   └── news-cache.json  # Pre-seeded JSON archive (fallback)
-│   └── main.tsx
-├── AGENTS.md                # System rules & guides (This file)
-├── GEMINI.md                # context7 fetch doc rules
-├── package.json             # Root workspace script setup
-└── vite.config.ts
+├── docs/                        # Onboarding & documentation guides
+│   └── ONBOARDING.md
+├── AGENTS.md                    # System rules & guides (This file)
+├── GEMINI.md                    # context7 fetch doc rules
+├── package.json                 # Root monorepo script setup
+└── vercel.json                  # Vercel deployment descriptor
 ```
 
 ---
@@ -42,16 +56,16 @@ Every change in this repository must maintain the following SOLID and DRY princi
 
 ### 1. SOLID Principles
 *   **Single Responsibility Principle (SRP)**:
-    *   Separate the HTTP routing logic (`server/index.js`) from the scraper pipeline execution (`server/aggregator.js`).
-    *   Separate frontend tabs into specific components: [NewsFeed.tsx](file:///c:/Users/Kashish/myTechNews/src/components/NewsFeed.tsx) (news view), [ReplacementMatrix.tsx](file:///c:/Users/Kashish/myTechNews/src/components/ReplacementMatrix.tsx) (AI comparative tool), and [LlmComponents.tsx](file:///c:/Users/Kashish/myTechNews/src/components/LlmComponents.tsx) (mechanics inspector).
+    *   Separate the HTTP routing/endpoints (`backend/app/main.py`) from the scraper pipeline execution (`backend/app/aggregator.py`).
+    *   Separate frontend tabs into specific dashboard components: [NewsFeed.tsx](file:///c:/Users/Kashish/myTechNews/frontend/src/components/NewsFeed.tsx) (news view), [ReplacementMatrix.tsx](file:///c:/Users/Kashish/myTechNews/frontend/src/components/ReplacementMatrix.tsx) (AI comparative tool), and [LlmComponents.tsx](file:///c:/Users/Kashish/myTechNews/frontend/src/components/LlmComponents.tsx) (mechanics inspector).
 *   **Open/Closed Principle (OCP)**:
-    *   The aggregator list (`feedPromises` in `server/aggregator.js`) is designed as a set of declarative RSS/Scraping configurations. You can add a new source by appending a fetch call without modifying the core deduplication or parsing algorithms.
+    *   The aggregator list (`fetch_rss_feed` / scraping modules in `backend/app/aggregator.py`) is designed as a set of declarative RSS/Scraping configurations. You can add a new source by appending a fetch call without modifying the core deduplication or parsing algorithms.
 *   **Liskov Substitution Principle (LSP)**:
     *   The backend's schema matches the client's `Article` interface, ensuring mock caches can be swapped seamlessly in the client logic if the local server is offline.
 *   **Interface Segregation Principle (ISP)**:
     *   The UI components only receive the narrow data schemas they require (e.g. `Article` and `ReplacementTask`), preventing fat interfaces and layout dependencies.
 *   **Dependency Inversion Principle (DIP)**:
-    *   The application does not depend directly on Gemini AI API availability. It checks for the existence of `GEMINI_API_KEY` and falls back automatically to heuristic metadata processors (`classifyCategory`) if unavailable.
+    *   The application does not depend directly on Gemini AI API availability. It checks for the existence of `GEMINI_API_KEY` and falls back automatically to heuristic metadata processors (`classify_category`) if unavailable.
 
 ### 2. DRY (Don't Repeat Yourself)
 *   **Centralized Parsing & Formatting**: Avoid duplicate date parsing. The utility function `formatDate` handles formatting safely across different browser versions.
@@ -61,24 +75,24 @@ Every change in this repository must maintain the following SOLID and DRY princi
 
 ## 🧪 Engineering Test Harness
 
-To preserve codebase integrity and prevent regression bugs, the codebase includes a test suite built on top of **Node.js's native test runner**. This avoids heavy framework dependencies like Jest or Vitest, maintaining a fast and clean environment.
+To preserve codebase integrity and prevent regression bugs, the codebase includes a test suite built on top of **pytest**.
 
 ### Run Tests
 To execute the tests from the project root:
 ```bash
 npm test
 ```
-To run tests directly inside the server directory:
+To run tests directly inside the backend directory:
 ```bash
-npm run test
+npm run test:backend
 ```
 
 ### Writing New Tests
-*   Place tests inside `server/tests/` ending in `.test.js`.
-*   Import Node's native test module and assertion library:
-    ```javascript
-    import test from 'node:test';
-    import assert from 'node:assert';
+*   Place tests inside `backend/tests/` ending in `test_*.py`.
+*   Import standard pytest libraries and backend models:
+    ```python
+    import pytest
+    from backend.app.aggregator import classify_category
     ```
 
 ---
@@ -88,7 +102,7 @@ npm run test
 The project uses JWT (JSON Web Tokens) and bcrypt password hashing to protect endpoints and prevent unauthorized access.
 
 ### Authentication Mechanics
-1. **User Schema**: Registered users are persisted in `server/users.json` with an email address and a bcrypt-hashed password.
+1. **User Schema**: Registered users are persisted in the SQLite/Postgres database with an email address and a bcrypt-hashed password.
 2. **Pre-seeded Admin User**:
    * **Email**: `krishvishnoi@gmail.com`
    * **Password**: `StrongPass@1`
@@ -96,7 +110,7 @@ The project uses JWT (JSON Web Tokens) and bcrypt password hashing to protect en
    * Public routes: `/api/auth/register`, `/api/auth/login`.
    * Protected routes: `/api/news`, `/api/refresh`. These require a `Bearer <token>` string in the `Authorization` header.
 4. **Middleware**:
-   * `authenticateToken` parses and verifies the token. If missing, it returns `401 Unauthorized`. If invalid or expired, it returns `403 Forbidden`.
+   * FastAPI dependencies handle token validation and extract user context. If missing, it returns `401 Unauthorized`. If invalid or expired, it returns `403 Forbidden`.
 
 ---
 

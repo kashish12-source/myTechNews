@@ -1,0 +1,41 @@
+{
+  "nodes": [
+    {
+      "id": "document:.agent/skills/understand/languages/terraform.md",
+      "type": "document",
+      "name": "terraform.md",
+      "filePath": ".agent/skills/understand/languages/terraform.md",
+      "summary": "Terraform Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/typescript.md",
+      "type": "document",
+      "name": "typescript.md",
+      "filePath": ".agent/skills/understand/languages/typescript.md",
+      "summary": "TypeScript Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/yaml.md",
+      "type": "document",
+      "name": "yaml.md",
+      "filePath": ".agent/skills/understand/languages/yaml.md",
+      "summary": "YAML Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

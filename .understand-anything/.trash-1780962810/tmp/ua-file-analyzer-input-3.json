@@ -1,0 +1,55 @@
+{
+  "projectRoot": "c:\\Users\\Kashish\\myTechNews",
+  "batchFiles": [
+    {
+      "path": "backend/app/aggregator.py",
+      "language": "python",
+      "sizeLines": 425,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/database.py",
+      "language": "python",
+      "sizeLines": 53,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/models.py",
+      "language": "python",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/scrape_cli.py",
+      "language": "python",
+      "sizeLines": 60,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/test_aggregator.py",
+      "language": "python",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "backend/app/aggregator.py": [
+      "backend/app/config.py",
+      "backend/app/models.py"
+    ],
+    "backend/app/database.py": [
+      "backend/app/config.py"
+    ],
+    "backend/app/models.py": [
+      "backend/app/database.py"
+    ],
+    "backend/app/scrape_cli.py": [
+      "backend/app/aggregator.py",
+      "backend/app/database.py",
+      "backend/app/models.py"
+    ],
+    "backend/tests/test_aggregator.py": [
+      "backend/app/aggregator.py"
+    ]
+  }
+}

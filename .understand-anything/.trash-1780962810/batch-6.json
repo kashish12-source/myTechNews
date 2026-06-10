@@ -1,0 +1,17 @@
+{
+  "nodes": [
+    {
+      "id": "pipeline:.github/workflows/daily-scrape.yml",
+      "type": "pipeline",
+      "name": "daily-scrape.yml",
+      "filePath": ".github/workflows/daily-scrape.yml",
+      "summary": "name: Daily News Scrape",
+      "tags": [
+        "infra",
+        "yaml"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

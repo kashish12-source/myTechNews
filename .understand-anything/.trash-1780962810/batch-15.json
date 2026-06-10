@@ -1,0 +1,65 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/public/sw.js",
+      "type": "file",
+      "name": "sw.js",
+      "filePath": "frontend/public/sw.js",
+      "summary": "const CACHE_NAME = 'my-tech-news-v3';",
+      "tags": [
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/App.css",
+      "type": "file",
+      "name": "App.css",
+      "filePath": "frontend/src/App.css",
+      "summary": "font-size: 16px;",
+      "tags": [
+        "markup",
+        "css"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:frontend/src/data/news-cache.json",
+      "type": "config",
+      "name": "news-cache.json",
+      "filePath": "frontend/src/data/news-cache.json",
+      "summary": "\"lastUpdated\": \"2026-06-08T06:56:03.318Z\",",
+      "tags": [
+        "config",
+        "json"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:frontend/src/index.css",
+      "type": "file",
+      "name": "index.css",
+      "filePath": "frontend/src/index.css",
+      "summary": "@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap');",
+      "tags": [
+        "markup",
+        "css"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:frontend/vite.config.ts",
+      "type": "file",
+      "name": "vite.config.ts",
+      "filePath": "frontend/vite.config.ts",
+      "summary": "import { defineConfig } from 'vite'",
+      "tags": [
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

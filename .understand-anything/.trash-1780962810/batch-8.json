@@ -1,0 +1,245 @@
+{
+  "nodes": [
+    {
+      "id": "document:.agent/skills/understand/languages/cpp.md",
+      "type": "document",
+      "name": "cpp.md",
+      "filePath": ".agent/skills/understand/languages/cpp.md",
+      "summary": "C++ Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/csharp.md",
+      "type": "document",
+      "name": "csharp.md",
+      "filePath": ".agent/skills/understand/languages/csharp.md",
+      "summary": "C# Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/css.md",
+      "type": "document",
+      "name": "css.md",
+      "filePath": ".agent/skills/understand/languages/css.md",
+      "summary": "CSS Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/dockerfile.md",
+      "type": "document",
+      "name": "dockerfile.md",
+      "filePath": ".agent/skills/understand/languages/dockerfile.md",
+      "summary": "Dockerfile Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/go.md",
+      "type": "document",
+      "name": "go.md",
+      "filePath": ".agent/skills/understand/languages/go.md",
+      "summary": "Go Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/graphql.md",
+      "type": "document",
+      "name": "graphql.md",
+      "filePath": ".agent/skills/understand/languages/graphql.md",
+      "summary": "GraphQL Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/html.md",
+      "type": "document",
+      "name": "html.md",
+      "filePath": ".agent/skills/understand/languages/html.md",
+      "summary": "HTML Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/java.md",
+      "type": "document",
+      "name": "java.md",
+      "filePath": ".agent/skills/understand/languages/java.md",
+      "summary": "Java Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/javascript.md",
+      "type": "document",
+      "name": "javascript.md",
+      "filePath": ".agent/skills/understand/languages/javascript.md",
+      "summary": "JavaScript Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/json.md",
+      "type": "document",
+      "name": "json.md",
+      "filePath": ".agent/skills/understand/languages/json.md",
+      "summary": "JSON Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/kotlin.md",
+      "type": "document",
+      "name": "kotlin.md",
+      "filePath": ".agent/skills/understand/languages/kotlin.md",
+      "summary": "Kotlin Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/markdown.md",
+      "type": "document",
+      "name": "markdown.md",
+      "filePath": ".agent/skills/understand/languages/markdown.md",
+      "summary": "Markdown Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/php.md",
+      "type": "document",
+      "name": "php.md",
+      "filePath": ".agent/skills/understand/languages/php.md",
+      "summary": "PHP Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/protobuf.md",
+      "type": "document",
+      "name": "protobuf.md",
+      "filePath": ".agent/skills/understand/languages/protobuf.md",
+      "summary": "Protobuf Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/python.md",
+      "type": "document",
+      "name": "python.md",
+      "filePath": ".agent/skills/understand/languages/python.md",
+      "summary": "Python Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/ruby.md",
+      "type": "document",
+      "name": "ruby.md",
+      "filePath": ".agent/skills/understand/languages/ruby.md",
+      "summary": "Ruby Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/rust.md",
+      "type": "document",
+      "name": "rust.md",
+      "filePath": ".agent/skills/understand/languages/rust.md",
+      "summary": "Rust Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/shell.md",
+      "type": "document",
+      "name": "shell.md",
+      "filePath": ".agent/skills/understand/languages/shell.md",
+      "summary": "Shell Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/sql.md",
+      "type": "document",
+      "name": "sql.md",
+      "filePath": ".agent/skills/understand/languages/sql.md",
+      "summary": "SQL Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/languages/swift.md",
+      "type": "document",
+      "name": "swift.md",
+      "filePath": ".agent/skills/understand/languages/swift.md",
+      "summary": "Swift Language Prompt Snippet",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

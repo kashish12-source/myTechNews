@@ -1,0 +1,1251 @@
+{
+  "schemaVersion": 1,
+  "algorithm": "louvain",
+  "totalFiles": 109,
+  "totalBatches": 15,
+  "exportsByPath": {
+    ".agent/skills/understand-domain/extract-domain-context.py": [
+      "parse_gitignore",
+      "is_ignored",
+      "scan_file_tree",
+      "detect_entry_points",
+      "extract_file_signatures",
+      "extract_metadata",
+      "_truncate_to_fit",
+      "main"
+    ],
+    ".agent/skills/understand-knowledge/merge-knowledge-graph.py": [
+      "normalize_node_type",
+      "normalize_edge_type",
+      "normalize_entity_name",
+      "merge",
+      "main"
+    ],
+    ".agent/skills/understand-knowledge/parse-knowledge-base.py": [
+      "detect_format",
+      "extract_frontmatter",
+      "extract_wikilinks",
+      "extract_headings",
+      "extract_code_blocks",
+      "extract_first_paragraph",
+      "extract_h1",
+      "parse_index",
+      "parse_log",
+      "build_name_to_stem_map",
+      "resolve_wikilink",
+      "parse_wiki",
+      "main"
+    ],
+    ".agent/skills/understand/build-fingerprints.mjs": [],
+    ".agent/skills/understand/compute-batches.mjs": [],
+    ".agent/skills/understand/extract-import-map.mjs": [
+      "resolveTsJsImport",
+      "resolvePythonImport",
+      "resolveGoImport",
+      "resolveJavaImport",
+      "resolveKotlinImport",
+      "resolveCSharpImport",
+      "resolveRubyImport",
+      "resolvePhpImport",
+      "resolveRustImport",
+      "resolveCppImport"
+    ],
+    ".agent/skills/understand/extract-structure.mjs": [
+      "buildResult"
+    ],
+    ".agent/skills/understand/merge-batch-graphs.py": [
+      "normalize_direction",
+      "_num",
+      "load_batch",
+      "classify_id_fix",
+      "normalize_node_id",
+      "normalize_complexity",
+      "_path_segments",
+      "_basename",
+      "is_test_path",
+      "_strip_test_infix",
+      "_join",
+      "_add_unique",
+      "_js_ts_sibling_candidates",
+      "production_candidates",
+      "_file_node_path",
+      "_swap_tested_by_in_place",
+      "_ensure_tested_tag",
+      "link_tests",
+      "merge_and_normalize",
+      "recover_imports_from_scan",
+      "main"
+    ],
+    ".agent/skills/understand/merge-subdomain-graphs.py": [
+      "_num",
+      "load_graph",
+      "merge_graphs",
+      "main"
+    ],
+    ".agent/skills/understand/scan-project.mjs": [
+      "detectLanguage",
+      "detectCategory",
+      "estimateComplexity"
+    ],
+    "api/index.py": [],
+    "backend/app/aggregator.py": [
+      "classify_category",
+      "pre_filter_articles",
+      "deduplicate_articles",
+      "scrape_paul_graham",
+      "scrape_niti_aayog",
+      "fetch_open_review",
+      "fetch_rss_feed",
+      "enrich_with_gemini",
+      "aggregate_news"
+    ],
+    "backend/app/auth.py": [
+      "hash_password",
+      "verify_password",
+      "create_access_token",
+      "validate_password_strength",
+      "get_current_user_email"
+    ],
+    "backend/app/config.py": [
+      "Settings"
+    ],
+    "backend/app/database.py": [
+      "get_db"
+    ],
+    "backend/app/email.py": [
+      "send_email_via_smtp",
+      "send_welcome_email",
+      "send_verification_email"
+    ],
+    "backend/app/main.py": [
+      "startup_db_setup",
+      "run_background_scrape",
+      "register_user",
+      "login_user",
+      "verify_code",
+      "get_news",
+      "force_refresh"
+    ],
+    "backend/app/models.py": [
+      "User",
+      "Article",
+      "SystemStatus",
+      "VerificationCode"
+    ],
+    "backend/app/schemas.py": [
+      "UserRegister",
+      "UserLogin",
+      "Token",
+      "CodeVerificationRequest",
+      "ArticleOut",
+      "NewsFeedResponse"
+    ],
+    "backend/app/scrape_cli.py": [
+      "main"
+    ],
+    "backend/tests/test_aggregator.py": [
+      "test_classify_category_heuristics",
+      "test_pre_filter_articles",
+      "test_deduplicate_articles"
+    ],
+    "frontend/eslint.config.js": [],
+    "frontend/nginx.conf": [],
+    "frontend/public/sw.js": [],
+    "frontend/src/App.tsx": [
+      "App"
+    ],
+    "frontend/src/components/LlmComponents.tsx": [
+      "LlmComponents"
+    ],
+    "frontend/src/components/Login.tsx": [
+      "Login"
+    ],
+    "frontend/src/components/NewsFeed.tsx": [
+      "NewsFeed"
+    ],
+    "frontend/src/components/ReplacementMatrix.tsx": [
+      "ReplacementMatrix"
+    ],
+    "frontend/src/main.tsx": [],
+    "frontend/src/utils/api.ts": [
+      "getApiUrl"
+    ],
+    "frontend/vite.config.ts": []
+  },
+  "batches": [
+    {
+      "batchIndex": 1,
+      "files": [
+        {
+          "path": "frontend/src/App.tsx",
+          "language": "typescript",
+          "sizeLines": 388,
+          "fileCategory": "code"
+        },
+        {
+          "path": "frontend/src/components/LlmComponents.tsx",
+          "language": "typescript",
+          "sizeLines": 270,
+          "fileCategory": "code"
+        },
+        {
+          "path": "frontend/src/components/Login.tsx",
+          "language": "typescript",
+          "sizeLines": 290,
+          "fileCategory": "code"
+        },
+        {
+          "path": "frontend/src/components/NewsFeed.tsx",
+          "language": "typescript",
+          "sizeLines": 322,
+          "fileCategory": "code"
+        },
+        {
+          "path": "frontend/src/components/ReplacementMatrix.tsx",
+          "language": "typescript",
+          "sizeLines": 321,
+          "fileCategory": "code"
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "language": "typescript",
+          "sizeLines": 10,
+          "fileCategory": "code"
+        },
+        {
+          "path": "frontend/src/utils/api.ts",
+          "language": "typescript",
+          "sizeLines": 9,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "frontend/src/App.tsx": [
+          "frontend/src/components/LlmComponents.tsx",
+          "frontend/src/components/Login.tsx",
+          "frontend/src/components/NewsFeed.tsx",
+          "frontend/src/components/ReplacementMatrix.tsx"
+        ],
+        "frontend/src/components/LlmComponents.tsx": [],
+        "frontend/src/components/Login.tsx": [
+          "frontend/src/utils/api.ts"
+        ],
+        "frontend/src/components/NewsFeed.tsx": [
+          "frontend/src/data/news-cache.json",
+          "frontend/src/utils/api.ts"
+        ],
+        "frontend/src/components/ReplacementMatrix.tsx": [],
+        "frontend/src/main.tsx": [
+          "frontend/src/App.tsx",
+          "frontend/src/index.css"
+        ],
+        "frontend/src/utils/api.ts": []
+      },
+      "neighborMap": {
+        "frontend/src/components/NewsFeed.tsx": [
+          {
+            "path": "frontend/src/data/news-cache.json",
+            "batchIndex": 15,
+            "symbols": []
+          }
+        ],
+        "frontend/src/main.tsx": [
+          {
+            "path": "frontend/src/index.css",
+            "batchIndex": 15,
+            "symbols": []
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 2,
+      "files": [
+        {
+          "path": "api/index.py",
+          "language": "python",
+          "sizeLines": 7,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/app/auth.py",
+          "language": "python",
+          "sizeLines": 84,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/app/config.py",
+          "language": "python",
+          "sizeLines": 39,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/app/email.py",
+          "language": "python",
+          "sizeLines": 91,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/app/main.py",
+          "language": "python",
+          "sizeLines": 291,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/app/schemas.py",
+          "language": "python",
+          "sizeLines": 39,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "api/index.py": [
+          "backend/app/main.py"
+        ],
+        "backend/app/auth.py": [
+          "backend/app/config.py"
+        ],
+        "backend/app/config.py": [],
+        "backend/app/email.py": [
+          "backend/app/config.py"
+        ],
+        "backend/app/main.py": [
+          "backend/app/aggregator.py",
+          "backend/app/auth.py",
+          "backend/app/config.py",
+          "backend/app/database.py",
+          "backend/app/email.py",
+          "backend/app/models.py",
+          "backend/app/schemas.py"
+        ],
+        "backend/app/schemas.py": []
+      },
+      "neighborMap": {
+        "backend/app/config.py": [
+          {
+            "path": "backend/app/aggregator.py",
+            "batchIndex": 3,
+            "symbols": [
+              "classify_category",
+              "pre_filter_articles",
+              "deduplicate_articles",
+              "scrape_paul_graham",
+              "scrape_niti_aayog",
+              "fetch_open_review",
+              "fetch_rss_feed",
+              "enrich_with_gemini",
+              "aggregate_news"
+            ]
+          },
+          {
+            "path": "backend/app/database.py",
+            "batchIndex": 3,
+            "symbols": [
+              "get_db"
+            ]
+          }
+        ],
+        "backend/app/main.py": [
+          {
+            "path": "backend/app/aggregator.py",
+            "batchIndex": 3,
+            "symbols": [
+              "classify_category",
+              "pre_filter_articles",
+              "deduplicate_articles",
+              "scrape_paul_graham",
+              "scrape_niti_aayog",
+              "fetch_open_review",
+              "fetch_rss_feed",
+              "enrich_with_gemini",
+              "aggregate_news"
+            ]
+          },
+          {
+            "path": "backend/app/database.py",
+            "batchIndex": 3,
+            "symbols": [
+              "get_db"
+            ]
+          },
+          {
+            "path": "backend/app/models.py",
+            "batchIndex": 3,
+            "symbols": [
+              "User",
+              "Article",
+              "SystemStatus",
+              "VerificationCode"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 3,
+      "files": [
+        {
+          "path": "backend/app/aggregator.py",
+          "language": "python",
+          "sizeLines": 425,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/app/database.py",
+          "language": "python",
+          "sizeLines": 53,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/app/models.py",
+          "language": "python",
+          "sizeLines": 40,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/app/scrape_cli.py",
+          "language": "python",
+          "sizeLines": 60,
+          "fileCategory": "code"
+        },
+        {
+          "path": "backend/tests/test_aggregator.py",
+          "language": "python",
+          "sizeLines": 46,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "backend/app/aggregator.py": [
+          "backend/app/config.py",
+          "backend/app/models.py"
+        ],
+        "backend/app/database.py": [
+          "backend/app/config.py"
+        ],
+        "backend/app/models.py": [
+          "backend/app/database.py"
+        ],
+        "backend/app/scrape_cli.py": [
+          "backend/app/aggregator.py",
+          "backend/app/database.py",
+          "backend/app/models.py"
+        ],
+        "backend/tests/test_aggregator.py": [
+          "backend/app/aggregator.py"
+        ]
+      },
+      "neighborMap": {
+        "backend/app/aggregator.py": [
+          {
+            "path": "backend/app/config.py",
+            "batchIndex": 2,
+            "symbols": [
+              "Settings"
+            ]
+          },
+          {
+            "path": "backend/app/main.py",
+            "batchIndex": 2,
+            "symbols": [
+              "startup_db_setup",
+              "run_background_scrape",
+              "register_user",
+              "login_user",
+              "verify_code",
+              "get_news",
+              "force_refresh"
+            ]
+          }
+        ],
+        "backend/app/database.py": [
+          {
+            "path": "backend/app/config.py",
+            "batchIndex": 2,
+            "symbols": [
+              "Settings"
+            ]
+          },
+          {
+            "path": "backend/app/main.py",
+            "batchIndex": 2,
+            "symbols": [
+              "startup_db_setup",
+              "run_background_scrape",
+              "register_user",
+              "login_user",
+              "verify_code",
+              "get_news",
+              "force_refresh"
+            ]
+          }
+        ],
+        "backend/app/models.py": [
+          {
+            "path": "backend/app/main.py",
+            "batchIndex": 2,
+            "symbols": [
+              "startup_db_setup",
+              "run_background_scrape",
+              "register_user",
+              "login_user",
+              "verify_code",
+              "get_news",
+              "force_refresh"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 4,
+      "files": [
+        {
+          "path": "backend/Dockerfile",
+          "language": "dockerfile",
+          "sizeLines": 20,
+          "fileCategory": "infra"
+        }
+      ],
+      "batchImportData": {
+        "backend/Dockerfile": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 5,
+      "files": [
+        {
+          "path": "frontend/Dockerfile",
+          "language": "dockerfile",
+          "sizeLines": 29,
+          "fileCategory": "infra"
+        }
+      ],
+      "batchImportData": {
+        "frontend/Dockerfile": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 6,
+      "files": [
+        {
+          "path": ".github/workflows/daily-scrape.yml",
+          "language": "yaml",
+          "sizeLines": 37,
+          "fileCategory": "infra"
+        }
+      ],
+      "batchImportData": {
+        ".github/workflows/daily-scrape.yml": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 7,
+      "files": [
+        {
+          "path": ".agent/skills/understand/frameworks/django.md",
+          "language": "markdown",
+          "sizeLines": 67,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/frameworks/express.md",
+          "language": "markdown",
+          "sizeLines": 57,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/frameworks/fastapi.md",
+          "language": "markdown",
+          "sizeLines": 58,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/frameworks/flask.md",
+          "language": "markdown",
+          "sizeLines": 53,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/frameworks/gin.md",
+          "language": "markdown",
+          "sizeLines": 59,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/frameworks/nextjs.md",
+          "language": "markdown",
+          "sizeLines": 59,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/frameworks/rails.md",
+          "language": "markdown",
+          "sizeLines": 65,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/frameworks/react.md",
+          "language": "markdown",
+          "sizeLines": 55,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/frameworks/spring.md",
+          "language": "markdown",
+          "sizeLines": 59,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/frameworks/vue.md",
+          "language": "markdown",
+          "sizeLines": 59,
+          "fileCategory": "docs"
+        }
+      ],
+      "batchImportData": {
+        ".agent/skills/understand/frameworks/django.md": [],
+        ".agent/skills/understand/frameworks/express.md": [],
+        ".agent/skills/understand/frameworks/fastapi.md": [],
+        ".agent/skills/understand/frameworks/flask.md": [],
+        ".agent/skills/understand/frameworks/gin.md": [],
+        ".agent/skills/understand/frameworks/nextjs.md": [],
+        ".agent/skills/understand/frameworks/rails.md": [],
+        ".agent/skills/understand/frameworks/react.md": [],
+        ".agent/skills/understand/frameworks/spring.md": [],
+        ".agent/skills/understand/frameworks/vue.md": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 8,
+      "files": [
+        {
+          "path": ".agent/skills/understand/languages/cpp.md",
+          "language": "markdown",
+          "sizeLines": 47,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/csharp.md",
+          "language": "markdown",
+          "sizeLines": 46,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/css.md",
+          "language": "markdown",
+          "sizeLines": 37,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/dockerfile.md",
+          "language": "markdown",
+          "sizeLines": 34,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/go.md",
+          "language": "markdown",
+          "sizeLines": 47,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/graphql.md",
+          "language": "markdown",
+          "sizeLines": 35,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/html.md",
+          "language": "markdown",
+          "sizeLines": 34,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/java.md",
+          "language": "markdown",
+          "sizeLines": 45,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/javascript.md",
+          "language": "markdown",
+          "sizeLines": 46,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/json.md",
+          "language": "markdown",
+          "sizeLines": 34,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/kotlin.md",
+          "language": "markdown",
+          "sizeLines": 45,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/markdown.md",
+          "language": "markdown",
+          "sizeLines": 34,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/php.md",
+          "language": "markdown",
+          "sizeLines": 46,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/protobuf.md",
+          "language": "markdown",
+          "sizeLines": 34,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/python.md",
+          "language": "markdown",
+          "sizeLines": 48,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/ruby.md",
+          "language": "markdown",
+          "sizeLines": 46,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/rust.md",
+          "language": "markdown",
+          "sizeLines": 47,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/shell.md",
+          "language": "markdown",
+          "sizeLines": 35,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/sql.md",
+          "language": "markdown",
+          "sizeLines": 36,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/swift.md",
+          "language": "markdown",
+          "sizeLines": 46,
+          "fileCategory": "docs"
+        }
+      ],
+      "batchImportData": {
+        ".agent/skills/understand/languages/cpp.md": [],
+        ".agent/skills/understand/languages/csharp.md": [],
+        ".agent/skills/understand/languages/css.md": [],
+        ".agent/skills/understand/languages/dockerfile.md": [],
+        ".agent/skills/understand/languages/go.md": [],
+        ".agent/skills/understand/languages/graphql.md": [],
+        ".agent/skills/understand/languages/html.md": [],
+        ".agent/skills/understand/languages/java.md": [],
+        ".agent/skills/understand/languages/javascript.md": [],
+        ".agent/skills/understand/languages/json.md": [],
+        ".agent/skills/understand/languages/kotlin.md": [],
+        ".agent/skills/understand/languages/markdown.md": [],
+        ".agent/skills/understand/languages/php.md": [],
+        ".agent/skills/understand/languages/protobuf.md": [],
+        ".agent/skills/understand/languages/python.md": [],
+        ".agent/skills/understand/languages/ruby.md": [],
+        ".agent/skills/understand/languages/rust.md": [],
+        ".agent/skills/understand/languages/shell.md": [],
+        ".agent/skills/understand/languages/sql.md": [],
+        ".agent/skills/understand/languages/swift.md": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 9,
+      "files": [
+        {
+          "path": ".agent/skills/understand/languages/terraform.md",
+          "language": "markdown",
+          "sizeLines": 38,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/typescript.md",
+          "language": "markdown",
+          "sizeLines": 46,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/languages/yaml.md",
+          "language": "markdown",
+          "sizeLines": 35,
+          "fileCategory": "docs"
+        }
+      ],
+      "batchImportData": {
+        ".agent/skills/understand/languages/terraform.md": [],
+        ".agent/skills/understand/languages/typescript.md": [],
+        ".agent/skills/understand/languages/yaml.md": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 10,
+      "files": [
+        {
+          "path": ".agent/skills/understand/locales/en.md",
+          "language": "markdown",
+          "sizeLines": 43,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/locales/ja.md",
+          "language": "markdown",
+          "sizeLines": 48,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/locales/ko.md",
+          "language": "markdown",
+          "sizeLines": 48,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/locales/ru.md",
+          "language": "markdown",
+          "sizeLines": 49,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/locales/zh-TW.md",
+          "language": "markdown",
+          "sizeLines": 48,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/locales/zh.md",
+          "language": "markdown",
+          "sizeLines": 48,
+          "fileCategory": "docs"
+        }
+      ],
+      "batchImportData": {
+        ".agent/skills/understand/locales/en.md": [],
+        ".agent/skills/understand/locales/ja.md": [],
+        ".agent/skills/understand/locales/ko.md": [],
+        ".agent/skills/understand/locales/ru.md": [],
+        ".agent/skills/understand/locales/zh-TW.md": [],
+        ".agent/skills/understand/locales/zh.md": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 11,
+      "files": [
+        {
+          "path": "AGENTS.md",
+          "language": "markdown",
+          "sizeLines": 123,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "GEMINI.md",
+          "language": "markdown",
+          "sizeLines": 18,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "Launch-News.bat",
+          "language": "batch",
+          "sizeLines": 29,
+          "fileCategory": "script"
+        },
+        {
+          "path": "README.md",
+          "language": "markdown",
+          "sizeLines": 73,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "context.txt",
+          "language": "txt",
+          "sizeLines": 18,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docker-compose.yml",
+          "language": "yaml",
+          "sizeLines": 29,
+          "fileCategory": "infra"
+        },
+        {
+          "path": "package.json",
+          "language": "json",
+          "sizeLines": 12,
+          "fileCategory": "config"
+        },
+        {
+          "path": "requirements.txt",
+          "language": "txt",
+          "sizeLines": 15,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "schedule-news.ps1",
+          "language": "powershell",
+          "sizeLines": 47,
+          "fileCategory": "script"
+        },
+        {
+          "path": "vercel.json",
+          "language": "json",
+          "sizeLines": 26,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "AGENTS.md": [],
+        "GEMINI.md": [],
+        "Launch-News.bat": [],
+        "README.md": [],
+        "context.txt": [],
+        "docker-compose.yml": [],
+        "package.json": [],
+        "requirements.txt": [],
+        "schedule-news.ps1": [],
+        "vercel.json": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 12,
+      "files": [
+        {
+          "path": "frontend/index.html",
+          "language": "html",
+          "sizeLines": 29,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "frontend/package.json",
+          "language": "json",
+          "sizeLines": 33,
+          "fileCategory": "config"
+        },
+        {
+          "path": "frontend/tsconfig.app.json",
+          "language": "json",
+          "sizeLines": 25,
+          "fileCategory": "config"
+        },
+        {
+          "path": "frontend/tsconfig.json",
+          "language": "json",
+          "sizeLines": 7,
+          "fileCategory": "config"
+        },
+        {
+          "path": "frontend/tsconfig.node.json",
+          "language": "json",
+          "sizeLines": 24,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "frontend/index.html": [],
+        "frontend/package.json": [],
+        "frontend/tsconfig.app.json": [],
+        "frontend/tsconfig.json": [],
+        "frontend/tsconfig.node.json": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 13,
+      "files": [
+        {
+          "path": "handsoff/README.md",
+          "language": "markdown",
+          "sizeLines": 74,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "handsoff/conversation.md",
+          "language": "markdown",
+          "sizeLines": 52,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "handsoff/conversation_log.md",
+          "language": "markdown",
+          "sizeLines": 66,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "handsoff/redesign_and_verification_log.md",
+          "language": "markdown",
+          "sizeLines": 55,
+          "fileCategory": "docs"
+        }
+      ],
+      "batchImportData": {
+        "handsoff/README.md": [],
+        "handsoff/conversation.md": [],
+        "handsoff/conversation_log.md": [],
+        "handsoff/redesign_and_verification_log.md": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 14,
+      "files": [
+        {
+          "path": ".agent/skills/find-docs/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 154,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand-chat/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 55,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand-dashboard/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 105,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand-diff/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 72,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand-domain/extract-domain-context.py",
+          "language": "python",
+          "sizeLines": 428,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agent/skills/understand-domain/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 140,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand-explain/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 58,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand-knowledge/merge-knowledge-graph.py",
+          "language": "python",
+          "sizeLines": 397,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+          "language": "python",
+          "sizeLines": 509,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agent/skills/understand-knowledge/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 132,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand-onboard/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 55,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".agent/skills/understand/build-fingerprints.mjs",
+          "language": "javascript",
+          "sizeLines": 95,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agent/skills/understand/compute-batches.mjs",
+          "language": "javascript",
+          "sizeLines": 593,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agent/skills/understand/extract-import-map.mjs",
+          "language": "javascript",
+          "sizeLines": 1632,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agent/skills/understand/extract-structure.mjs",
+          "language": "javascript",
+          "sizeLines": 339,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agent/skills/understand/merge-batch-graphs.py",
+          "language": "python",
+          "sizeLines": 1164,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agent/skills/understand/merge-subdomain-graphs.py",
+          "language": "python",
+          "sizeLines": 308,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agent/skills/understand/scan-project.mjs",
+          "language": "javascript",
+          "sizeLines": 807,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".agent/skills/understand/SKILL.md",
+          "language": "markdown",
+          "sizeLines": 860,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".understand-anything/knowledge-graph.json",
+          "language": "json",
+          "sizeLines": 153,
+          "fileCategory": "config"
+        },
+        {
+          "path": "backend/.env",
+          "language": "config",
+          "sizeLines": 5,
+          "fileCategory": "config"
+        },
+        {
+          "path": "backend/requirements.txt",
+          "language": "txt",
+          "sizeLines": 15,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "frontend/eslint.config.js",
+          "language": "javascript",
+          "sizeLines": 22,
+          "fileCategory": "code"
+        },
+        {
+          "path": "frontend/nginx.conf",
+          "language": "conf",
+          "sizeLines": 20,
+          "fileCategory": "code"
+        },
+        {
+          "path": "frontend/public/manifest.json",
+          "language": "json",
+          "sizeLines": 22,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        ".agent/skills/find-docs/SKILL.md": [],
+        ".agent/skills/understand-chat/SKILL.md": [],
+        ".agent/skills/understand-dashboard/SKILL.md": [],
+        ".agent/skills/understand-diff/SKILL.md": [],
+        ".agent/skills/understand-domain/extract-domain-context.py": [],
+        ".agent/skills/understand-domain/SKILL.md": [],
+        ".agent/skills/understand-explain/SKILL.md": [],
+        ".agent/skills/understand-knowledge/merge-knowledge-graph.py": [],
+        ".agent/skills/understand-knowledge/parse-knowledge-base.py": [],
+        ".agent/skills/understand-knowledge/SKILL.md": [],
+        ".agent/skills/understand-onboard/SKILL.md": [],
+        ".agent/skills/understand/build-fingerprints.mjs": [],
+        ".agent/skills/understand/compute-batches.mjs": [],
+        ".agent/skills/understand/extract-import-map.mjs": [],
+        ".agent/skills/understand/extract-structure.mjs": [],
+        ".agent/skills/understand/merge-batch-graphs.py": [],
+        ".agent/skills/understand/merge-subdomain-graphs.py": [],
+        ".agent/skills/understand/scan-project.mjs": [],
+        ".agent/skills/understand/SKILL.md": [],
+        ".understand-anything/knowledge-graph.json": [],
+        "backend/.env": [],
+        "backend/requirements.txt": [],
+        "frontend/eslint.config.js": [],
+        "frontend/nginx.conf": [],
+        "frontend/public/manifest.json": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 15,
+      "files": [
+        {
+          "path": "frontend/public/sw.js",
+          "language": "javascript",
+          "sizeLines": 61,
+          "fileCategory": "code"
+        },
+        {
+          "path": "frontend/src/App.css",
+          "language": "css",
+          "sizeLines": 184,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "frontend/src/data/news-cache.json",
+          "language": "json",
+          "sizeLines": 364,
+          "fileCategory": "config"
+        },
+        {
+          "path": "frontend/src/index.css",
+          "language": "css",
+          "sizeLines": 389,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "frontend/vite.config.ts",
+          "language": "typescript",
+          "sizeLines": 28,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "frontend/public/sw.js": [],
+        "frontend/src/App.css": [],
+        "frontend/src/data/news-cache.json": [],
+        "frontend/src/index.css": [],
+        "frontend/vite.config.ts": []
+      },
+      "neighborMap": {
+        "frontend/src/data/news-cache.json": [
+          {
+            "path": "frontend/src/components/NewsFeed.tsx",
+            "batchIndex": 1,
+            "symbols": [
+              "NewsFeed"
+            ]
+          }
+        ],
+        "frontend/src/index.css": [
+          {
+            "path": "frontend/src/main.tsx",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ]
+      }
+    }
+  ]
+}

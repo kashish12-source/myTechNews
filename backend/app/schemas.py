@@ -10,9 +10,15 @@ class UserLogin(BaseModel):
     password: str
 
 class Token(BaseModel):
-    token: str
+    token: Optional[str] = None
     email: str
+    status: Optional[str] = "success"
     message: Optional[str] = None
+    dev_code: Optional[str] = None
+
+class CodeVerificationRequest(BaseModel):
+    email: EmailStr
+    code: str = Field(..., min_length=6, max_length=6)
 
 class ArticleOut(BaseModel):
     id: str
@@ -32,3 +38,12 @@ class NewsFeedResponse(BaseModel):
     articles: List[ArticleOut]
     lastUpdated: str
     isSystemUpdating: bool
+
+class SavedArticleToggle(BaseModel):
+    article_id: str
+    list_type: str  # "watch_later" or "read_later"
+
+class SavedArticlesResponse(BaseModel):
+    watch_later: List[str]
+    read_later: List[str]
+

@@ -34,7 +34,12 @@ let core;
 try {
   core = await import(pathToFileURL(require.resolve('@understand-anything/core')).href);
 } catch {
-  core = await import(pathToFileURL(resolve(PLUGIN_ROOT, 'packages/core/dist/index.js')).href);
+  let corePath = resolve(PLUGIN_ROOT, 'packages/core/dist/index.js');
+  if (!existsSync(corePath)) {
+    const home = process.env.USERPROFILE || process.env.HOME || 'C:\\Users\\Kashish';
+    corePath = join(home, '.understand-anything-plugin', 'packages/core/dist/index.js');
+  }
+  core = await import(pathToFileURL(corePath).href);
 }
 const { TreeSitterPlugin, PluginRegistry, builtinLanguageConfigs, registerAllParsers } = core;
 

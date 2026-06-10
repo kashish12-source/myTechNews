@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { ShieldCheck, Search, Code, CheckCircle, Zap, Workflow, Paintbrush, FileText, LayoutGrid, ChevronDown, ChevronUp } from 'lucide-react';
+import { ShieldCheck, Search, Code, CheckCircle, Zap, Workflow, Paintbrush, FileText, LayoutGrid } from 'lucide-react';
 
 interface ReplacementTask {
   id: string;
@@ -134,25 +134,15 @@ export default function ReplacementMatrix({ searchQuery: propSearchQuery }: Repl
   }, [selectedRole, searchQuery]);
 
   const getRoleLabelColor = (_role: string) => {
-    return 'text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700';
+    return 'text-[var(--text-primary)] border-[var(--border-color)] bg-[var(--bg-secondary)]';
   };
 
   const getEaseBadgeClass = (_ease: string) => {
-    return 'text-slate-600 dark:text-slate-400 bg-transparent border border-slate-200 dark:border-slate-700';
+    return 'text-[var(--text-muted)] border-[var(--border-color)] bg-transparent';
   };
 
   return (
-    <div className="flex flex-col gap-6 animate-fade-in font-sans">
-      
-      {/* Title Panel */}
-      <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
-        <h2 className="text-xl font-bold text-[var(--text-primary)]">
-          AI Replacement Matrix
-        </h2>
-        <p className="text-xs text-[var(--text-secondary)] mt-1.5">
-          Compare workflow automation mappings across various engineering and technical roles.
-        </p>
-      </div>
+    <div className="flex flex-col gap-8 animate-fade-in">
 
       {/* Toolbar - Search & Filter */}
       <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-4 flex gap-4 items-center flex-wrap shadow-sm">
@@ -165,7 +155,7 @@ export default function ReplacementMatrix({ searchQuery: propSearchQuery }: Repl
                 placeholder="Search matrix..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[var(--bg-primary)] text-[var(--text-primary)] border border-[var(--border-color)] focus:border-[#1a73e8] rounded-lg pl-9 pr-4 py-1.5 text-xs outline-none transition-all placeholder:text-slate-550"
+                className="w-full bg-[var(--bg-primary)] text-[var(--text-primary)] border border-[var(--border-color)] focus:border-brand-primary rounded-lg pl-9 pr-4 py-1.5 text-xs outline-none transition-all placeholder:text-slate-500"
               />
             </div>
 
@@ -184,8 +174,8 @@ export default function ReplacementMatrix({ searchQuery: propSearchQuery }: Repl
                 onClick={() => setSelectedRole(r.id)}
                 className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold transition-all border cursor-pointer select-none ${
                   isSelected 
-                    ? 'bg-[#1a73e8] border-[#1a73e8] text-white shadow-sm' 
-                    : 'bg-[var(--bg-primary)] border-[var(--border-color)] hover:bg-[var(--border-hover)] text-[var(--text-secondary)]'
+                    ? 'bg-brand-primary border-brand-primary text-white shadow-sm' 
+                    : 'bg-[var(--bg-primary)] border-[var(--border-color)] hover:bg-[var(--border-hover)] text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                 }`}
               >
                 <RoleIcon size={13} />
@@ -196,11 +186,11 @@ export default function ReplacementMatrix({ searchQuery: propSearchQuery }: Repl
         </div>
       </div>
 
-      {/* Tasks List - Formatted exactly like coding news grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {/* Tasks List */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {filteredTasks.length === 0 ? (
-          <div className="col-span-full bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-16 text-center text-[var(--text-secondary)] shadow-sm">
-            <p className="text-sm">No automation mappings match your criteria.</p>
+          <div className="col-span-full bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-16 text-center text-[var(--text-muted)] shadow-sm">
+            <p className="text-sm font-semibold">No automation mappings match your criteria.</p>
           </div>
         ) : (
           filteredTasks.map((task) => {
@@ -215,23 +205,23 @@ export default function ReplacementMatrix({ searchQuery: propSearchQuery }: Repl
               >
                 <div>
                   {/* Top Bar Badges */}
-                  <div className="flex justify-between items-center mb-3">
-                    <span className={`px-2.5 py-0.5 rounded border text-[9px] font-bold tracking-wide ${badgeClass}`}>
+                  <div className="flex justify-between items-center mb-3.5">
+                    <span className={`px-2.5 py-0.5 rounded border text-[9px] font-bold tracking-wider ${badgeClass}`}>
                       {roles.find(r => r.id === task.role)?.label.split(' ')[0] || task.role}
                     </span>
-                    <span className={`px-2 py-0.5 rounded text-[9px] font-semibold tracking-wide ${easeClass}`}>
+                    <span className={`px-2 py-0.5 rounded text-[9px] font-semibold tracking-wider ${easeClass}`}>
                       Complexity: {task.setupEase}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-sm md:text-base font-bold text-[var(--text-primary)] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] transition-colors leading-snug line-clamp-2 mb-2">
+                  <h3 className="text-base font-serif font-bold text-[var(--text-primary)] hover:text-brand-primary transition-colors leading-snug line-clamp-2 mb-2">
                     {task.taskName}
                   </h3>
 
                   {/* Primary Tool */}
-                  <p className="text-xs text-[var(--text-primary)] font-semibold mb-2 flex items-center gap-1.5">
-                    <CheckCircle size={13} className="text-emerald-500 shrink-0" />
+                  <p className="text-xs text-[var(--text-primary)] font-semibold mb-2.5 flex items-center gap-1.5">
+                    <CheckCircle size={13} className="text-emerald-550 shrink-0" />
                     <span>{task.replacementTool}</span>
                   </p>
 
@@ -242,18 +232,17 @@ export default function ReplacementMatrix({ searchQuery: propSearchQuery }: Repl
                 </div>
 
                 {/* Footer Section */}
-                <div className="flex justify-between items-center mt-4 pt-3 border-t border-[var(--border-color)] text-[10px]">
+                <div className="flex justify-between items-center mt-5 pt-3 border-t border-[var(--border-color)] text-[10px]">
                   <button 
                     onClick={() => setActiveTaskInfo(isExpanded ? null : task.id)}
-                    className="font-bold text-[#1a73e8] dark:text-[#8ab4f8] hover:underline flex items-center gap-0.5 cursor-pointer select-none bg-transparent border-none p-0"
+                    className="font-bold text-brand-primary hover:underline flex items-center gap-0.5 cursor-pointer select-none bg-transparent border-none p-0"
                   >
                     <span>{isExpanded ? 'Collapse Details' : 'Read prompt'}</span>
-                    {isExpanded ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
                   </button>
 
                   <div className="flex items-center gap-2">
-                    <span className="text-[9px] font-bold text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded-full flex items-center gap-0.5 select-none">
-                      <Zap size={9} />
+                    <span className="text-[9px] font-bold text-slate-700 dark:text-slate-350 bg-slate-50 dark:bg-slate-800/30 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded-full flex items-center gap-0.5 select-none">
+                      <Zap size={9} className="text-amber-500" />
                       <span>{task.productivityGain}</span>
                     </span>
                   </div>
@@ -262,10 +251,10 @@ export default function ReplacementMatrix({ searchQuery: propSearchQuery }: Repl
                 {/* Expanded Details containing code prompt */}
                 {isExpanded && (
                   <div className="mt-4 pt-3 border-t border-[var(--border-color)]/60 animate-fade-in flex flex-col gap-2">
-                    <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest select-none">
+                    <span className="text-[9px] font-bold text-[var(--text-muted)] uppercase tracking-wider select-none">
                       Target Prompt Template:
                     </span>
-                    <pre className="bg-[var(--bg-code)] border border-[var(--border-color)] p-3 rounded-lg text-[10px] text-[#00acc1] dark:text-[#78d9ec] overflow-x-auto whitespace-pre-wrap font-mono leading-relaxed select-all">
+                    <pre className="bg-[var(--bg-code)] border border-[var(--border-color)] p-4 rounded-xl text-[10.5px] text-slate-700 dark:text-[var(--text-secondary)] overflow-x-auto whitespace-pre-wrap font-mono leading-relaxed select-all shadow-inner">
                       {task.samplePrompt}
                     </pre>
                   </div>
@@ -279,21 +268,21 @@ export default function ReplacementMatrix({ searchQuery: propSearchQuery }: Repl
       {/* Benchmark Summary Table */}
       <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
         <h3 className="text-base font-bold text-[var(--text-primary)] mb-4 flex items-center gap-2 select-none">
-          <ShieldCheck size={18} className="text-red-500" />
-          <span>LLM Coding Benchmark Summary</span>
+          <ShieldCheck size={18} className="text-brand-primary" />
+          <span className="font-serif">LLM Coding Benchmark Summary</span>
         </h3>
         
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-xs text-[var(--text-secondary)] text-left">
             <thead>
-              <tr className="border-b border-[var(--border-color)] text-slate-500 font-bold uppercase tracking-wider text-[10px]">
+              <tr className="border-b border-[var(--border-color)] text-[var(--text-muted)] font-bold uppercase tracking-wider text-[9px]">
                 <th className="py-3 px-4">Capability</th>
-                <th className="py-3 px-4 text-red-500">Claude 3.5 Sonnet</th>
-                <th className="py-3 px-4 text-cyan-500">Gemini 2.5 Flash</th>
-                <th className="py-3 px-4 text-emerald-500">Antigravity (Agentic)</th>
+                <th className="py-3 px-4 text-brand-primary">Claude 3.5 Sonnet</th>
+                <th className="py-3 px-4 text-brand-secondary">Gemini 2.5 Flash</th>
+                <th className="py-3 px-4 text-emerald-400">Antigravity (Agentic)</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[var(--border-color)]">
+            <tbody className="divide-y divide-[var(--border-color)] font-medium">
               <tr>
                 <td className="py-3 px-4 font-bold text-[var(--text-primary)]">Multi-file Coding</td>
                 <td className="py-3 px-4">Substantial</td>
@@ -304,7 +293,7 @@ export default function ReplacementMatrix({ searchQuery: propSearchQuery }: Repl
                 <td className="py-3 px-4 font-bold text-[var(--text-primary)]">Context Size</td>
                 <td className="py-3 px-4">200k tokens</td>
                 <td className="py-3 px-4">5,000k (5M) tokens</td>
-                <td className="py-3 px-4">Workspace Indexing</td>
+                <td className="py-3 px-4 text-[var(--text-muted)]">Workspace Indexing</td>
               </tr>
               <tr>
                 <td className="py-3 px-4 font-bold text-[var(--text-primary)]">Execution Shell</td>

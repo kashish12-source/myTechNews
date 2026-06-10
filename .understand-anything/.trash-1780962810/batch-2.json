@@ -1,0 +1,857 @@
+{
+  "nodes": [
+    {
+      "id": "file:api/index.py",
+      "type": "file",
+      "name": "index.py",
+      "filePath": "api/index.py",
+      "summary": "import os",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/auth.py",
+      "type": "file",
+      "name": "auth.py",
+      "filePath": "backend/app/auth.py",
+      "summary": "Authentication service. Implements password hashing with bcrypt, token generation/verification with JWT, and password strength checks.",
+      "tags": [
+        "utility",
+        "security",
+        "authentication"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/auth.py:hash_password",
+      "type": "function",
+      "name": "hash_password",
+      "filePath": "backend/app/auth.py",
+      "lineRange": [
+        12,
+        16
+      ],
+      "summary": "Function defining code execution logic for hash_password.",
+      "tags": [
+        "function",
+        "utility",
+        "security",
+        "authentication"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/auth.py:verify_password",
+      "type": "function",
+      "name": "verify_password",
+      "filePath": "backend/app/auth.py",
+      "lineRange": [
+        18,
+        24
+      ],
+      "summary": "Function defining code execution logic for verify_password.",
+      "tags": [
+        "function",
+        "utility",
+        "security",
+        "authentication"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/auth.py:create_access_token",
+      "type": "function",
+      "name": "create_access_token",
+      "filePath": "backend/app/auth.py",
+      "lineRange": [
+        26,
+        30
+      ],
+      "summary": "Function defining code execution logic for create_access_token.",
+      "tags": [
+        "function",
+        "utility",
+        "security",
+        "authentication"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/auth.py:validate_password_strength",
+      "type": "function",
+      "name": "validate_password_strength",
+      "filePath": "backend/app/auth.py",
+      "lineRange": [
+        32,
+        57
+      ],
+      "summary": "Function defining code execution logic for validate_password_strength.",
+      "tags": [
+        "function",
+        "utility",
+        "security",
+        "authentication"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/auth.py:get_current_user_email",
+      "type": "function",
+      "name": "get_current_user_email",
+      "filePath": "backend/app/auth.py",
+      "lineRange": [
+        59,
+        84
+      ],
+      "summary": "Function defining code execution logic for get_current_user_email.",
+      "tags": [
+        "function",
+        "utility",
+        "security",
+        "authentication"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/config.py",
+      "type": "file",
+      "name": "config.py",
+      "filePath": "backend/app/config.py",
+      "summary": "App configurations. Loads environment variables (database connection, keys) using Pydantic Settings.",
+      "tags": [
+        "config",
+        "configuration",
+        "fastapi"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/config.py:Settings",
+      "type": "class",
+      "name": "Settings",
+      "filePath": "backend/app/config.py",
+      "lineRange": [
+        15,
+        31
+      ],
+      "summary": "Class structuring code abstractions for Settings.",
+      "tags": [
+        "class",
+        "config",
+        "configuration",
+        "fastapi"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/email.py",
+      "type": "file",
+      "name": "email.py",
+      "filePath": "backend/app/email.py",
+      "summary": "Email dispatch utility. Configures SMTP connection to send verification and welcome emails to registered users.",
+      "tags": [
+        "utility",
+        "email",
+        "smtp"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/email.py:send_email_via_smtp",
+      "type": "function",
+      "name": "send_email_via_smtp",
+      "filePath": "backend/app/email.py",
+      "lineRange": [
+        9,
+        52
+      ],
+      "summary": "Function defining code execution logic for send_email_via_smtp.",
+      "tags": [
+        "function",
+        "utility",
+        "email",
+        "smtp"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/email.py:send_welcome_email",
+      "type": "function",
+      "name": "send_welcome_email",
+      "filePath": "backend/app/email.py",
+      "lineRange": [
+        54,
+        70
+      ],
+      "summary": "Function defining code execution logic for send_welcome_email.",
+      "tags": [
+        "function",
+        "utility",
+        "email",
+        "smtp"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/email.py:send_verification_email",
+      "type": "function",
+      "name": "send_verification_email",
+      "filePath": "backend/app/email.py",
+      "lineRange": [
+        72,
+        91
+      ],
+      "summary": "Function defining code execution logic for send_verification_email.",
+      "tags": [
+        "function",
+        "utility",
+        "email",
+        "smtp"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/main.py",
+      "type": "file",
+      "name": "main.py",
+      "filePath": "backend/app/main.py",
+      "summary": "FastAPI application entry point. Configures routing, database startup hook, background scraping task, and endpoints for authentication and tech news retrieval.",
+      "tags": [
+        "entry-point",
+        "api-handler",
+        "fastapi"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:backend/app/main.py:startup_db_setup",
+      "type": "function",
+      "name": "startup_db_setup",
+      "filePath": "backend/app/main.py",
+      "lineRange": [
+        30,
+        100
+      ],
+      "summary": "Function defining code execution logic for startup_db_setup.",
+      "tags": [
+        "function",
+        "entry-point",
+        "api-handler",
+        "fastapi"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:backend/app/main.py:run_background_scrape",
+      "type": "function",
+      "name": "run_background_scrape",
+      "filePath": "backend/app/main.py",
+      "lineRange": [
+        103,
+        114
+      ],
+      "summary": "Function defining code execution logic for run_background_scrape.",
+      "tags": [
+        "function",
+        "entry-point",
+        "api-handler",
+        "fastapi"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/main.py:register_user",
+      "type": "function",
+      "name": "register_user",
+      "filePath": "backend/app/main.py",
+      "lineRange": [
+        118,
+        138
+      ],
+      "summary": "Function defining code execution logic for register_user.",
+      "tags": [
+        "function",
+        "entry-point",
+        "api-handler",
+        "fastapi"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/main.py:login_user",
+      "type": "function",
+      "name": "login_user",
+      "filePath": "backend/app/main.py",
+      "lineRange": [
+        141,
+        173
+      ],
+      "summary": "Function defining code execution logic for login_user.",
+      "tags": [
+        "function",
+        "entry-point",
+        "api-handler",
+        "fastapi"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/main.py:verify_code",
+      "type": "function",
+      "name": "verify_code",
+      "filePath": "backend/app/main.py",
+      "lineRange": [
+        176,
+        212
+      ],
+      "summary": "Function defining code execution logic for verify_code.",
+      "tags": [
+        "function",
+        "entry-point",
+        "api-handler",
+        "fastapi"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/main.py:get_news",
+      "type": "function",
+      "name": "get_news",
+      "filePath": "backend/app/main.py",
+      "lineRange": [
+        216,
+        258
+      ],
+      "summary": "Function defining code execution logic for get_news.",
+      "tags": [
+        "function",
+        "entry-point",
+        "api-handler",
+        "fastapi"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/main.py:force_refresh",
+      "type": "function",
+      "name": "force_refresh",
+      "filePath": "backend/app/main.py",
+      "lineRange": [
+        261,
+        291
+      ],
+      "summary": "Function defining code execution logic for force_refresh.",
+      "tags": [
+        "function",
+        "entry-point",
+        "api-handler",
+        "fastapi"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/schemas.py",
+      "type": "file",
+      "name": "schemas.py",
+      "filePath": "backend/app/schemas.py",
+      "summary": "Pydantic data schemas. Defines request/response models for user registration, login, verification, and news feed.",
+      "tags": [
+        "data-model",
+        "validation",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas.py:UserRegister",
+      "type": "class",
+      "name": "UserRegister",
+      "filePath": "backend/app/schemas.py",
+      "lineRange": [
+        4,
+        6
+      ],
+      "summary": "Class structuring code abstractions for UserRegister.",
+      "tags": [
+        "class",
+        "data-model",
+        "validation",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas.py:UserLogin",
+      "type": "class",
+      "name": "UserLogin",
+      "filePath": "backend/app/schemas.py",
+      "lineRange": [
+        8,
+        10
+      ],
+      "summary": "Class structuring code abstractions for UserLogin.",
+      "tags": [
+        "class",
+        "data-model",
+        "validation",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas.py:Token",
+      "type": "class",
+      "name": "Token",
+      "filePath": "backend/app/schemas.py",
+      "lineRange": [
+        12,
+        16
+      ],
+      "summary": "Class structuring code abstractions for Token.",
+      "tags": [
+        "class",
+        "data-model",
+        "validation",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas.py:CodeVerificationRequest",
+      "type": "class",
+      "name": "CodeVerificationRequest",
+      "filePath": "backend/app/schemas.py",
+      "lineRange": [
+        18,
+        20
+      ],
+      "summary": "Class structuring code abstractions for CodeVerificationRequest.",
+      "tags": [
+        "class",
+        "data-model",
+        "validation",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas.py:ArticleOut",
+      "type": "class",
+      "name": "ArticleOut",
+      "filePath": "backend/app/schemas.py",
+      "lineRange": [
+        22,
+        34
+      ],
+      "summary": "Class structuring code abstractions for ArticleOut.",
+      "tags": [
+        "class",
+        "data-model",
+        "validation",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas.py:NewsFeedResponse",
+      "type": "class",
+      "name": "NewsFeedResponse",
+      "filePath": "backend/app/schemas.py",
+      "lineRange": [
+        36,
+        39
+      ],
+      "summary": "Class structuring code abstractions for NewsFeedResponse.",
+      "tags": [
+        "class",
+        "data-model",
+        "validation",
+        "serialization"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:api/index.py",
+      "target": "file:backend/app/main.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/auth.py",
+      "target": "function:backend/app/auth.py:hash_password",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/auth.py",
+      "target": "function:backend/app/auth.py:hash_password",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/auth.py",
+      "target": "function:backend/app/auth.py:verify_password",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/auth.py",
+      "target": "function:backend/app/auth.py:verify_password",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/auth.py",
+      "target": "function:backend/app/auth.py:create_access_token",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/auth.py",
+      "target": "function:backend/app/auth.py:create_access_token",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/auth.py",
+      "target": "function:backend/app/auth.py:validate_password_strength",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/auth.py",
+      "target": "function:backend/app/auth.py:validate_password_strength",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/auth.py",
+      "target": "function:backend/app/auth.py:get_current_user_email",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/auth.py",
+      "target": "function:backend/app/auth.py:get_current_user_email",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/auth.py",
+      "target": "file:backend/app/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/config.py",
+      "target": "class:backend/app/config.py:Settings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/config.py",
+      "target": "class:backend/app/config.py:Settings",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/email.py",
+      "target": "function:backend/app/email.py:send_email_via_smtp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/email.py",
+      "target": "function:backend/app/email.py:send_email_via_smtp",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/email.py",
+      "target": "function:backend/app/email.py:send_welcome_email",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/email.py",
+      "target": "function:backend/app/email.py:send_welcome_email",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/email.py",
+      "target": "function:backend/app/email.py:send_verification_email",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/email.py",
+      "target": "function:backend/app/email.py:send_verification_email",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/email.py",
+      "target": "file:backend/app/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:startup_db_setup",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:startup_db_setup",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:run_background_scrape",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:run_background_scrape",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:register_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:register_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:login_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:login_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:verify_code",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:verify_code",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:get_news",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:get_news",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:force_refresh",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:force_refresh",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "file:backend/app/aggregator.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "file:backend/app/auth.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "file:backend/app/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "file:backend/app/database.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "file:backend/app/email.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "file:backend/app/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "file:backend/app/schemas.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/schemas.py",
+      "target": "class:backend/app/schemas.py:UserRegister",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas.py",
+      "target": "class:backend/app/schemas.py:UserRegister",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas.py",
+      "target": "class:backend/app/schemas.py:UserLogin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas.py",
+      "target": "class:backend/app/schemas.py:UserLogin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas.py",
+      "target": "class:backend/app/schemas.py:Token",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas.py",
+      "target": "class:backend/app/schemas.py:Token",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas.py",
+      "target": "class:backend/app/schemas.py:CodeVerificationRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas.py",
+      "target": "class:backend/app/schemas.py:CodeVerificationRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas.py",
+      "target": "class:backend/app/schemas.py:ArticleOut",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas.py",
+      "target": "class:backend/app/schemas.py:ArticleOut",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas.py",
+      "target": "class:backend/app/schemas.py:NewsFeedResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas.py",
+      "target": "class:backend/app/schemas.py:NewsFeedResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

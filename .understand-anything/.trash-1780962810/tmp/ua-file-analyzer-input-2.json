@@ -1,0 +1,63 @@
+{
+  "projectRoot": "c:\\Users\\Kashish\\myTechNews",
+  "batchFiles": [
+    {
+      "path": "api/index.py",
+      "language": "python",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/auth.py",
+      "language": "python",
+      "sizeLines": 84,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/config.py",
+      "language": "python",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/email.py",
+      "language": "python",
+      "sizeLines": 91,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/main.py",
+      "language": "python",
+      "sizeLines": 291,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/schemas.py",
+      "language": "python",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "api/index.py": [
+      "backend/app/main.py"
+    ],
+    "backend/app/auth.py": [
+      "backend/app/config.py"
+    ],
+    "backend/app/config.py": [],
+    "backend/app/email.py": [
+      "backend/app/config.py"
+    ],
+    "backend/app/main.py": [
+      "backend/app/aggregator.py",
+      "backend/app/auth.py",
+      "backend/app/config.py",
+      "backend/app/database.py",
+      "backend/app/email.py",
+      "backend/app/models.py",
+      "backend/app/schemas.py"
+    ],
+    "backend/app/schemas.py": []
+  }
+}

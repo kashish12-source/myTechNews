@@ -166,7 +166,7 @@ export default function LlmComponents() {
         <h2 className="text-xl font-bold text-[var(--text-primary)]">
           LLM Architecture
         </h2>
-        <p className="text-xs text-[var(--text-secondary)] mt-1.5">
+        <p className="text-xs text-[var(--text-muted)] mt-1.5 font-medium">
           Interactive trace of forward pass layer mechanics in modern Autoregressive transformers.
         </p>
       </div>
@@ -182,8 +182,8 @@ export default function LlmComponents() {
                 onClick={() => setActiveTab(comp.id)}
                 className={`w-10 h-10 rounded-full flex items-center justify-center transition-all border cursor-pointer select-none ${
                   isSelected 
-                    ? 'bg-[#1a73e8] border-[#1a73e8] text-white shadow-sm' 
-                    : 'bg-[var(--bg-primary)] border-[var(--border-color)] hover:border-[#1a73e8] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                    ? 'bg-brand-primary border-brand-primary text-white shadow-sm' 
+                    : 'bg-[var(--bg-primary)] border-[var(--border-color)] hover:border-brand-primary text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                 }`}
                 title={`${index + 1}. ${comp.name}`}
               >
@@ -197,24 +197,24 @@ export default function LlmComponents() {
         })}
       </div>
 
-      {/* Detailed Inspector Panel formatted exactly like DevTools/Coding cards */}
+      {/* Detailed Inspector Panel */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
         
-        {/* Left Column: Explanations (2/3 width) formatted as news card */}
+        {/* Left Column: Explanations (2/3 width) */}
         <div className="lg:col-span-2 google-news-card p-6 flex flex-col justify-between">
           <div>
             {/* Header badges */}
-            <div className="flex justify-between items-center mb-3.5">
-              <span className="px-2.5 py-0.5 rounded border text-[9px] font-bold tracking-wider text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+            <div className="flex justify-between items-center mb-4">
+              <span className="px-2.5 py-0.5 rounded border text-[9px] font-bold tracking-wider text-slate-700 dark:text-slate-350 bg-slate-100 dark:bg-slate-800/40 border-slate-200 dark:border-slate-700">
                 Layer Stage
               </span>
-              <span className="px-2.5 py-0.5 rounded border text-[9px] font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+              <span className="px-2.5 py-0.5 rounded border text-[9px] font-semibold text-slate-755 dark:text-slate-350 bg-slate-100 dark:bg-slate-800/40 border-slate-200 dark:border-slate-700">
                 {activeComponent.role}
               </span>
             </div>
 
             {/* Title */}
-            <h3 className="text-base md:text-lg font-bold text-[var(--text-primary)] hover:text-[#1a73e8] mb-3 leading-snug">
+            <h3 className="text-lg md:text-xl font-serif font-bold text-[var(--text-primary)] hover:text-brand-primary mb-3 leading-snug">
               {activeComponent.name}
             </h3>
 
@@ -225,8 +225,8 @@ export default function LlmComponents() {
 
             {/* Math Box */}
             {activeComponent.math && (
-              <div className="bg-[var(--bg-primary)] border border-[var(--border-color)] p-4 rounded-lg flex items-start gap-3 text-[#00acc1] dark:text-[#78d9ec] overflow-x-auto select-all mb-4">
-                <Cpu size={16} className="text-[#00acc1] dark:text-[#78d9ec] shrink-0 mt-0.5" />
+              <div className="bg-[var(--bg-primary)] border border-[var(--border-color)] p-4 rounded-xl flex items-start gap-3 text-[var(--text-secondary)] overflow-x-auto select-all mb-4 shadow-inner">
+                <Cpu size={16} className="text-brand-primary shrink-0 mt-0.5 animate-pulse" />
                 <div className="min-w-0">
                   <div className="text-[10px] text-[var(--text-muted)] uppercase font-bold tracking-wider mb-1">
                     Core Formula
@@ -239,7 +239,7 @@ export default function LlmComponents() {
 
           {/* Footer border with impact */}
           <div className="border-t border-[var(--border-color)] pt-4 mt-2 flex flex-col gap-2">
-            <div className="flex gap-1.5 items-center font-bold text-xs text-[#1a73e8] dark:text-[#8ab4f8] uppercase tracking-wide">
+            <div className="flex gap-1.5 items-center font-bold text-xs text-brand-primary uppercase tracking-wide">
               <ShieldAlert size={14} className="shrink-0" />
               <span>Engineering Impact</span>
             </div>
@@ -249,15 +249,15 @@ export default function LlmComponents() {
           </div>
         </div>
 
-        {/* Right Column: Code snippet (1/3 width) formatted as news card */}
+        {/* Right Column: Code snippet (1/3 width) */}
         <div className="google-news-card p-5 flex flex-col gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs text-[#00acc1] dark:text-[#78d9ec] border-b border-[var(--border-color)] pb-3 font-semibold uppercase tracking-wider select-none mb-3">
+            <div className="flex items-center gap-2 text-xs text-brand-primary border-b border-[var(--border-color)] pb-3 font-semibold uppercase tracking-wider select-none mb-3">
               <Code size={14} />
               <span>PyTorch Implementation</span>
             </div>
             
-            <pre className="bg-[var(--bg-code)] border border-[var(--border-color)] p-4 rounded-xl text-[11px] text-indigo-600 dark:text-indigo-300 overflow-x-auto whitespace-pre font-mono leading-relaxed select-all">
+            <pre className="bg-[var(--bg-code)] border border-[var(--border-color)] p-4 rounded-xl text-[11px] text-slate-700 dark:text-[var(--text-secondary)] overflow-x-auto whitespace-pre font-mono leading-relaxed select-all shadow-inner">
               <code>{activeComponent.codeSnippet}</code>
             </pre>
           </div>

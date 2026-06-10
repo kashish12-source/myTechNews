@@ -1,4 +1,5 @@
 import re
+import os
 import random
 import string
 import httpx
@@ -236,7 +237,7 @@ async def fetch_rss_feed(client: httpx.AsyncClient, url: str, source_name: str) 
 
 # AI Enrichment via Gemini
 async def enrich_with_gemini(articles: list) -> list:
-    api_key = settings.GEMINI_API_KEY
+    api_key = settings.GEMINI_API_KEY or os.environ.get("GEMINI_API_KEY")
     if not api_key or not HAS_GEMINI:
         logger.info("No Gemini API key detected or google-generativeai not installed. Using heuristics for categorization and fallback summaries.")
         enriched = []
@@ -363,7 +364,13 @@ async def aggregate_news(db: Session):
             fetch_rss_feed(client, 'https://export.arxiv.org/api/query?search_query=cat:cs.OH+OR+cat:cs.SE+OR+cat:cs.CL&sortBy=lastUpdatedDate&sortOrder=descending&max_results=5', 'arXiv Computer Science'),
             fetch_open_review(client),
             fetch_rss_feed(client, 'https://ourworldindata.org/feed', 'Our World In Data'),
-            fetch_rss_feed(client, 'https://news.google.com/rss/search?q=site:blog.feedly.com&hl=en-US&gl=US&ceid=US:en', 'Feedly Blog')
+            fetch_rss_feed(client, 'https://news.google.com/rss/search?q=site:blog.feedly.com&hl=en-US&gl=US&ceid=US:en', 'Feedly Blog'),
+            fetch_rss_feed(client, 'https://github.com/upstash/context7/releases.atom', 'context7 Releases'),
+            fetch_rss_feed(client, 'https://github.com/upstash/context7/commits.atom', 'context7 Commits'),
+            fetch_rss_feed(client, 'https://github.com/Lum1104/Understand-Anything/releases.atom', 'Understand-Anything Releases'),
+            fetch_rss_feed(client, 'https://github.com/Lum1104/Understand-Anything/commits.atom', 'Understand-Anything Commits'),
+            fetch_rss_feed(client, 'https://github.com/dokploy/dokploy/releases.atom', 'dokploy Releases'),
+            fetch_rss_feed(client, 'https://github.com/dokploy/dokploy/commits.atom', 'dokploy Commits')
         ]
         
         # Run scraping concurrently

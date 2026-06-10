@@ -55,7 +55,7 @@ This document lists the step-by-step timeline of all requests, bug reports, diag
     *   [server/users.json](file:///c:/Users/Kashish/myTechNews/server/users.json) (registered user `kashishvishnoi2006@gmail.com`).
     *   [handsoff/README.md](file:///c:/Users/Kashish/myTechNews/handsoff/README.md) (handover document).
 
-### 7. Monorepo Reorganization & FastAPI Migration (Current Session)
+### 7. Monorepo Reorganization & FastAPI Migration
 *   **User Request**: Reorganize the app into separate frontend and backend directories, migrate the backend from Node/Express to FastAPI (Python) + PostgreSQL, revamp the frontend layout using React and Tailwind CSS v4 to model a premium news portal (ABP News / Times of India), resolve any bugs, and configure Vercel deployment.
 *   **Action**:
     *   **Folder Restructure**: Reorganized the codebase into separate `frontend/` and `backend/` directories, and created root-level orchestrator files.
@@ -64,3 +64,14 @@ This document lists the step-by-step timeline of all requests, bug reports, diag
     *   **ABP / TOI News UI Overhaul**: Upgraded the client to use React and Tailwind CSS v4 in the `frontend` workspace, adding localized date and weather widgets, a live-scrolling breaking news marquee, a Headline Hero featured card, and a Trending Now sidebar.
     *   **Vercel Monorepo Build**: Created a unified root-level `vercel.json` and `api/index.py` Python entrypoint to route Vercel serverless requests to FastAPI, while statically bundling the React frontend.
     *   **Verification**: Verified all FastAPI endpoints pass python unit tests and the frontend builds successfully without compiler warnings.
+
+### 8. Tooling Setup, Onboarding, & Guidelines Alignment (Current Session)
+*   **User Request**: Align repo guidelines, configure context7, understand-anything codebase visualization dashboard, and setup Dokploy MCP server/account.
+*   **Action**:
+    *   **Configured Dokploy MCP**: Integrated the official `@dokploy/mcp` server inside the IDE settings file [mcp_config.json](file:///C:/Users/Kashish/.gemini/antigravity-ide/mcp_config.json).
+    *   **Created & Checked Dokploy Account**: Registered a Dokploy Cloud account using the user's email `kashishvihsnoi2006@gmail.com` via browser subagent, and verified that Dokploy successfully registered the user but requires email verification (verification link sent to user's inbox).
+    *   **Regenerated Knowledge Graph**: Patched module paths in 5 analyzer scripts inside `.agent/skills/understand/` to allow successful dynamic resolving of `@understand-anything/core` on Windows, and successfully ran the project scanner and batch merger to compile a fresh `knowledge-graph.json`.
+    *   **Wired Test Harness**: Wired `"test": "npm run test:backend"` to the root [package.json](file:///c:/Users/Kashish/myTechNews/package.json) and executed backend unit tests (`npm test`), with all 3 test suites passing successfully.
+    *   **Onboarded Developer**: Synthesized [ONBOARDING.md](file:///c:/Users/Kashish/myTechNews/docs/ONBOARDING.md) detailing architecture layers, tours, concepts, and hotspots.
+    *   **Launched Dashboard**: Spatially separated Port 5188 to run the codebase visualizer server in the background without port conflicts, and generated the access URL.
+

@@ -1,0 +1,123 @@
+{
+  "nodes": [
+    {
+      "id": "document:AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "filePath": "AGENTS.md",
+      "summary": "Main repository developer guide detailing architecture layout (SOLID & DRY principles) and native test runner execution commands.",
+      "tags": [
+        "documentation",
+        "guidelines"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:GEMINI.md",
+      "type": "document",
+      "name": "GEMINI.md",
+      "filePath": "GEMINI.md",
+      "summary": "Platform rules and behaviors for fetching up-to-date documentation using Upstash context7.",
+      "tags": [
+        "documentation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Launch-News.bat",
+      "type": "file",
+      "name": "Launch-News.bat",
+      "filePath": "Launch-News.bat",
+      "summary": "title Launch MyTechNews Console",
+      "tags": [
+        "script",
+        "batch"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Main project documentation and guide on how to launch frontend, backend, and build settings.",
+      "tags": [
+        "documentation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:context.txt",
+      "type": "document",
+      "name": "context.txt",
+      "filePath": "context.txt",
+      "summary": "https://github.com/upstash/context7 pehele to aap islo padh kr is windows ke liye install kr lena",
+      "tags": [
+        "docs",
+        "txt"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "service:docker-compose.yml",
+      "type": "service",
+      "name": "docker-compose.yml",
+      "filePath": "docker-compose.yml",
+      "summary": "version: '3.8'",
+      "tags": [
+        "infra",
+        "yaml"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "package.json",
+      "summary": "\"name\": \"mytechnews-monorepo\",",
+      "tags": [
+        "config",
+        "json"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:requirements.txt",
+      "type": "document",
+      "name": "requirements.txt",
+      "filePath": "requirements.txt",
+      "summary": "uvicorn[standard]",
+      "tags": [
+        "docs",
+        "txt"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:schedule-news.ps1",
+      "type": "file",
+      "name": "schedule-news.ps1",
+      "filePath": "schedule-news.ps1",
+      "summary": "schedule-news.ps1",
+      "tags": [
+        "script",
+        "powershell"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:vercel.json",
+      "type": "config",
+      "name": "vercel.json",
+      "filePath": "vercel.json",
+      "summary": "\"version\": 2,",
+      "tags": [
+        "config",
+        "json"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

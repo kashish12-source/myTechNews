@@ -1,0 +1,77 @@
+{
+  "projectRoot": "c:\\Users\\Kashish\\myTechNews",
+  "batchFiles": [
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "sizeLines": 123,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "GEMINI.md",
+      "language": "markdown",
+      "sizeLines": 18,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "Launch-News.bat",
+      "language": "batch",
+      "sizeLines": 29,
+      "fileCategory": "script"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 73,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "context.txt",
+      "language": "txt",
+      "sizeLines": 18,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docker-compose.yml",
+      "language": "yaml",
+      "sizeLines": 29,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "sizeLines": 12,
+      "fileCategory": "config"
+    },
+    {
+      "path": "requirements.txt",
+      "language": "txt",
+      "sizeLines": 15,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "schedule-news.ps1",
+      "language": "powershell",
+      "sizeLines": 47,
+      "fileCategory": "script"
+    },
+    {
+      "path": "vercel.json",
+      "language": "json",
+      "sizeLines": 26,
+      "fileCategory": "config"
+    }
+  ],
+  "batchImportData": {
+    "AGENTS.md": [],
+    "GEMINI.md": [],
+    "Launch-News.bat": [],
+    "README.md": [],
+    "context.txt": [],
+    "docker-compose.yml": [],
+    "package.json": [],
+    "requirements.txt": [],
+    "schedule-news.ps1": [],
+    "vercel.json": []
+  }
+}

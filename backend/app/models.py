@@ -29,3 +29,22 @@ class SystemStatus(Base):
     id = Column(Integer, primary_key=True, default=1)
     last_updated = Column(String(100), nullable=True)
     is_updating = Column(Boolean, default=False)
+
+class VerificationCode(Base):
+    __tablename__ = "verification_codes"
+
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String(255), index=True, nullable=False)
+    code = Column(String(6), nullable=False)
+    expires_at = Column(DateTime, nullable=False)
+    created_at = Column(DateTime, default=func.now())
+
+class SavedArticle(Base):
+    __tablename__ = "saved_articles"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_email = Column(String(255), index=True, nullable=False)
+    article_id = Column(String(50), index=True, nullable=False)
+    list_type = Column(String(50), nullable=False)  # "watch_later" or "read_later"
+    created_at = Column(DateTime, default=func.now())
+

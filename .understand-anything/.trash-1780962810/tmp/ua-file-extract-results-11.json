@@ -1,0 +1,265 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 10,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 123,
+      "nonEmptyLines": 99,
+      "sections": [
+        {
+          "heading": "Coding Agents Guidelines & System Architecture",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "📂 Repository Structure",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "🛠️ Software Engineering Principles",
+          "level": 2,
+          "line": 39
+        },
+        {
+          "heading": "1. SOLID Principles",
+          "level": 3,
+          "line": 43
+        },
+        {
+          "heading": "2. DRY (Don't Repeat Yourself)",
+          "level": 3,
+          "line": 56
+        },
+        {
+          "heading": "🧪 Engineering Test Harness",
+          "level": 2,
+          "line": 62
+        },
+        {
+          "heading": "Run Tests",
+          "level": 3,
+          "line": 66
+        },
+        {
+          "heading": "Writing New Tests",
+          "level": 3,
+          "line": 76
+        },
+        {
+          "heading": "🔒 Security & Authentication",
+          "level": 2,
+          "line": 86
+        },
+        {
+          "heading": "Authentication Mechanics",
+          "level": 3,
+          "line": 90
+        },
+        {
+          "heading": "🔍 Tool Integrations",
+          "level": 2,
+          "line": 103
+        },
+        {
+          "heading": "1. context7",
+          "level": 3,
+          "line": 107
+        },
+        {
+          "heading": "2. Understand-Anything",
+          "level": 3,
+          "line": 114
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 13
+      }
+    },
+    {
+      "path": "GEMINI.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 18,
+      "nonEmptyLines": 12,
+      "sections": [
+        {
+          "heading": "Steps",
+          "level": 2,
+          "line": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "path": "Launch-News.bat",
+      "language": "batch",
+      "fileCategory": "script",
+      "totalLines": 29,
+      "nonEmptyLines": 23,
+      "metrics": {}
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 73,
+      "nonEmptyLines": 60,
+      "sections": [
+        {
+          "heading": "React + TypeScript + Vite",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "React Compiler",
+          "level": 2,
+          "line": 10
+        },
+        {
+          "heading": "Expanding the ESLint configuration",
+          "level": 2,
+          "line": 14
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": "context.txt",
+      "language": "txt",
+      "fileCategory": "docs",
+      "totalLines": 19,
+      "nonEmptyLines": 10,
+      "metrics": {}
+    },
+    {
+      "path": "docker-compose.yml",
+      "language": "yaml",
+      "fileCategory": "infra",
+      "totalLines": 29,
+      "nonEmptyLines": 27,
+      "sections": [
+        {
+          "heading": "version",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "services",
+          "level": 1,
+          "line": 3
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 12,
+      "nonEmptyLines": 12,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "private",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "version",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "scripts",
+          "level": 1,
+          "line": 5
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": "requirements.txt",
+      "language": "txt",
+      "fileCategory": "docs",
+      "totalLines": 15,
+      "nonEmptyLines": 15,
+      "metrics": {}
+    },
+    {
+      "path": "schedule-news.ps1",
+      "language": "powershell",
+      "fileCategory": "script",
+      "totalLines": 47,
+      "nonEmptyLines": 40,
+      "metrics": {}
+    },
+    {
+      "path": "vercel.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 26,
+      "nonEmptyLines": 26,
+      "sections": [
+        {
+          "heading": "version",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "builds",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "rewrites",
+          "level": 1,
+          "line": 16
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    }
+  ]
+}

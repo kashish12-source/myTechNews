@@ -1,0 +1,125 @@
+{
+  "nodes": [
+    {
+      "id": "document:.agent/skills/understand/frameworks/django.md",
+      "type": "document",
+      "name": "django.md",
+      "filePath": ".agent/skills/understand/frameworks/django.md",
+      "summary": "Django Framework Addendum",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.agent/skills/understand/frameworks/express.md",
+      "type": "document",
+      "name": "express.md",
+      "filePath": ".agent/skills/understand/frameworks/express.md",
+      "summary": "Express Framework Addendum",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/frameworks/fastapi.md",
+      "type": "document",
+      "name": "fastapi.md",
+      "filePath": ".agent/skills/understand/frameworks/fastapi.md",
+      "summary": "FastAPI Framework Addendum",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/frameworks/flask.md",
+      "type": "document",
+      "name": "flask.md",
+      "filePath": ".agent/skills/understand/frameworks/flask.md",
+      "summary": "Flask Framework Addendum",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/frameworks/gin.md",
+      "type": "document",
+      "name": "gin.md",
+      "filePath": ".agent/skills/understand/frameworks/gin.md",
+      "summary": "Gin (Go) Framework Addendum",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/frameworks/nextjs.md",
+      "type": "document",
+      "name": "nextjs.md",
+      "filePath": ".agent/skills/understand/frameworks/nextjs.md",
+      "summary": "Next.js Framework Addendum",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/frameworks/rails.md",
+      "type": "document",
+      "name": "rails.md",
+      "filePath": ".agent/skills/understand/frameworks/rails.md",
+      "summary": "Ruby on Rails Framework Addendum",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/frameworks/react.md",
+      "type": "document",
+      "name": "react.md",
+      "filePath": ".agent/skills/understand/frameworks/react.md",
+      "summary": "React Framework Addendum",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/frameworks/spring.md",
+      "type": "document",
+      "name": "spring.md",
+      "filePath": ".agent/skills/understand/frameworks/spring.md",
+      "summary": "Spring Boot Framework Addendum",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/frameworks/vue.md",
+      "type": "document",
+      "name": "vue.md",
+      "filePath": ".agent/skills/understand/frameworks/vue.md",
+      "summary": "Vue Framework Addendum",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

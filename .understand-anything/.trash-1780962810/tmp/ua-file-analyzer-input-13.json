@@ -1,0 +1,35 @@
+{
+  "projectRoot": "c:\\Users\\Kashish\\myTechNews",
+  "batchFiles": [
+    {
+      "path": "handsoff/README.md",
+      "language": "markdown",
+      "sizeLines": 74,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "handsoff/conversation.md",
+      "language": "markdown",
+      "sizeLines": 52,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "handsoff/conversation_log.md",
+      "language": "markdown",
+      "sizeLines": 66,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "handsoff/redesign_and_verification_log.md",
+      "language": "markdown",
+      "sizeLines": 55,
+      "fileCategory": "docs"
+    }
+  ],
+  "batchImportData": {
+    "handsoff/README.md": [],
+    "handsoff/conversation.md": [],
+    "handsoff/conversation_log.md": [],
+    "handsoff/redesign_and_verification_log.md": []
+  }
+}

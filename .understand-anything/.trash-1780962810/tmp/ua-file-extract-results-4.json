@@ -1,0 +1,80 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 1,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "backend/Dockerfile",
+      "language": "dockerfile",
+      "fileCategory": "infra",
+      "totalLines": 20,
+      "nonEmptyLines": 13,
+      "services": [
+        {
+          "name": "python",
+          "image": "python:3.11-slim",
+          "ports": [
+            3001
+          ],
+          "startLine": 1,
+          "endLine": 21
+        }
+      ],
+      "steps": [
+        {
+          "name": "FROM python:3.11-slim",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "name": "WORKDIR /workspace",
+          "startLine": 3,
+          "endLine": 3
+        },
+        {
+          "name": "COPY requirements.txt /workspace/backend/requirements.txt",
+          "startLine": 6,
+          "endLine": 6
+        },
+        {
+          "name": "RUN pip install --no-cache-dir -r /workspace/backend/requirement",
+          "startLine": 9,
+          "endLine": 9
+        },
+        {
+          "name": "COPY . /workspace/backend",
+          "startLine": 12,
+          "endLine": 12
+        },
+        {
+          "name": "ENV PYTHONPATH=/workspace",
+          "startLine": 15,
+          "endLine": 15
+        },
+        {
+          "name": "ENV PORT=3001",
+          "startLine": 16,
+          "endLine": 16
+        },
+        {
+          "name": "EXPOSE 3001",
+          "startLine": 18,
+          "endLine": 18
+        },
+        {
+          "name": "CMD [\"uvicorn\", \"backend.app.main:app\", \"--host\", \"0.0.0.0\", \"--",
+          "startLine": 20,
+          "endLine": 20
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "serviceCount": 1,
+        "stepCount": 9
+      }
+    }
+  ]
+}

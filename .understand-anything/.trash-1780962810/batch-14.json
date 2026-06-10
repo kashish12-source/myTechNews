@@ -1,0 +1,3041 @@
+{
+  "nodes": [
+    {
+      "id": "document:.agent/skills/find-docs/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": ".agent/skills/find-docs/SKILL.md",
+      "summary": "name: find-docs",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.agent/skills/understand-chat/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": ".agent/skills/understand-chat/SKILL.md",
+      "summary": "name: understand-chat",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand-dashboard/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": ".agent/skills/understand-dashboard/SKILL.md",
+      "summary": "name: understand-dashboard",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.agent/skills/understand-diff/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": ".agent/skills/understand-diff/SKILL.md",
+      "summary": "name: understand-diff",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "type": "file",
+      "name": "extract-domain-context.py",
+      "filePath": ".agent/skills/understand-domain/extract-domain-context.py",
+      "summary": "!/usr/bin/env python3",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand-domain/extract-domain-context.py:parse_gitignore",
+      "type": "function",
+      "name": "parse_gitignore",
+      "filePath": ".agent/skills/understand-domain/extract-domain-context.py",
+      "lineRange": [
+        119,
+        138
+      ],
+      "summary": "Function defining code execution logic for parse_gitignore.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand-domain/extract-domain-context.py:is_ignored",
+      "type": "function",
+      "name": "is_ignored",
+      "filePath": ".agent/skills/understand-domain/extract-domain-context.py",
+      "lineRange": [
+        141,
+        146
+      ],
+      "summary": "Function defining code execution logic for is_ignored.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand-domain/extract-domain-context.py:scan_file_tree",
+      "type": "function",
+      "name": "scan_file_tree",
+      "filePath": ".agent/skills/understand-domain/extract-domain-context.py",
+      "lineRange": [
+        151,
+        192
+      ],
+      "summary": "Function defining code execution logic for scan_file_tree.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand-domain/extract-domain-context.py:detect_entry_points",
+      "type": "function",
+      "name": "detect_entry_points",
+      "filePath": ".agent/skills/understand-domain/extract-domain-context.py",
+      "lineRange": [
+        197,
+        239
+      ],
+      "summary": "Function defining code execution logic for detect_entry_points.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand-domain/extract-domain-context.py:extract_file_signatures",
+      "type": "function",
+      "name": "extract_file_signatures",
+      "filePath": ".agent/skills/understand-domain/extract-domain-context.py",
+      "lineRange": [
+        244,
+        301
+      ],
+      "summary": "Function defining code execution logic for extract_file_signatures.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand-domain/extract-domain-context.py:extract_metadata",
+      "type": "function",
+      "name": "extract_metadata",
+      "filePath": ".agent/skills/understand-domain/extract-domain-context.py",
+      "lineRange": [
+        306,
+        338
+      ],
+      "summary": "Function defining code execution logic for extract_metadata.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand-domain/extract-domain-context.py:_truncate_to_fit",
+      "type": "function",
+      "name": "_truncate_to_fit",
+      "filePath": ".agent/skills/understand-domain/extract-domain-context.py",
+      "lineRange": [
+        343,
+        373
+      ],
+      "summary": "Function defining code execution logic for _truncate_to_fit.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand-domain/extract-domain-context.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": ".agent/skills/understand-domain/extract-domain-context.py",
+      "lineRange": [
+        376,
+        424
+      ],
+      "summary": "Function defining code execution logic for main.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.agent/skills/understand-domain/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": ".agent/skills/understand-domain/SKILL.md",
+      "summary": "name: understand-domain",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.agent/skills/understand-explain/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": ".agent/skills/understand-explain/SKILL.md",
+      "summary": "name: understand-explain",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "type": "file",
+      "name": "merge-knowledge-graph.py",
+      "filePath": ".agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "summary": "!/usr/bin/env python3",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/merge-knowledge-graph.py:normalize_node_type",
+      "type": "function",
+      "name": "normalize_node_type",
+      "filePath": ".agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "lineRange": [
+        73,
+        75
+      ],
+      "summary": "Function defining code execution logic for normalize_node_type.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/merge-knowledge-graph.py:normalize_edge_type",
+      "type": "function",
+      "name": "normalize_edge_type",
+      "filePath": ".agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "lineRange": [
+        78,
+        80
+      ],
+      "summary": "Function defining code execution logic for normalize_edge_type.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/merge-knowledge-graph.py:normalize_entity_name",
+      "type": "function",
+      "name": "normalize_entity_name",
+      "filePath": ".agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "lineRange": [
+        83,
+        85
+      ],
+      "summary": "Function defining code execution logic for normalize_entity_name.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/merge-knowledge-graph.py:merge",
+      "type": "function",
+      "name": "merge",
+      "filePath": ".agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "lineRange": [
+        92,
+        380
+      ],
+      "summary": "Function defining code execution logic for merge.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/merge-knowledge-graph.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": ".agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "lineRange": [
+        383,
+        393
+      ],
+      "summary": "Function defining code execution logic for main.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "type": "file",
+      "name": "parse-knowledge-base.py",
+      "filePath": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "summary": "!/usr/bin/env python3",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:detect_format",
+      "type": "function",
+      "name": "detect_format",
+      "filePath": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "lineRange": [
+        38,
+        69
+      ],
+      "summary": "Function defining code execution logic for detect_format.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_frontmatter",
+      "type": "function",
+      "name": "extract_frontmatter",
+      "filePath": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "lineRange": [
+        76,
+        86
+      ],
+      "summary": "Function defining code execution logic for extract_frontmatter.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_wikilinks",
+      "type": "function",
+      "name": "extract_wikilinks",
+      "filePath": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "lineRange": [
+        89,
+        97
+      ],
+      "summary": "Function defining code execution logic for extract_wikilinks.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_headings",
+      "type": "function",
+      "name": "extract_headings",
+      "filePath": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "lineRange": [
+        100,
+        105
+      ],
+      "summary": "Function defining code execution logic for extract_headings.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_code_blocks",
+      "type": "function",
+      "name": "extract_code_blocks",
+      "filePath": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "lineRange": [
+        108,
+        110
+      ],
+      "summary": "Function defining code execution logic for extract_code_blocks.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_first_paragraph",
+      "type": "function",
+      "name": "extract_first_paragraph",
+      "filePath": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "lineRange": [
+        113,
+        154
+      ],
+      "summary": "Function defining code execution logic for extract_first_paragraph.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_h1",
+      "type": "function",
+      "name": "extract_h1",
+      "filePath": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "lineRange": [
+        157,
+        163
+      ],
+      "summary": "Function defining code execution logic for extract_h1.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:parse_index",
+      "type": "function",
+      "name": "parse_index",
+      "filePath": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "lineRange": [
+        170,
+        194
+      ],
+      "summary": "Function defining code execution logic for parse_index.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:parse_log",
+      "type": "function",
+      "name": "parse_log",
+      "filePath": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "lineRange": [
+        201,
+        216
+      ],
+      "summary": "Function defining code execution logic for parse_log.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:build_name_to_stem_map",
+      "type": "function",
+      "name": "build_name_to_stem_map",
+      "filePath": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "lineRange": [
+        223,
+        249
+      ],
+      "summary": "Function defining code execution logic for build_name_to_stem_map.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:resolve_wikilink",
+      "type": "function",
+      "name": "resolve_wikilink",
+      "filePath": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "lineRange": [
+        252,
+        275
+      ],
+      "summary": "Function defining code execution logic for resolve_wikilink.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:parse_wiki",
+      "type": "function",
+      "name": "parse_wiki",
+      "filePath": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "lineRange": [
+        278,
+        479
+      ],
+      "summary": "Function defining code execution logic for parse_wiki.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "lineRange": [
+        482,
+        505
+      ],
+      "summary": "Function defining code execution logic for main.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.agent/skills/understand-knowledge/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": ".agent/skills/understand-knowledge/SKILL.md",
+      "summary": "name: understand-knowledge",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.agent/skills/understand-onboard/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": ".agent/skills/understand-onboard/SKILL.md",
+      "summary": "name: understand-onboard",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.agent/skills/understand/build-fingerprints.mjs",
+      "type": "file",
+      "name": "build-fingerprints.mjs",
+      "filePath": ".agent/skills/understand/build-fingerprints.mjs",
+      "summary": "!/usr/bin/env node",
+      "tags": [
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/build-fingerprints.mjs:main",
+      "type": "function",
+      "name": "main",
+      "filePath": ".agent/skills/understand/build-fingerprints.mjs",
+      "lineRange": [
+        60,
+        93
+      ],
+      "summary": "Function defining code execution logic for main.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:.agent/skills/understand/compute-batches.mjs",
+      "type": "file",
+      "name": "compute-batches.mjs",
+      "filePath": ".agent/skills/understand/compute-batches.mjs",
+      "summary": "!/usr/bin/env node",
+      "tags": [
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/compute-batches.mjs:extractExports",
+      "type": "function",
+      "name": "extractExports",
+      "filePath": ".agent/skills/understand/compute-batches.mjs",
+      "lineRange": [
+        56,
+        126
+      ],
+      "summary": "Function defining code execution logic for extractExports.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/compute-batches.mjs:buildNonCodeBatches",
+      "type": "function",
+      "name": "buildNonCodeBatches",
+      "filePath": ".agent/skills/understand/compute-batches.mjs",
+      "lineRange": [
+        136,
+        220
+      ],
+      "summary": "Function defining code execution logic for buildNonCodeBatches.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/compute-batches.mjs:runLouvain",
+      "type": "function",
+      "name": "runLouvain",
+      "filePath": ".agent/skills/understand/compute-batches.mjs",
+      "lineRange": [
+        239,
+        254
+      ],
+      "summary": "Function defining code execution logic for runLouvain.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/compute-batches.mjs:mergeSmallBatches",
+      "type": "function",
+      "name": "mergeSmallBatches",
+      "filePath": ".agent/skills/understand/compute-batches.mjs",
+      "lineRange": [
+        283,
+        337
+      ],
+      "summary": "Function defining code execution logic for mergeSmallBatches.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/compute-batches.mjs:main",
+      "type": "function",
+      "name": "main",
+      "filePath": ".agent/skills/understand/compute-batches.mjs",
+      "lineRange": [
+        340,
+        563
+      ],
+      "summary": "Function defining code execution logic for main.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:.agent/skills/understand/extract-import-map.mjs",
+      "type": "file",
+      "name": "extract-import-map.mjs",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "summary": "!/usr/bin/env node",
+      "tags": [
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:readFilesParallel",
+      "type": "function",
+      "name": "readFilesParallel",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        51,
+        62
+      ],
+      "summary": "Function defining code execution logic for readFilesParallel.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:resolveRelative",
+      "type": "function",
+      "name": "resolveRelative",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        109,
+        124
+      ],
+      "summary": "Function defining code execution logic for resolveRelative.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:parseTsConfigText",
+      "type": "function",
+      "name": "parseTsConfigText",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        154,
+        182
+      ],
+      "summary": "Function defining code execution logic for parseTsConfigText.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:loadTsConfigs",
+      "type": "function",
+      "name": "loadTsConfigs",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        211,
+        248
+      ],
+      "summary": "Function defining code execution logic for loadTsConfigs.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:loadGoModules",
+      "type": "function",
+      "name": "loadGoModules",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        274,
+        305
+      ],
+      "summary": "Function defining code execution logic for loadGoModules.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:findNearestConfigDir",
+      "type": "function",
+      "name": "findNearestConfigDir",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        321,
+        332
+      ],
+      "summary": "Function defining code execution logic for findNearestConfigDir.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:buildResolutionContext",
+      "type": "function",
+      "name": "buildResolutionContext",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        349,
+        411
+      ],
+      "summary": "Function defining code execution logic for buildResolutionContext.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:resolveTsJsImport",
+      "type": "function",
+      "name": "resolveTsJsImport",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        457,
+        514
+      ],
+      "summary": "Function defining code execution logic for resolveTsJsImport.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:matchTsAlias",
+      "type": "function",
+      "name": "matchTsAlias",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        522,
+        534
+      ],
+      "summary": "Function defining code execution logic for matchTsAlias.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:resolvePythonImport",
+      "type": "function",
+      "name": "resolvePythonImport",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        650,
+        726
+      ],
+      "summary": "Function defining code execution logic for resolvePythonImport.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:resolvePythonProbe",
+      "type": "function",
+      "name": "resolvePythonProbe",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        734,
+        769
+      ],
+      "summary": "Function defining code execution logic for resolvePythonProbe.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:resolveGoImport",
+      "type": "function",
+      "name": "resolveGoImport",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        796,
+        844
+      ],
+      "summary": "Function defining code execution logic for resolveGoImport.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:buildSuffixIndex",
+      "type": "function",
+      "name": "buildSuffixIndex",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        871,
+        889
+      ],
+      "summary": "Function defining code execution logic for buildSuffixIndex.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:resolveJavaImport",
+      "type": "function",
+      "name": "resolveJavaImport",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        916,
+        918
+      ],
+      "summary": "Function defining code execution logic for resolveJavaImport.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:resolveKotlinImport",
+      "type": "function",
+      "name": "resolveKotlinImport",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        928,
+        930
+      ],
+      "summary": "Function defining code execution logic for resolveKotlinImport.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:resolveCSharpImport",
+      "type": "function",
+      "name": "resolveCSharpImport",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        941,
+        943
+      ],
+      "summary": "Function defining code execution logic for resolveCSharpImport.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:parseRubyImports",
+      "type": "function",
+      "name": "parseRubyImports",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        981,
+        993
+      ],
+      "summary": "Function defining code execution logic for parseRubyImports.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:resolveRubyImport",
+      "type": "function",
+      "name": "resolveRubyImport",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        1001,
+        1017
+      ],
+      "summary": "Function defining code execution logic for resolveRubyImport.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:parseComposerAutoloadText",
+      "type": "function",
+      "name": "parseComposerAutoloadText",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        1047,
+        1073
+      ],
+      "summary": "Function defining code execution logic for parseComposerAutoloadText.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:loadPhpAutoloads",
+      "type": "function",
+      "name": "loadPhpAutoloads",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        1091,
+        1126
+      ],
+      "summary": "Function defining code execution logic for loadPhpAutoloads.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:resolvePhpImport",
+      "type": "function",
+      "name": "resolvePhpImport",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        1138,
+        1182
+      ],
+      "summary": "Function defining code execution logic for resolvePhpImport.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:findRustCrateSrc",
+      "type": "function",
+      "name": "findRustCrateSrc",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        1232,
+        1242
+      ],
+      "summary": "Function defining code execution logic for findRustCrateSrc.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:resolveRustImport",
+      "type": "function",
+      "name": "resolveRustImport",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        1244,
+        1301
+      ],
+      "summary": "Function defining code execution logic for resolveRustImport.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:extractRustModSources",
+      "type": "function",
+      "name": "extractRustModSources",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        1310,
+        1324
+      ],
+      "summary": "Function defining code execution logic for extractRustModSources.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:resolveCppImport",
+      "type": "function",
+      "name": "resolveCppImport",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        1345,
+        1361
+      ],
+      "summary": "Function defining code execution logic for resolveCppImport.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:resolveImport",
+      "type": "function",
+      "name": "resolveImport",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        1385,
+        1420
+      ],
+      "summary": "Function defining code execution logic for resolveImport.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:extractExtraImportSources",
+      "type": "function",
+      "name": "extractExtraImportSources",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        1427,
+        1440
+      ],
+      "summary": "Function defining code execution logic for extractExtraImportSources.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-import-map.mjs:main",
+      "type": "function",
+      "name": "main",
+      "filePath": ".agent/skills/understand/extract-import-map.mjs",
+      "lineRange": [
+        1445,
+        1602
+      ],
+      "summary": "Function defining code execution logic for main.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:.agent/skills/understand/extract-structure.mjs",
+      "type": "file",
+      "name": "extract-structure.mjs",
+      "filePath": ".agent/skills/understand/extract-structure.mjs",
+      "summary": "!/usr/bin/env node",
+      "tags": [
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-structure.mjs:main",
+      "type": "function",
+      "name": "main",
+      "filePath": ".agent/skills/understand/extract-structure.mjs",
+      "lineRange": [
+        54,
+        145
+      ],
+      "summary": "Function defining code execution logic for main.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/extract-structure.mjs:buildResult",
+      "type": "function",
+      "name": "buildResult",
+      "filePath": ".agent/skills/understand/extract-structure.mjs",
+      "lineRange": [
+        151,
+        309
+      ],
+      "summary": "Function defining code execution logic for buildResult.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "type": "file",
+      "name": "merge-batch-graphs.py",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "summary": "!/usr/bin/env python3",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:normalize_direction",
+      "type": "function",
+      "name": "normalize_direction",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        115,
+        121
+      ],
+      "summary": "Function defining code execution logic for normalize_direction.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:_num",
+      "type": "function",
+      "name": "_num",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        124,
+        129
+      ],
+      "summary": "Function defining code execution logic for _num.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:load_batch",
+      "type": "function",
+      "name": "load_batch",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        134,
+        149
+      ],
+      "summary": "Function defining code execution logic for load_batch.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:classify_id_fix",
+      "type": "function",
+      "name": "classify_id_fix",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        154,
+        175
+      ],
+      "summary": "Function defining code execution logic for classify_id_fix.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:normalize_node_id",
+      "type": "function",
+      "name": "normalize_node_id",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        178,
+        221
+      ],
+      "summary": "Function defining code execution logic for normalize_node_id.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:normalize_complexity",
+      "type": "function",
+      "name": "normalize_complexity",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        224,
+        249
+      ],
+      "summary": "Function defining code execution logic for normalize_complexity.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:_path_segments",
+      "type": "function",
+      "name": "_path_segments",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        278,
+        280
+      ],
+      "summary": "Function defining code execution logic for _path_segments.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:_basename",
+      "type": "function",
+      "name": "_basename",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        283,
+        284
+      ],
+      "summary": "Function defining code execution logic for _basename.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:is_test_path",
+      "type": "function",
+      "name": "is_test_path",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        287,
+        307
+      ],
+      "summary": "Function defining code execution logic for is_test_path.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:_strip_test_infix",
+      "type": "function",
+      "name": "_strip_test_infix",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        310,
+        316
+      ],
+      "summary": "Function defining code execution logic for _strip_test_infix.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:_join",
+      "type": "function",
+      "name": "_join",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        319,
+        322
+      ],
+      "summary": "Function defining code execution logic for _join.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:_add_unique",
+      "type": "function",
+      "name": "_add_unique",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        325,
+        328
+      ],
+      "summary": "Function defining code execution logic for _add_unique.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:_js_ts_sibling_candidates",
+      "type": "function",
+      "name": "_js_ts_sibling_candidates",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        331,
+        337
+      ],
+      "summary": "Function defining code execution logic for _js_ts_sibling_candidates.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:production_candidates",
+      "type": "function",
+      "name": "production_candidates",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        340,
+        506
+      ],
+      "summary": "Function defining code execution logic for production_candidates.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:_file_node_path",
+      "type": "function",
+      "name": "_file_node_path",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        509,
+        517
+      ],
+      "summary": "Function defining code execution logic for _file_node_path.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:_swap_tested_by_in_place",
+      "type": "function",
+      "name": "_swap_tested_by_in_place",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        520,
+        535
+      ],
+      "summary": "Function defining code execution logic for _swap_tested_by_in_place.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:_ensure_tested_tag",
+      "type": "function",
+      "name": "_ensure_tested_tag",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        538,
+        553
+      ],
+      "summary": "Function defining code execution logic for _ensure_tested_tag.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:link_tests",
+      "type": "function",
+      "name": "link_tests",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        556,
+        719
+      ],
+      "summary": "Function defining code execution logic for link_tests.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:merge_and_normalize",
+      "type": "function",
+      "name": "merge_and_normalize",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        724,
+        908
+      ],
+      "summary": "Function defining code execution logic for merge_and_normalize.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:recover_imports_from_scan",
+      "type": "function",
+      "name": "recover_imports_from_scan",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        913,
+        998
+      ],
+      "summary": "Function defining code execution logic for recover_imports_from_scan.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-batch-graphs.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": ".agent/skills/understand/merge-batch-graphs.py",
+      "lineRange": [
+        1003,
+        1160
+      ],
+      "summary": "Function defining code execution logic for main.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:.agent/skills/understand/merge-subdomain-graphs.py",
+      "type": "file",
+      "name": "merge-subdomain-graphs.py",
+      "filePath": ".agent/skills/understand/merge-subdomain-graphs.py",
+      "summary": "!/usr/bin/env python3",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-subdomain-graphs.py:_num",
+      "type": "function",
+      "name": "_num",
+      "filePath": ".agent/skills/understand/merge-subdomain-graphs.py",
+      "lineRange": [
+        28,
+        33
+      ],
+      "summary": "Function defining code execution logic for _num.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-subdomain-graphs.py:load_graph",
+      "type": "function",
+      "name": "load_graph",
+      "filePath": ".agent/skills/understand/merge-subdomain-graphs.py",
+      "lineRange": [
+        36,
+        49
+      ],
+      "summary": "Function defining code execution logic for load_graph.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-subdomain-graphs.py:merge_graphs",
+      "type": "function",
+      "name": "merge_graphs",
+      "filePath": ".agent/skills/understand/merge-subdomain-graphs.py",
+      "lineRange": [
+        52,
+        232
+      ],
+      "summary": "Function defining code execution logic for merge_graphs.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/merge-subdomain-graphs.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": ".agent/skills/understand/merge-subdomain-graphs.py",
+      "lineRange": [
+        235,
+        304
+      ],
+      "summary": "Function defining code execution logic for main.",
+      "tags": [
+        "function",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:.agent/skills/understand/scan-project.mjs",
+      "type": "file",
+      "name": "scan-project.mjs",
+      "filePath": ".agent/skills/understand/scan-project.mjs",
+      "summary": "!/usr/bin/env node",
+      "tags": [
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:.agent/skills/understand/scan-project.mjs:detectLanguage",
+      "type": "function",
+      "name": "detectLanguage",
+      "filePath": ".agent/skills/understand/scan-project.mjs",
+      "lineRange": [
+        226,
+        253
+      ],
+      "summary": "Function defining code execution logic for detectLanguage.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/scan-project.mjs:detectCategory",
+      "type": "function",
+      "name": "detectCategory",
+      "filePath": ".agent/skills/understand/scan-project.mjs",
+      "lineRange": [
+        378,
+        422
+      ],
+      "summary": "Function defining code execution logic for detectCategory.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/scan-project.mjs:estimateComplexity",
+      "type": "function",
+      "name": "estimateComplexity",
+      "filePath": ".agent/skills/understand/scan-project.mjs",
+      "lineRange": [
+        440,
+        445
+      ],
+      "summary": "Function defining code execution logic for estimateComplexity.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/scan-project.mjs:enumerateViaGit",
+      "type": "function",
+      "name": "enumerateViaGit",
+      "filePath": ".agent/skills/understand/scan-project.mjs",
+      "lineRange": [
+        471,
+        493
+      ],
+      "summary": "Function defining code execution logic for enumerateViaGit.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/scan-project.mjs:enumerateViaWalk",
+      "type": "function",
+      "name": "enumerateViaWalk",
+      "filePath": ".agent/skills/understand/scan-project.mjs",
+      "lineRange": [
+        504,
+        549
+      ],
+      "summary": "Function defining code execution logic for enumerateViaWalk.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:.agent/skills/understand/scan-project.mjs:buildDefaultsOnlyFilter",
+      "type": "function",
+      "name": "buildDefaultsOnlyFilter",
+      "filePath": ".agent/skills/understand/scan-project.mjs",
+      "lineRange": [
+        590,
+        600
+      ],
+      "summary": "Function defining code execution logic for buildDefaultsOnlyFilter.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/scan-project.mjs:countLines",
+      "type": "function",
+      "name": "countLines",
+      "filePath": ".agent/skills/understand/scan-project.mjs",
+      "lineRange": [
+        627,
+        644
+      ],
+      "summary": "Function defining code execution logic for countLines.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:.agent/skills/understand/scan-project.mjs:main",
+      "type": "function",
+      "name": "main",
+      "filePath": ".agent/skills/understand/scan-project.mjs",
+      "lineRange": [
+        650,
+        770
+      ],
+      "summary": "Function defining code execution logic for main.",
+      "tags": [
+        "function",
+        "code",
+        "javascript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:.agent/skills/understand/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": ".agent/skills/understand/SKILL.md",
+      "summary": "name: understand",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:.understand-anything/knowledge-graph.json",
+      "type": "config",
+      "name": "knowledge-graph.json",
+      "filePath": ".understand-anything/knowledge-graph.json",
+      "summary": "\"version\": \"1.0.0\",",
+      "tags": [
+        "config",
+        "json"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:backend/.env",
+      "type": "config",
+      "name": ".env",
+      "filePath": "backend/.env",
+      "summary": "ENVIRONMENT=development",
+      "tags": [
+        "config",
+        "config"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:backend/requirements.txt",
+      "type": "document",
+      "name": "requirements.txt",
+      "filePath": "backend/requirements.txt",
+      "summary": "uvicorn[standard]",
+      "tags": [
+        "docs",
+        "txt"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/eslint.config.js",
+      "type": "file",
+      "name": "eslint.config.js",
+      "filePath": "frontend/eslint.config.js",
+      "summary": "import js from '@eslint/js'",
+      "tags": [
+        "code",
+        "javascript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/nginx.conf",
+      "type": "file",
+      "name": "nginx.conf",
+      "filePath": "frontend/nginx.conf",
+      "summary": "listen 80;",
+      "tags": [
+        "code",
+        "conf"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:frontend/public/manifest.json",
+      "type": "config",
+      "name": "manifest.json",
+      "filePath": "frontend/public/manifest.json",
+      "summary": "\"name\": \"MyTechNews Console\",",
+      "tags": [
+        "config",
+        "json"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:parse_gitignore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:parse_gitignore",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:is_ignored",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:is_ignored",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:scan_file_tree",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:scan_file_tree",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:detect_entry_points",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:detect_entry_points",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:extract_file_signatures",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:extract_file_signatures",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:extract_metadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:extract_metadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:_truncate_to_fit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:_truncate_to_fit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-domain/extract-domain-context.py",
+      "target": "function:.agent/skills/understand-domain/extract-domain-context.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "target": "function:.agent/skills/understand-knowledge/merge-knowledge-graph.py:normalize_node_type",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "target": "function:.agent/skills/understand-knowledge/merge-knowledge-graph.py:normalize_node_type",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "target": "function:.agent/skills/understand-knowledge/merge-knowledge-graph.py:normalize_edge_type",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "target": "function:.agent/skills/understand-knowledge/merge-knowledge-graph.py:normalize_edge_type",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "target": "function:.agent/skills/understand-knowledge/merge-knowledge-graph.py:normalize_entity_name",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "target": "function:.agent/skills/understand-knowledge/merge-knowledge-graph.py:normalize_entity_name",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "target": "function:.agent/skills/understand-knowledge/merge-knowledge-graph.py:merge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "target": "function:.agent/skills/understand-knowledge/merge-knowledge-graph.py:merge",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "target": "function:.agent/skills/understand-knowledge/merge-knowledge-graph.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "target": "function:.agent/skills/understand-knowledge/merge-knowledge-graph.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:detect_format",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:detect_format",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_frontmatter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_frontmatter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_wikilinks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_wikilinks",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_headings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_headings",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_code_blocks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_code_blocks",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_first_paragraph",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_first_paragraph",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_h1",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:extract_h1",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:parse_index",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:parse_index",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:parse_log",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:parse_log",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:build_name_to_stem_map",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:build_name_to_stem_map",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:resolve_wikilink",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:resolve_wikilink",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:parse_wiki",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:parse_wiki",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "target": "function:.agent/skills/understand-knowledge/parse-knowledge-base.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/build-fingerprints.mjs",
+      "target": "function:.agent/skills/understand/build-fingerprints.mjs:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/compute-batches.mjs",
+      "target": "function:.agent/skills/understand/compute-batches.mjs:extractExports",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/compute-batches.mjs",
+      "target": "function:.agent/skills/understand/compute-batches.mjs:buildNonCodeBatches",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/compute-batches.mjs",
+      "target": "function:.agent/skills/understand/compute-batches.mjs:runLouvain",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/compute-batches.mjs",
+      "target": "function:.agent/skills/understand/compute-batches.mjs:mergeSmallBatches",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/compute-batches.mjs",
+      "target": "function:.agent/skills/understand/compute-batches.mjs:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:readFilesParallel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveRelative",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:parseTsConfigText",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:loadTsConfigs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:loadGoModules",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:findNearestConfigDir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:buildResolutionContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveTsJsImport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveTsJsImport",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:matchTsAlias",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolvePythonImport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolvePythonImport",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolvePythonProbe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveGoImport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveGoImport",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:buildSuffixIndex",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveJavaImport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveJavaImport",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveKotlinImport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveKotlinImport",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveCSharpImport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveCSharpImport",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:parseRubyImports",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveRubyImport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveRubyImport",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:parseComposerAutoloadText",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:loadPhpAutoloads",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolvePhpImport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolvePhpImport",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:findRustCrateSrc",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveRustImport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveRustImport",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:extractRustModSources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveCppImport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveCppImport",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:resolveImport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:extractExtraImportSources",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-import-map.mjs",
+      "target": "function:.agent/skills/understand/extract-import-map.mjs:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-structure.mjs",
+      "target": "function:.agent/skills/understand/extract-structure.mjs:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-structure.mjs",
+      "target": "function:.agent/skills/understand/extract-structure.mjs:buildResult",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/extract-structure.mjs",
+      "target": "function:.agent/skills/understand/extract-structure.mjs:buildResult",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:normalize_direction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:normalize_direction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_num",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_num",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:load_batch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:load_batch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:classify_id_fix",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:classify_id_fix",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:normalize_node_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:normalize_node_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:normalize_complexity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:normalize_complexity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_path_segments",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_path_segments",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_basename",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_basename",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:is_test_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:is_test_path",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_strip_test_infix",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_strip_test_infix",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_join",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_join",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_add_unique",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_add_unique",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_js_ts_sibling_candidates",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_js_ts_sibling_candidates",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:production_candidates",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:production_candidates",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_file_node_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_file_node_path",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_swap_tested_by_in_place",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_swap_tested_by_in_place",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_ensure_tested_tag",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:_ensure_tested_tag",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:link_tests",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:link_tests",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:merge_and_normalize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:merge_and_normalize",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:recover_imports_from_scan",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:recover_imports_from_scan",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-batch-graphs.py",
+      "target": "function:.agent/skills/understand/merge-batch-graphs.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-subdomain-graphs.py",
+      "target": "function:.agent/skills/understand/merge-subdomain-graphs.py:_num",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-subdomain-graphs.py",
+      "target": "function:.agent/skills/understand/merge-subdomain-graphs.py:_num",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-subdomain-graphs.py",
+      "target": "function:.agent/skills/understand/merge-subdomain-graphs.py:load_graph",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-subdomain-graphs.py",
+      "target": "function:.agent/skills/understand/merge-subdomain-graphs.py:load_graph",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-subdomain-graphs.py",
+      "target": "function:.agent/skills/understand/merge-subdomain-graphs.py:merge_graphs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-subdomain-graphs.py",
+      "target": "function:.agent/skills/understand/merge-subdomain-graphs.py:merge_graphs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-subdomain-graphs.py",
+      "target": "function:.agent/skills/understand/merge-subdomain-graphs.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/merge-subdomain-graphs.py",
+      "target": "function:.agent/skills/understand/merge-subdomain-graphs.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/scan-project.mjs",
+      "target": "function:.agent/skills/understand/scan-project.mjs:detectLanguage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/scan-project.mjs",
+      "target": "function:.agent/skills/understand/scan-project.mjs:detectLanguage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/scan-project.mjs",
+      "target": "function:.agent/skills/understand/scan-project.mjs:detectCategory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/scan-project.mjs",
+      "target": "function:.agent/skills/understand/scan-project.mjs:detectCategory",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/scan-project.mjs",
+      "target": "function:.agent/skills/understand/scan-project.mjs:estimateComplexity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/scan-project.mjs",
+      "target": "function:.agent/skills/understand/scan-project.mjs:estimateComplexity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:.agent/skills/understand/scan-project.mjs",
+      "target": "function:.agent/skills/understand/scan-project.mjs:enumerateViaGit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/scan-project.mjs",
+      "target": "function:.agent/skills/understand/scan-project.mjs:enumerateViaWalk",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/scan-project.mjs",
+      "target": "function:.agent/skills/understand/scan-project.mjs:buildDefaultsOnlyFilter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/scan-project.mjs",
+      "target": "function:.agent/skills/understand/scan-project.mjs:countLines",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:.agent/skills/understand/scan-project.mjs",
+      "target": "function:.agent/skills/understand/scan-project.mjs:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    }
+  ]
+}

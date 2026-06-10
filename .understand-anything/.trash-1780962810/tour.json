@@ -1,0 +1,48 @@
+[
+  {
+    "order": 1,
+    "title": "Guidelines and System Architecture",
+    "description": "Start by reading AGENTS.md to align with the core system rules (SOLID & DRY), and vercel.json to see the monorepo routing entry point.",
+    "nodeIds": [
+      "document:AGENTS.md",
+      "config:vercel.json"
+    ]
+  },
+  {
+    "order": 2,
+    "title": "FastAPI App Entry and Services",
+    "description": "Examine the main FastAPI server setup and the parallel scraping and processing logic.",
+    "nodeIds": [
+      "file:backend/app/main.py",
+      "file:backend/app/aggregator.py"
+    ]
+  },
+  {
+    "order": 3,
+    "title": "Database Schema and Security",
+    "description": "Check user database models, JWT token handling, and bcrypt credentials hashing.",
+    "nodeIds": [
+      "file:backend/app/models.py",
+      "file:backend/app/auth.py"
+    ]
+  },
+  {
+    "order": 4,
+    "title": "React Client Dashboard",
+    "description": "Explore the primary App component and components for category filtering and news rendering.",
+    "nodeIds": [
+      "file:frontend/src/App.tsx",
+      "file:frontend/src/components/NewsFeed.tsx"
+    ]
+  },
+  {
+    "order": 5,
+    "title": "Docker Multi-Container Orchestration",
+    "description": "Check Docker configurations and the compose file that powers the local development environment.",
+    "nodeIds": [
+      "service:docker-compose.yml",
+      "service:backend/Dockerfile",
+      "service:frontend/Dockerfile"
+    ]
+  }
+]

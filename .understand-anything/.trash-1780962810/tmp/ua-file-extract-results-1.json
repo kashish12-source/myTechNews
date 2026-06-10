@@ -1,0 +1,1111 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 7,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "frontend/src/App.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 388,
+      "nonEmptyLines": 347,
+      "functions": [
+        {
+          "name": "App",
+          "startLine": 8,
+          "endLine": 388,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "App",
+          "line": 8,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 9
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 10
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 11
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 12
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 13
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 16
+        },
+        {
+          "caller": "App",
+          "callee": "localStorage.getItem",
+          "lineNumber": 17
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 20
+        },
+        {
+          "caller": "App",
+          "callee": "localStorage.getItem",
+          "lineNumber": 21
+        },
+        {
+          "caller": "handleLoginSuccess",
+          "callee": "setToken",
+          "lineNumber": 26
+        },
+        {
+          "caller": "handleLoginSuccess",
+          "callee": "setUserEmail",
+          "lineNumber": 27
+        },
+        {
+          "caller": "handleLoginSuccess",
+          "callee": "localStorage.setItem",
+          "lineNumber": 28
+        },
+        {
+          "caller": "handleLoginSuccess",
+          "callee": "localStorage.setItem",
+          "lineNumber": 29
+        },
+        {
+          "caller": "handleLogout",
+          "callee": "setToken",
+          "lineNumber": 33
+        },
+        {
+          "caller": "handleLogout",
+          "callee": "setUserEmail",
+          "lineNumber": 34
+        },
+        {
+          "caller": "handleLogout",
+          "callee": "localStorage.removeItem",
+          "lineNumber": 35
+        },
+        {
+          "caller": "handleLogout",
+          "callee": "localStorage.removeItem",
+          "lineNumber": 36
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 40
+        },
+        {
+          "caller": "App",
+          "callee": "useEffect",
+          "lineNumber": 43
+        },
+        {
+          "caller": "App",
+          "callee": "document.body.classList.add",
+          "lineNumber": 45
+        },
+        {
+          "caller": "App",
+          "callee": "document.body.classList.remove",
+          "lineNumber": 47
+        },
+        {
+          "caller": "App",
+          "callee": "localStorage.setItem",
+          "lineNumber": 49
+        },
+        {
+          "caller": "getFormattedDate",
+          "callee": "new Date().toLocaleDateString",
+          "lineNumber": 53
+        },
+        {
+          "caller": "App",
+          "callee": "setTheme",
+          "lineNumber": 68
+        },
+        {
+          "caller": "handleNavClick",
+          "callee": "setActiveTab",
+          "lineNumber": 95
+        },
+        {
+          "caller": "handleNavClick",
+          "callee": "setSelectedCategory",
+          "lineNumber": 96
+        },
+        {
+          "caller": "handleNavClick",
+          "callee": "setActiveTab",
+          "lineNumber": 98
+        },
+        {
+          "caller": "handleNavClick",
+          "callee": "setIsMobileDrawerOpen",
+          "lineNumber": 100
+        },
+        {
+          "caller": "getHeadingText",
+          "callee": "sidebarItems.find",
+          "lineNumber": 114
+        },
+        {
+          "caller": "App",
+          "callee": "setIsMobileDrawerOpen",
+          "lineNumber": 127
+        },
+        {
+          "caller": "App",
+          "callee": "setSearchQuery",
+          "lineNumber": 149
+        },
+        {
+          "caller": "App",
+          "callee": "setSearchQuery",
+          "lineNumber": 154
+        },
+        {
+          "caller": "App",
+          "callee": "setTheme",
+          "lineNumber": 169
+        },
+        {
+          "caller": "App",
+          "callee": "setShowUserMenu",
+          "lineNumber": 179
+        },
+        {
+          "caller": "App",
+          "callee": "userEmail.charAt(0).toUpperCase",
+          "lineNumber": 191
+        },
+        {
+          "caller": "App",
+          "callee": "userEmail.charAt",
+          "lineNumber": 191
+        },
+        {
+          "caller": "App",
+          "callee": "sidebarItems.map",
+          "lineNumber": 240
+        },
+        {
+          "caller": "App",
+          "callee": "isItemActive",
+          "lineNumber": 246
+        },
+        {
+          "caller": "App",
+          "callee": "handleNavClick",
+          "lineNumber": 251
+        },
+        {
+          "caller": "App",
+          "callee": "setIsMobileDrawerOpen",
+          "lineNumber": 265
+        },
+        {
+          "caller": "App",
+          "callee": "e.stopPropagation",
+          "lineNumber": 270
+        },
+        {
+          "caller": "App",
+          "callee": "setIsMobileDrawerOpen",
+          "lineNumber": 275
+        },
+        {
+          "caller": "App",
+          "callee": "sidebarItems.map",
+          "lineNumber": 282
+        },
+        {
+          "caller": "App",
+          "callee": "isItemActive",
+          "lineNumber": 288
+        },
+        {
+          "caller": "App",
+          "callee": "handleNavClick",
+          "lineNumber": 293
+        },
+        {
+          "caller": "App",
+          "callee": "getHeadingText",
+          "lineNumber": 314
+        },
+        {
+          "caller": "App",
+          "callee": "getFormattedDate",
+          "lineNumber": 318
+        },
+        {
+          "caller": "App",
+          "callee": "setSearchQuery",
+          "lineNumber": 329
+        },
+        {
+          "caller": "App",
+          "callee": "setSearchQuery",
+          "lineNumber": 334
+        },
+        {
+          "caller": "App",
+          "callee": "new Date().getFullYear",
+          "lineNumber": 377
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "frontend/src/components/LlmComponents.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 270,
+      "nonEmptyLines": 244,
+      "functions": [
+        {
+          "name": "LlmComponents",
+          "startLine": 156,
+          "endLine": 270,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "LlmComponents",
+          "line": 156,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "LlmComponents",
+          "callee": "useState",
+          "lineNumber": 157
+        },
+        {
+          "caller": "LlmComponents",
+          "callee": "componentsList.find",
+          "lineNumber": 159
+        },
+        {
+          "caller": "LlmComponents",
+          "callee": "componentsList.map",
+          "lineNumber": 176
+        },
+        {
+          "caller": "LlmComponents",
+          "callee": "setActiveTab",
+          "lineNumber": 182
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "frontend/src/components/Login.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 290,
+      "nonEmptyLines": 259,
+      "functions": [
+        {
+          "name": "Login",
+          "startLine": 9,
+          "endLine": 290,
+          "params": [
+            "{ onLoginSuccess }"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Login",
+          "line": 9,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Login",
+          "callee": "useState",
+          "lineNumber": 10
+        },
+        {
+          "caller": "Login",
+          "callee": "useState",
+          "lineNumber": 11
+        },
+        {
+          "caller": "Login",
+          "callee": "useState",
+          "lineNumber": 12
+        },
+        {
+          "caller": "Login",
+          "callee": "useState",
+          "lineNumber": 13
+        },
+        {
+          "caller": "Login",
+          "callee": "useState",
+          "lineNumber": 14
+        },
+        {
+          "caller": "Login",
+          "callee": "useState",
+          "lineNumber": 15
+        },
+        {
+          "caller": "Login",
+          "callee": "useState",
+          "lineNumber": 18
+        },
+        {
+          "caller": "Login",
+          "callee": "useState",
+          "lineNumber": 19
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "e.preventDefault",
+          "lineNumber": 22
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "email.trim",
+          "lineNumber": 23
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "setError",
+          "lineNumber": 25
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "setError",
+          "lineNumber": 29
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "setSuccessMsg",
+          "lineNumber": 30
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "setLoading",
+          "lineNumber": 31
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "fetch",
+          "lineNumber": 35
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "getApiUrl",
+          "lineNumber": 35
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "JSON.stringify",
+          "lineNumber": 38
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "response.json",
+          "lineNumber": 41
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "setSuccessMsg",
+          "lineNumber": 48
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "setTimeout",
+          "lineNumber": 49
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "setIsLoginView",
+          "lineNumber": 50
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "setSuccessMsg",
+          "lineNumber": 51
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "setPassword",
+          "lineNumber": 52
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "setSuccessMsg",
+          "lineNumber": 57
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "setShowVerificationStep",
+          "lineNumber": 58
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "onLoginSuccess",
+          "lineNumber": 60
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "setError",
+          "lineNumber": 64
+        },
+        {
+          "caller": "handleSubmit",
+          "callee": "setLoading",
+          "lineNumber": 66
+        },
+        {
+          "caller": "handleVerifyCodeSubmit",
+          "callee": "e.preventDefault",
+          "lineNumber": 71
+        },
+        {
+          "caller": "handleVerifyCodeSubmit",
+          "callee": "verificationCode.trim",
+          "lineNumber": 72
+        },
+        {
+          "caller": "handleVerifyCodeSubmit",
+          "callee": "setError",
+          "lineNumber": 74
+        },
+        {
+          "caller": "handleVerifyCodeSubmit",
+          "callee": "setError",
+          "lineNumber": 78
+        },
+        {
+          "caller": "handleVerifyCodeSubmit",
+          "callee": "setLoading",
+          "lineNumber": 79
+        },
+        {
+          "caller": "handleVerifyCodeSubmit",
+          "callee": "fetch",
+          "lineNumber": 82
+        },
+        {
+          "caller": "handleVerifyCodeSubmit",
+          "callee": "getApiUrl",
+          "lineNumber": 82
+        },
+        {
+          "caller": "handleVerifyCodeSubmit",
+          "callee": "JSON.stringify",
+          "lineNumber": 85
+        },
+        {
+          "caller": "handleVerifyCodeSubmit",
+          "callee": "email.trim",
+          "lineNumber": 85
+        },
+        {
+          "caller": "handleVerifyCodeSubmit",
+          "callee": "response.json",
+          "lineNumber": 88
+        },
+        {
+          "caller": "handleVerifyCodeSubmit",
+          "callee": "onLoginSuccess",
+          "lineNumber": 94
+        },
+        {
+          "caller": "handleVerifyCodeSubmit",
+          "callee": "setError",
+          "lineNumber": 96
+        },
+        {
+          "caller": "handleVerifyCodeSubmit",
+          "callee": "setLoading",
+          "lineNumber": 98
+        },
+        {
+          "caller": "handleBackToLogin",
+          "callee": "setShowVerificationStep",
+          "lineNumber": 103
+        },
+        {
+          "caller": "handleBackToLogin",
+          "callee": "setVerificationCode",
+          "lineNumber": 104
+        },
+        {
+          "caller": "handleBackToLogin",
+          "callee": "setError",
+          "lineNumber": 105
+        },
+        {
+          "caller": "handleBackToLogin",
+          "callee": "setSuccessMsg",
+          "lineNumber": 106
+        },
+        {
+          "caller": "Login",
+          "callee": "setVerificationCode",
+          "lineNumber": 159
+        },
+        {
+          "caller": "Login",
+          "callee": "e.target.value.replace(/\\D/g, '').slice",
+          "lineNumber": 159
+        },
+        {
+          "caller": "Login",
+          "callee": "e.target.value.replace",
+          "lineNumber": 159
+        },
+        {
+          "caller": "Login",
+          "callee": "setEmail",
+          "lineNumber": 218
+        },
+        {
+          "caller": "Login",
+          "callee": "setPassword",
+          "lineNumber": 236
+        },
+        {
+          "caller": "Login",
+          "callee": "setIsLoginView",
+          "lineNumber": 254
+        },
+        {
+          "caller": "Login",
+          "callee": "setError",
+          "lineNumber": 255
+        },
+        {
+          "caller": "Login",
+          "callee": "setSuccessMsg",
+          "lineNumber": 256
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "frontend/src/components/NewsFeed.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 322,
+      "nonEmptyLines": 287,
+      "functions": [
+        {
+          "name": "NewsFeed",
+          "startLine": 32,
+          "endLine": 322,
+          "params": [
+            "{ \n  authToken, \n  onAuthError, \n  selectedCategory,\n  searchQuery\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "NewsFeed",
+          "line": 32,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "NewsFeed",
+          "callee": "useState",
+          "lineNumber": 38
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "useState",
+          "lineNumber": 39
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "useState",
+          "lineNumber": 40
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "useState",
+          "lineNumber": 41
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "useState",
+          "lineNumber": 42
+        },
+        {
+          "caller": "formatDate",
+          "callee": "isNaN",
+          "lineNumber": 48
+        },
+        {
+          "caller": "formatDate",
+          "callee": "d.getTime",
+          "lineNumber": 48
+        },
+        {
+          "caller": "formatDate",
+          "callee": "d.toLocaleDateString",
+          "lineNumber": 49
+        },
+        {
+          "caller": "fetchNews",
+          "callee": "setLoading",
+          "lineNumber": 63
+        },
+        {
+          "caller": "fetchNews",
+          "callee": "setError",
+          "lineNumber": 65
+        },
+        {
+          "caller": "fetchNews",
+          "callee": "fetch",
+          "lineNumber": 73
+        },
+        {
+          "caller": "fetchNews",
+          "callee": "getApiUrl",
+          "lineNumber": 73
+        },
+        {
+          "caller": "fetchNews",
+          "callee": "onAuthError",
+          "lineNumber": 79
+        },
+        {
+          "caller": "fetchNews",
+          "callee": "response.json",
+          "lineNumber": 86
+        },
+        {
+          "caller": "fetchNews",
+          "callee": "setArticles",
+          "lineNumber": 87
+        },
+        {
+          "caller": "fetchNews",
+          "callee": "setUpdating",
+          "lineNumber": 88
+        },
+        {
+          "caller": "fetchNews",
+          "callee": "console.warn",
+          "lineNumber": 90
+        },
+        {
+          "caller": "fetchNews",
+          "callee": "setArticles",
+          "lineNumber": 91
+        },
+        {
+          "caller": "fetchNews",
+          "callee": "setUpdating",
+          "lineNumber": 92
+        },
+        {
+          "caller": "fetchNews",
+          "callee": "setError",
+          "lineNumber": 94
+        },
+        {
+          "caller": "fetchNews",
+          "callee": "setLoading",
+          "lineNumber": 98
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "useEffect",
+          "lineNumber": 103
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "fetchNews",
+          "lineNumber": 104
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "useEffect",
+          "lineNumber": 107
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "window.setTimeout",
+          "lineNumber": 110
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "fetchNews",
+          "lineNumber": 111
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "clearTimeout",
+          "lineNumber": 116
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "articles.filter",
+          "lineNumber": 121
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "article.title.toLowerCase().includes",
+          "lineNumber": 123
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "article.title.toLowerCase",
+          "lineNumber": 123
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "searchQuery.toLowerCase",
+          "lineNumber": 123
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "article.summary.toLowerCase().includes",
+          "lineNumber": 124
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "article.summary.toLowerCase",
+          "lineNumber": 124
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "searchQuery.toLowerCase",
+          "lineNumber": 124
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "article.source.toLowerCase().includes",
+          "lineNumber": 125
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "article.source.toLowerCase",
+          "lineNumber": 125
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "searchQuery.toLowerCase",
+          "lineNumber": 125
+        },
+        {
+          "caller": "calculateReadingTime",
+          "callee": "Math.max",
+          "lineNumber": 139
+        },
+        {
+          "caller": "calculateReadingTime",
+          "callee": "Math.ceil",
+          "lineNumber": 139
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "filteredArticles.find",
+          "lineNumber": 142
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "filteredArticles.filter",
+          "lineNumber": 143
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "formatDate",
+          "lineNumber": 207
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "calculateReadingTime",
+          "lineNumber": 209
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "getSentimentStyle",
+          "lineNumber": 211
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "setExpandedArticle",
+          "lineNumber": 234
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "secondaryArticles.map",
+          "lineNumber": 256
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "getCategoryBadgeTheme",
+          "lineNumber": 257
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "calculateReadingTime",
+          "lineNumber": 258
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "article.category.replace",
+          "lineNumber": 271
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "formatDate(article.date).split",
+          "lineNumber": 273
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "formatDate",
+          "lineNumber": 273
+        },
+        {
+          "caller": "NewsFeed",
+          "callee": "setExpandedArticle",
+          "lineNumber": 292
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "frontend/src/components/ReplacementMatrix.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 321,
+      "nonEmptyLines": 297,
+      "functions": [
+        {
+          "name": "ReplacementMatrix",
+          "startLine": 116,
+          "endLine": 321,
+          "params": [
+            "{ searchQuery: propSearchQuery }"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ReplacementMatrix",
+          "line": 116,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "useState",
+          "lineNumber": 117
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "useState",
+          "lineNumber": 120
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "useState",
+          "lineNumber": 121
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "useMemo",
+          "lineNumber": 123
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "searchQuery.toLowerCase().trim",
+          "lineNumber": 124
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "searchQuery.toLowerCase",
+          "lineNumber": 124
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "tasks.filter",
+          "lineNumber": 125
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "task.taskName.toLowerCase().includes",
+          "lineNumber": 129
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "task.taskName.toLowerCase",
+          "lineNumber": 129
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "task.replacementTool.toLowerCase().includes",
+          "lineNumber": 130
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "task.replacementTool.toLowerCase",
+          "lineNumber": 130
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "task.workflow.toLowerCase().includes",
+          "lineNumber": 131
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "task.workflow.toLowerCase",
+          "lineNumber": 131
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "setSearchQuery",
+          "lineNumber": 167
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "roles.map",
+          "lineNumber": 178
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "setSelectedRole",
+          "lineNumber": 184
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "filteredTasks.map",
+          "lineNumber": 206
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "getRoleLabelColor",
+          "lineNumber": 208
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "getEaseBadgeClass",
+          "lineNumber": 209
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "roles.find(r => r.id === task.role)?.label.split",
+          "lineNumber": 220
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "roles.find",
+          "lineNumber": 220
+        },
+        {
+          "caller": "ReplacementMatrix",
+          "callee": "setActiveTaskInfo",
+          "lineNumber": 247
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "frontend/src/main.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 10,
+      "nonEmptyLines": 9,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "frontend/src/utils/api.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 9,
+      "nonEmptyLines": 9,
+      "functions": [
+        {
+          "name": "getApiUrl",
+          "startLine": 7,
+          "endLine": 9,
+          "params": [
+            "path"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "getApiUrl",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    }
+  ]
+}

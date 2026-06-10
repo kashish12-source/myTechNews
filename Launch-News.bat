@@ -7,15 +7,15 @@ echo.
 
 cd /d "%~dp0"
 
-echo 1. Launching News Aggregator Server (Port 3001)...
-start /b node server/index.js > server_output.log 2>&1
+echo 1. Launching FastAPI Python Backend Server (Port 3001)...
+start /b npm run start:backend > server_output.log 2>&1
 
 echo 2. Launching Vite React Dashboard (Port 5173)...
-start /b npm run dev > client_output.log 2>&1
+start /b npm run dev:frontend > client_output.log 2>&1
 
 echo.
 echo 3. Waiting for servers to initialize...
-timeout /t 3 /nobreak > NUL
+timeout /t 4 /nobreak > NUL
 
 echo.
 echo 4. Opening Dashboard in your browser...

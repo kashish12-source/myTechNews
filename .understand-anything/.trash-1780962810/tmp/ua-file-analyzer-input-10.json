@@ -1,0 +1,49 @@
+{
+  "projectRoot": "c:\\Users\\Kashish\\myTechNews",
+  "batchFiles": [
+    {
+      "path": ".agent/skills/understand/locales/en.md",
+      "language": "markdown",
+      "sizeLines": 43,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/locales/ja.md",
+      "language": "markdown",
+      "sizeLines": 48,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/locales/ko.md",
+      "language": "markdown",
+      "sizeLines": 48,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/locales/ru.md",
+      "language": "markdown",
+      "sizeLines": 49,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/locales/zh-TW.md",
+      "language": "markdown",
+      "sizeLines": 48,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/locales/zh.md",
+      "language": "markdown",
+      "sizeLines": 48,
+      "fileCategory": "docs"
+    }
+  ],
+  "batchImportData": {
+    ".agent/skills/understand/locales/en.md": [],
+    ".agent/skills/understand/locales/ja.md": [],
+    ".agent/skills/understand/locales/ko.md": [],
+    ".agent/skills/understand/locales/ru.md": [],
+    ".agent/skills/understand/locales/zh-TW.md": [],
+    ".agent/skills/understand/locales/zh.md": []
+  }
+}

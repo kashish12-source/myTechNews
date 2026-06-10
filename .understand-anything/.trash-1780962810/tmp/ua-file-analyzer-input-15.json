@@ -1,0 +1,42 @@
+{
+  "projectRoot": "c:\\Users\\Kashish\\myTechNews",
+  "batchFiles": [
+    {
+      "path": "frontend/public/sw.js",
+      "language": "javascript",
+      "sizeLines": 61,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/App.css",
+      "language": "css",
+      "sizeLines": 184,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "frontend/src/data/news-cache.json",
+      "language": "json",
+      "sizeLines": 364,
+      "fileCategory": "config"
+    },
+    {
+      "path": "frontend/src/index.css",
+      "language": "css",
+      "sizeLines": 389,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "language": "typescript",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "frontend/public/sw.js": [],
+    "frontend/src/App.css": [],
+    "frontend/src/data/news-cache.json": [],
+    "frontend/src/index.css": [],
+    "frontend/vite.config.ts": []
+  }
+}

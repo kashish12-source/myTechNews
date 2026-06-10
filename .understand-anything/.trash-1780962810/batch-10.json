@@ -1,0 +1,77 @@
+{
+  "nodes": [
+    {
+      "id": "document:.agent/skills/understand/locales/en.md",
+      "type": "document",
+      "name": "en.md",
+      "filePath": ".agent/skills/understand/locales/en.md",
+      "summary": "English Output Guidelines",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/locales/ja.md",
+      "type": "document",
+      "name": "ja.md",
+      "filePath": ".agent/skills/understand/locales/ja.md",
+      "summary": "日本語出力ガイドライン (Japanese)",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/locales/ko.md",
+      "type": "document",
+      "name": "ko.md",
+      "filePath": ".agent/skills/understand/locales/ko.md",
+      "summary": "한국어 출력 가이드라인 (Korean)",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/locales/ru.md",
+      "type": "document",
+      "name": "ru.md",
+      "filePath": ".agent/skills/understand/locales/ru.md",
+      "summary": "Руководство по выводу на русском языке (Russian)",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/locales/zh-TW.md",
+      "type": "document",
+      "name": "zh-TW.md",
+      "filePath": ".agent/skills/understand/locales/zh-TW.md",
+      "summary": "繁體中文輸出指南 (Chinese Traditional)",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agent/skills/understand/locales/zh.md",
+      "type": "document",
+      "name": "zh.md",
+      "filePath": ".agent/skills/understand/locales/zh.md",
+      "summary": "中文输出指南 (Chinese Simplified)",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

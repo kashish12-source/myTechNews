@@ -1,0 +1,53 @@
+{
+  "nodes": [
+    {
+      "id": "document:handsoff/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "handsoff/README.md",
+      "summary": "Handoff Documentation - Monorepo Migration & Redesign",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:handsoff/conversation.md",
+      "type": "document",
+      "name": "conversation.md",
+      "filePath": "handsoff/conversation.md",
+      "summary": "Session Transcript - June 8, 2026",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:handsoff/conversation_log.md",
+      "type": "document",
+      "name": "conversation_log.md",
+      "filePath": "handsoff/conversation_log.md",
+      "summary": "Chronological Conversation Log & Tech Diary",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:handsoff/redesign_and_verification_log.md",
+      "type": "document",
+      "name": "redesign_and_verification_log.md",
+      "filePath": "handsoff/redesign_and_verification_log.md",
+      "summary": "Redesign & Verification Logs - myTechNews Upgrade",
+      "tags": [
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

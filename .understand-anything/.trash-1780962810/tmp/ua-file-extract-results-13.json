@@ -1,0 +1,236 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "handsoff/README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 74,
+      "nonEmptyLines": 56,
+      "sections": [
+        {
+          "heading": "Handoff Documentation - Monorepo Migration & Redesign",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "🔑 1. Security & Pre-seeded Credentials",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "🏗️ 2. Clean Architecture & Proxy Routing",
+          "level": 2,
+          "line": 24
+        },
+        {
+          "heading": "🧪 3. Engineering Test Harness",
+          "level": 2,
+          "line": 38
+        },
+        {
+          "heading": "📈 4. Active Ports & Running Processes",
+          "level": 2,
+          "line": 53
+        },
+        {
+          "heading": "📝 5. Deployment Guide",
+          "level": 2,
+          "line": 66
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "handsoff/conversation.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 52,
+      "nonEmptyLines": 38,
+      "sections": [
+        {
+          "heading": "Session Transcript - June 8, 2026",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "💬 Conversation Log",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "User Request",
+          "level": 3,
+          "line": 9
+        },
+        {
+          "heading": "Assistant Action",
+          "level": 3,
+          "line": 12
+        },
+        {
+          "heading": "User Request",
+          "level": 3,
+          "line": 22
+        },
+        {
+          "heading": "Assistant Action",
+          "level": 3,
+          "line": 25
+        },
+        {
+          "heading": "User Request",
+          "level": 3,
+          "line": 37
+        },
+        {
+          "heading": "Assistant Action",
+          "level": 3,
+          "line": 40
+        },
+        {
+          "heading": "User Request",
+          "level": 3,
+          "line": 46
+        },
+        {
+          "heading": "Assistant Action",
+          "level": 3,
+          "line": 49
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 10
+      }
+    },
+    {
+      "path": "handsoff/conversation_log.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 66,
+      "nonEmptyLines": 56,
+      "sections": [
+        {
+          "heading": "Chronological Conversation Log & Tech Diary",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "📅 Chronological Timeline",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "1. Codebase Graph & Onboarding",
+          "level": 3,
+          "line": 9
+        },
+        {
+          "heading": "2. Login Page Integration & Security Constraints",
+          "level": 3,
+          "line": 13
+        },
+        {
+          "heading": "3. Debugging registration: \"Failed to Fetch\" (CORS & IPv6 Resolver Bug)",
+          "level": 3,
+          "line": 24
+        },
+        {
+          "heading": "4. Implementation of Auto-Login after Registration",
+          "level": 3,
+          "line": 34
+        },
+        {
+          "heading": "5. Debugging Login: Dual-stack Wildcard Bind",
+          "level": 3,
+          "line": 40
+        },
+        {
+          "heading": "6. Deployment to Vercel",
+          "level": 3,
+          "line": 49
+        },
+        {
+          "heading": "7. Monorepo Reorganization & FastAPI Migration (Current Session)",
+          "level": 3,
+          "line": 58
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 9
+      }
+    },
+    {
+      "path": "handsoff/redesign_and_verification_log.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 55,
+      "nonEmptyLines": 41,
+      "sections": [
+        {
+          "heading": "Redesign & Verification Logs - myTechNews Upgrade",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "🛠️ Restructuring & Cleanups",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "🔐 2FA Email Verification Flow",
+          "level": 2,
+          "line": 25
+        },
+        {
+          "heading": "1. Database & Config Mappings",
+          "level": 3,
+          "line": 29
+        },
+        {
+          "heading": "2. Email client dispatch ([backend/app/email.py](file:///c:/Users/Kashish/myTechNews/backend/app/email.py))",
+          "level": 3,
+          "line": 35
+        },
+        {
+          "heading": "3. API Handlers ([backend/app/main.py](file:///c:/Users/Kashish/myTechNews/backend/app/main.py))",
+          "level": 3,
+          "line": 39
+        },
+        {
+          "heading": "4. React UI Step Integration ([frontend/src/components/Login.tsx](file:///c:/Users/Kashish/myTechNews/frontend/src/components/Login.tsx))",
+          "level": 3,
+          "line": 44
+        },
+        {
+          "heading": "🎨 Immersive UI redseign",
+          "level": 2,
+          "line": 50
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    }
+  ]
+}

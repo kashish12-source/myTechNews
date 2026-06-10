@@ -18,6 +18,13 @@ class Settings(BaseSettings):
     DATABASE_URL: str = "sqlite:///./my_tech_news.db"
     JWT_SECRET: str = "supersecretkeyformytechnewsaggregator"
     GEMINI_API_KEY: str = ""
+    
+    # SMTP Settings
+    SMTP_HOST: str = "smtp.gmail.com"
+    SMTP_PORT: int = 587
+    SMTP_USER: str = ""
+    SMTP_PASSWORD: str = ""
+    SMTP_FROM: str = "mytechnews-alerts@gmail.com"
 
     class Config:
         env_file = ".env"

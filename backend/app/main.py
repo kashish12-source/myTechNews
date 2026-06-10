@@ -8,9 +8,10 @@ from datetime import datetime, timezone
 
 from backend.app.config import settings
 from backend.app.database import engine, Base, get_db
-from backend.app.models import User, Article, SystemStatus
-from backend.app.schemas import UserRegister, UserLogin, Token, NewsFeedResponse, ArticleOut
+from backend.app.models import User, Article, SystemStatus, VerificationCode, SavedArticle
+from backend.app.schemas import UserRegister, UserLogin, Token, NewsFeedResponse, ArticleOut, CodeVerificationRequest, SavedArticleToggle, SavedArticlesResponse
 from backend.app.auth import hash_password, verify_password, create_access_token, get_current_user_email, validate_password_strength
+from backend.app.email_sender import send_welcome_email, send_verification_email
 from backend.app.aggregator import aggregate_news
 
 app = FastAPI(title="MyTechNews API", version="1.0.0")
@@ -114,7 +115,7 @@ def run_background_scrape():
 
 # Authentication API Routes
 @app.post("/api/auth/register", response_model=Token, status_code=status.HTTP_201_CREATED)
-def register_user(user_in: UserRegister, db: Session = Depends(get_db)):
+def register_user(user_in: UserRegister, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
     email = user_in.email.strip().lower()
     validate_password_strength(user_in.password)
     
@@ -130,11 +131,14 @@ def register_user(user_in: UserRegister, db: Session = Depends(get_db)):
     db.add(new_user)
     db.commit()
     
+    # Dispatch welcome letter in the background
+    background_tasks.add_task(send_welcome_email, email)
+    
     token = create_access_token(email)
-    return Token(token=token, email=email, message="User registered successfully.")
+    return Token(token=token, email=email, status="success", message="User registered successfully.")
 
 @app.post("/api/auth/login", response_model=Token)
-def login_user(user_in: UserLogin, db: Session = Depends(get_db)):
+def login_user(user_in: UserLogin, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
     email = user_in.email.strip().lower()
     user = db.query(User).filter(User.email == email).first()
     
@@ -144,8 +148,69 @@ def login_user(user_in: UserLogin, db: Session = Depends(get_db)):
             detail="Invalid email or password."
         )
         
+    import secrets
+    from datetime import datetime, timedelta, timezone
+    
+    # Generate 6-digit code
+    code = "".join(secrets.choice("0123456789") for _ in range(6))
+    expires_at = datetime.now(timezone.utc) + timedelta(minutes=5)
+    
+    # Purge old code entries for this email address
+    db.query(VerificationCode).filter(VerificationCode.email == email).delete()
+    
+    db_code = VerificationCode(email=email, code=code, expires_at=expires_at)
+    db.add(db_code)
+    db.commit()
+    
+    # Dispatch verification code in the background
+    background_tasks.add_task(send_verification_email, email, code)
+    
+    return Token(
+        token=None,
+        email=email,
+        status="verification_required",
+        message="Verification code has been dispatched to your email address.",
+        dev_code=code if settings.ENVIRONMENT == "development" else None
+    )
+
+@app.post("/api/auth/verify-code", response_model=Token)
+def verify_code(req: CodeVerificationRequest, db: Session = Depends(get_db)):
+    email = req.email.strip().lower()
+    code = req.code.strip()
+    
+    db_code = db.query(VerificationCode).filter(
+        VerificationCode.email == email,
+        VerificationCode.code == code
+    ).first()
+    
+    if not db_code:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid or incorrect verification code."
+        )
+        
+    # Validate expiration
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc)
+    expires_at = db_code.expires_at
+    if expires_at.tzinfo is None:
+        expires_at = expires_at.replace(tzinfo=timezone.utc)
+        
+    if now > expires_at:
+        db.delete(db_code)
+        db.commit()
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Verification code has expired. Please log in again."
+        )
+        
+    # Clean up verification code from database
+    db.delete(db_code)
+    db.commit()
+    
+    # Generate user access session token
     token = create_access_token(email)
-    return Token(token=token, email=email)
+    return Token(token=token, email=email, status="success", message="Identity verified successfully.")
 
 # News Feed API Routes
 @app.get("/api/news", response_model=NewsFeedResponse)
@@ -194,7 +259,7 @@ def get_news(background_tasks: BackgroundTasks, db: Session = Depends(get_db), c
     )
 
 @app.post("/api/refresh", response_model=NewsFeedResponse)
-async def force_refresh(db: Session = Depends(get_db), current_user: str = Depends(get_current_user_email)):
+def force_refresh(background_tasks: BackgroundTasks, db: Session = Depends(get_db), current_user: str = Depends(get_current_user_email)):
     status = db.query(SystemStatus).first()
     if status and status.is_updating:
         # Already updating
@@ -207,21 +272,58 @@ async def force_refresh(db: Session = Depends(get_db), current_user: str = Depen
         )
         
     print("Manual news refresh requested via API...")
-    try:
-        await aggregate_news(db)
-    except Exception as e:
-        print(f"Manual aggregation failed: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Failed to refresh tech news: {str(e)}"
-        )
-        
+    
+    # Initialize or update status to is_updating = True
+    if not status:
+        status = SystemStatus(id=1, is_updating=True, last_updated="")
+        db.add(status)
+    else:
+        status.is_updating = True
+    db.commit()
+    
+    # Trigger crawling in background
+    background_tasks.add_task(run_background_scrape)
+    
     articles = db.query(Article).all()
     articles_out = [ArticleOut.from_orm(art) for art in articles]
-    status = db.query(SystemStatus).first()
     
     return NewsFeedResponse(
         articles=articles_out,
         lastUpdated=status.last_updated if status else "",
-        isSystemUpdating=False
+        isSystemUpdating=True
     )
+
+@app.get("/api/saved", response_model=SavedArticlesResponse)
+def get_saved_articles(db: Session = Depends(get_db), current_user: str = Depends(get_current_user_email)):
+    saved = db.query(SavedArticle).filter(SavedArticle.user_email == current_user).all()
+    watch_later = [s.article_id for s in saved if s.list_type == "watch_later"]
+    read_later = [s.article_id for s in saved if s.list_type == "read_later"]
+    return SavedArticlesResponse(watch_later=watch_later, read_later=read_later)
+
+@app.post("/api/saved/toggle", response_model=SavedArticlesResponse)
+def toggle_saved_article(req: SavedArticleToggle, db: Session = Depends(get_db), current_user: str = Depends(get_current_user_email)):
+    if req.list_type not in ["watch_later", "read_later"]:
+        raise HTTPException(status_code=400, detail="Invalid list type.")
+    
+    existing = db.query(SavedArticle).filter(
+        SavedArticle.user_email == current_user,
+        SavedArticle.article_id == req.article_id,
+        SavedArticle.list_type == req.list_type
+    ).first()
+    
+    if existing:
+        db.delete(existing)
+    else:
+        new_saved = SavedArticle(
+            user_email=current_user,
+            article_id=req.article_id,
+            list_type=req.list_type
+        )
+        db.add(new_saved)
+    db.commit()
+    
+    saved = db.query(SavedArticle).filter(SavedArticle.user_email == current_user).all()
+    watch_later = [s.article_id for s in saved if s.list_type == "watch_later"]
+    read_later = [s.article_id for s in saved if s.list_type == "read_later"]
+    return SavedArticlesResponse(watch_later=watch_later, read_later=read_later)
+

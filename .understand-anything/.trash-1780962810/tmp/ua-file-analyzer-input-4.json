@@ -1,0 +1,14 @@
+{
+  "projectRoot": "c:\\Users\\Kashish\\myTechNews",
+  "batchFiles": [
+    {
+      "path": "backend/Dockerfile",
+      "language": "dockerfile",
+      "sizeLines": 20,
+      "fileCategory": "infra"
+    }
+  ],
+  "batchImportData": {
+    "backend/Dockerfile": []
+  }
+}

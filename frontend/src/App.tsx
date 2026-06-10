@@ -1,16 +1,22 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon, LogOut, Radio, User, Search, Globe, Cpu, Building2, Code, Workflow, Server, TableProperties, Layers } from 'lucide-react';
+import { Menu, X, Sun, Moon, LogOut, User, Search, Globe, Cpu, Building2, Code, Workflow, Server, TableProperties, BookOpen, Clock, RefreshCw } from 'lucide-react';
 import NewsFeed from './components/NewsFeed';
-import LlmComponents from './components/LlmComponents';
 import ReplacementMatrix from './components/ReplacementMatrix';
 import Login from './components/Login';
+import LandingPage from './components/LandingPage';
+import SearchPage from './components/SearchPage';
+import BrandLogo from './components/BrandLogo';
+
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'feed' | 'llm' | 'matrix'>('feed');
+  const [activeTab, setActiveTab] = useState<'feed' | 'matrix' | 'search'>('feed');
+  const [previousTab, setPreviousTab] = useState<'feed' | 'matrix'>('feed');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   // Auth state
   const [token, setToken] = useState<string | null>(() => {
@@ -39,6 +45,16 @@ export default function App() {
   // Theme state: light by default, persists in local storage
   const [theme, setTheme] = useState<'dark' | 'light'>('light');
 
+  // Dynamic time state for navigation bottom panel
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   // Apply theme class to document body
   useEffect(() => {
     if (theme === 'light') {
@@ -49,16 +65,18 @@ export default function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const getFormattedDate = () => {
-    return new Date().toLocaleDateString(undefined, { 
-      weekday: 'long', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    });
-  };
+
 
   if (!token) {
+    if (!showLogin) {
+      return (
+        <LandingPage 
+          onAccess={() => setShowLogin(true)} 
+          theme={theme}
+          setTheme={setTheme}
+        />
+      );
+    }
     return (
       <div className="min-h-screen flex flex-col justify-center items-center bg-[var(--bg-primary)] transition-colors duration-150">
         {/* Top Header Toggle to allow changing theme on login */}
@@ -71,7 +89,10 @@ export default function App() {
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
         </div>
-        <Login onLoginSuccess={handleLoginSuccess} />
+        <Login 
+          onLoginSuccess={handleLoginSuccess} 
+          onBack={() => setShowLogin(false)}
+        />
       </div>
     );
   }
@@ -85,8 +106,10 @@ export default function App() {
     { id: 'mlops-devops', label: 'MLOps & DevOps', icon: Workflow, tab: 'feed' as const },
     { id: 'hardware-gpus', label: 'Hardware & GPUs', icon: Server, tab: 'feed' as const },
     { divider: true },
-    { id: 'matrix', label: 'AI Replacement Matrix', icon: TableProperties, tab: 'matrix' as const },
-    { id: 'llm', label: 'LLM Architecture', icon: Layers, tab: 'llm' as const }
+    { id: 'watch-later', label: 'Watch Later', icon: Clock, tab: 'feed' as const },
+    { id: 'read-later', label: 'Read Later', icon: BookOpen, tab: 'feed' as const },
+    { divider: true },
+    { id: 'matrix', label: 'AI Replacement Matrix', icon: TableProperties, tab: 'matrix' as const }
   ];
 
   const handleNavClick = (item: typeof sidebarItems[0]) => {
@@ -95,7 +118,7 @@ export default function App() {
       setActiveTab('feed');
       setSelectedCategory(item.id);
     } else {
-      setActiveTab(item.tab as 'matrix' | 'llm');
+      setActiveTab(item.tab as 'matrix');
     }
     setIsMobileDrawerOpen(false);
   };
@@ -108,95 +131,49 @@ export default function App() {
     return activeTab === item.tab;
   };
 
-  const getHeadingText = () => {
-    if (activeTab === 'matrix') return 'AI Replacement Matrix';
-    if (activeTab === 'llm') return 'LLM Architecture Inspector';
-    const activeItem = sidebarItems.find(item => !('divider' in item) && item.tab === 'feed' && item.id === selectedCategory);
-    return activeItem && 'label' in activeItem ? activeItem.label : 'Technology News';
-  };
-
-  return (
-    <div className="min-h-screen flex flex-col bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-150 font-sans selection:bg-[#1a73e8] selection:text-white">
-      
-      {/* 1. Google News Top Bar Header */}
-      <header className="bg-[var(--bg-secondary)] border-b border-[var(--border-color)] sticky top-0 z-50 px-4 py-2 flex items-center justify-between shadow-sm select-none">
-        
-        {/* Left Section: Menu button and Logo */}
-        <div className="flex items-center gap-3">
-          <button 
-            onClick={() => setIsMobileDrawerOpen(true)}
-            className="md:hidden p-2 hover:bg-[var(--border-hover)] rounded-full text-[var(--text-secondary)] cursor-pointer"
-            title="Open navigation menu"
-          >
-            <Menu size={20} />
-          </button>
-          
-          <div className="flex items-center gap-2">
-            <Radio size={20} className="text-[#1a73e8] animate-pulse" />
-            <span className="text-xl font-bold tracking-tight">
-              <span className="text-[#4285F4]">m</span>
-              <span className="text-[#EA4335]">y</span>
-              <span className="text-[#FBBC05]">T</span>
-              <span className="text-[#34A853]">e</span>
-              <span className="text-[#4285F4]">c</span>
-              <span className="text-[#EA4335]">h</span>
-              <span className="text-[#34A853]">N</span>
-              <span className="text-[#FBBC05]">e</span>
-              <span className="text-[#4285F4]">w</span>
-              <span className="text-[#EA4335]">s</span>
-            </span>
-          </div>
-        </div>
-
-        {/* Center Section: Search Bar (Desktop) */}
-        <div className="google-search-bar flex-1 mx-6 max-w-[620px] hidden md:flex items-center">
-          <Search size={16} className="text-slate-400 mr-3 shrink-0" />
-          <input
-            type="text"
-            placeholder="Search for articles, topics, or matrix entries..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-transparent text-sm border-none outline-none text-[var(--text-primary)] placeholder-slate-400"
-          />
-          {searchQuery && (
-            <button 
-              onClick={() => setSearchQuery('')}
-              className="p-1 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full text-slate-400 cursor-pointer"
-              title="Clear search"
-            >
-              <X size={14} />
-            </button>
-          )}
-        </div>
-
-        {/* Right Section: System info, Theme, Alerts, Profile */}
-        <div className="flex items-center gap-2">
-          
+  const renderBottomPanel = () => {
+    return (
+      <div className="mt-auto pt-2 flex items-center justify-start select-none relative shrink-0">
+        <div className="flex items-center gap-4">
           {/* Theme Switcher */}
           <button 
-            className="p-2 hover:bg-[var(--border-hover)] rounded-full text-[var(--text-secondary)] cursor-pointer transition-all"
+            className="p-2 hover:bg-[var(--border-hover)] rounded-full text-[var(--text-secondary)] cursor-pointer transition-all border border-[var(--border-color)]"
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             title={theme === 'dark' ? "Toggle Light Mode" : "Toggle Dark Mode"}
           >
             {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
           </button>
 
+          {/* Search Trigger Icon */}
+          <button 
+            className={`p-2 hover:bg-[var(--border-hover)] rounded-full text-[var(--text-secondary)] cursor-pointer transition-all border border-[var(--border-color)] ${activeTab === 'search' ? 'text-brand-primary bg-brand-primary/10 border-brand-primary/20' : ''}`}
+            onClick={() => {
+              if (activeTab !== 'search') {
+                setPreviousTab(activeTab as 'feed' | 'matrix');
+                setActiveTab('search');
+              } else {
+                setActiveTab(previousTab);
+              }
+            }}
+            title="Open Search Hub"
+          >
+            <Search size={17} />
+          </button>
+
           {/* Profile Menu Dropdown */}
-          <div className="relative ml-1">
+          <div className="relative">
             <button 
-              onClick={() => {
-                setShowUserMenu(!showUserMenu);
-              }}
-              className="w-8 h-8 rounded-full border border-[var(--border-color)] hover:border-[#1a73e8] cursor-pointer flex items-center justify-center bg-slate-200 dark:bg-slate-800 transition-all shadow-inner relative"
+              onClick={() => setShowUserMenu(!showUserMenu)}
+              className="w-9 h-9 rounded-full border border-[var(--border-color)] hover:border-brand-primary cursor-pointer flex items-center justify-center bg-slate-200 dark:bg-slate-800 transition-all shadow-inner"
               title="User Account"
             >
-              <User size={16} className="text-[var(--text-secondary)]" />
+              <User size={15} className="text-[var(--text-secondary)]" />
             </button>
 
             {showUserMenu && (
-              <div className="absolute right-0 mt-2.5 w-64 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl shadow-2xl p-5 z-50 flex flex-col items-center text-xs animate-fade-in">
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl shadow-2xl p-5 z-50 flex flex-col items-center text-xs animate-fade-in">
                 {/* Circular Avatar */}
-                <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#1a73e8] to-cyan-500 text-white flex items-center justify-center text-lg font-bold shadow-md select-none mb-3">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-brand-primary to-brand-secondary text-white flex items-center justify-center text-lg font-bold shadow-md select-none mb-3">
                   {userEmail ? userEmail.charAt(0).toUpperCase() : 'U'}
                 </div>
                 
@@ -222,49 +199,94 @@ export default function App() {
               </div>
             )}
           </div>
+        </div>
+      </div>
+    );
+  };
 
+  const getHeaderDateTime = () => {
+    const day = currentTime.toLocaleDateString(undefined, { weekday: 'short' });
+    const d = currentTime.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    const t = currentTime.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+    return `${day}, ${d} • ${t}`;
+  };
+
+
+
+  return (
+    <div className="min-h-screen flex flex-col bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-150 font-sans selection:bg-[var(--accent-blue)] selection:text-white dark:selection:text-black">
+      
+      {/* 1. Thicker & Contrasting Center Logo Header */}
+      <header className="bg-slate-950 dark:bg-black text-white sticky top-0 z-50 px-6 py-4 flex items-center justify-between border-b border-[var(--border-color)] select-none h-16 shadow-md transition-all duration-300">
+        
+        {/* Left Section: Mobile Menu Button */}
+        <div className="flex items-center w-1/4">
+          <button 
+            onClick={() => setIsMobileDrawerOpen(true)}
+            className="md:hidden p-2 hover:bg-[var(--border-hover)] rounded-full text-[var(--text-secondary)] cursor-pointer"
+            title="Open navigation menu"
+          >
+            <Menu size={20} />
+          </button>
+        </div>
+
+        {/* Center Section: Logo & Brand Name Centered */}
+        <div className="flex items-center justify-center gap-2.5 select-none w-2/4">
+          <BrandLogo size={34} className="rounded-xl shadow-xs transition-all duration-300" />
+          <span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            myTechNews
+          </span>
+        </div>
+
+        {/* Right Section: Refresh button + Date & Time display */}
+        <div className="flex items-center justify-end gap-3.5 w-1/4">
+          {/* Header Refresh Button */}
+          {activeTab === 'feed' && (
+            <button 
+              className="p-2 hover:bg-slate-800 rounded-full text-slate-350 hover:text-white cursor-pointer transition-all"
+              onClick={() => setRefreshTrigger(prev => prev + 1)}
+              title="Refresh News Feed"
+            >
+              <RefreshCw size={17} />
+            </button>
+          )}
+
+          {/* Date & Time display in header */}
+          <div className="text-xs font-mono text-slate-350 font-medium select-none whitespace-nowrap bg-slate-900 px-3.5 py-1.5 rounded-full border border-slate-800 shadow-inner hidden sm:block">
+            {getHeaderDateTime()}
+          </div>
         </div>
       </header>
 
-      {/* 2. Top Ticker marquee (Breaking News / Feed updates) */}
-      <div className="bg-[var(--bg-secondary)] border-b border-[var(--border-color)] py-1.5 px-4 flex items-center overflow-hidden z-40 select-none">
-        <div className="flex items-center gap-1.5 shrink-0 bg-red-500/10 border border-red-500/20 text-red-500 px-2 py-0.5 rounded text-[10px] font-mono font-bold tracking-wider uppercase mr-4 select-none">
-          <Radio size={11} className="animate-pulse" />
-          <span>Breaking</span>
-        </div>
-        <div className="w-full flex items-center">
-          {/* @ts-ignore */}
-          <marquee className="w-full text-xs font-medium tracking-wide text-slate-400" scrollamount="4">
-            [AI AGENTS] Antigravity model executes multi-file front-end refactoring with zero lint issues ••• [HARDWARE] NVIDIA Blackwell HGX server systems enter global data center distribution ••• [RESEARCH] DPO and RLHF pipelines adapt to larger 2M token context lengths ••• [MLOPS] Local SQLite caches act as robust database backups for scraped feeds.
-          {/* @ts-ignore */}
-          </marquee>
-        </div>
-      </div>
+      {/* 2. Top Ticker marquee removed */}
 
       {/* 3. Main Dashboard Frame (Sidebar + Content Panel) */}
       <div className="flex-1 flex w-full relative">
         
         {/* Left Sidebar Navigation (Desktop) */}
-        <aside className="w-[280px] shrink-0 border-r border-[var(--border-color)] py-6 pr-4 hidden md:flex flex-col gap-1.5 bg-[var(--bg-primary)]">
-          {sidebarItems.map((item, index) => {
-            if ('divider' in item) {
-              return <div key={`divider-${index}`} className="my-2.5 border-t border-[var(--border-color)] mx-6"></div>;
-            }
-            
-            const Icon = item.icon;
-            const active = isItemActive(item);
-            
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleNavClick(item)}
-                className={`sidebar-nav-item ${active ? 'active' : ''}`}
-              >
-                <Icon size={18} className="shrink-0" />
-                <span>{item.label}</span>
-              </button>
-            );
-          })}
+        <aside className="w-[280px] shrink-0 border-r border-[var(--border-color)] py-6 px-4 hidden md:flex flex-col gap-1 bg-[var(--bg-primary)] h-[calc(100vh-56px)] sticky top-[56px]">
+          <div className="flex-grow flex flex-col gap-1 overflow-y-auto pr-1">
+            {sidebarItems.map((item, index) => {
+              if ('divider' in item) {
+                return <div key={`divider-${index}`} className="my-2.5 border-t border-[var(--border-color)] mx-6"></div>;
+              }
+              
+              const Icon = item.icon;
+              const active = isItemActive(item);
+              
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavClick(item)}
+                  className={`sidebar-nav-item ${active ? 'active' : ''}`}
+                >
+                  <Icon size={18} className="shrink-0" />
+                  <span>{item.label}</span>
+                </button>
+              );
+            })}
+          </div>
+          {renderBottomPanel()}
         </aside>
 
         {/* Mobile Slide-over Drawer Backdrop */}
@@ -278,7 +300,7 @@ export default function App() {
               className="w-[280px] h-full bg-[var(--bg-card)] border-r border-[var(--border-color)] py-6 flex flex-col gap-1.5 animate-slide-in relative"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex justify-between items-center px-6 mb-4">
+              <div className="flex justify-between items-center px-6 mb-4 shrink-0">
                 <span className="font-bold text-lg text-[var(--text-primary)]">Categories</span>
                 <button 
                   onClick={() => setIsMobileDrawerOpen(false)}
@@ -288,25 +310,31 @@ export default function App() {
                 </button>
               </div>
 
-              {sidebarItems.map((item, index) => {
-                if ('divider' in item) {
-                  return <div key={`mobile-divider-${index}`} className="my-2 border-t border-[var(--border-color)] mx-6"></div>;
-                }
-                
-                const Icon = item.icon;
-                const active = isItemActive(item);
-                
-                return (
-                  <button
-                    key={`mobile-${item.id}`}
-                    onClick={() => handleNavClick(item)}
-                    className={`sidebar-nav-item ${active ? 'active' : ''}`}
-                  >
-                    <Icon size={18} className="shrink-0" />
-                    <span>{item.label}</span>
-                  </button>
-                );
-              })}
+              <div className="flex-grow overflow-y-auto px-4">
+                {sidebarItems.map((item, index) => {
+                  if ('divider' in item) {
+                    return <div key={`mobile-divider-${index}`} className="my-2 border-t border-[var(--border-color)] mx-6"></div>;
+                  }
+                  
+                  const Icon = item.icon;
+                  const active = isItemActive(item);
+                  
+                  return (
+                    <button
+                      key={`mobile-${item.id}`}
+                      onClick={() => handleNavClick(item)}
+                      className={`sidebar-nav-item ${active ? 'active' : ''}`}
+                    >
+                      <Icon size={18} className="shrink-0" />
+                      <span>{item.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="px-4 shrink-0">
+                {renderBottomPanel()}
+              </div>
             </div>
           </div>
         )}
@@ -314,39 +342,7 @@ export default function App() {
         {/* Right Main Content Pane */}
         <main className="flex-grow p-4 md:p-6 lg:p-8 overflow-y-auto max-w-full">
           {/* Header context indicator */}
-          <div className="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
-            <div>
-              <p className="text-[11px] font-mono tracking-widest text-[#1a73e8] uppercase font-bold">
-                {activeTab === 'feed' ? 'EDITORIAL NEWS DESK' : 'ADVANCED ANALYTICS'}
-              </p>
-              <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-[var(--text-primary)]">
-                {getHeadingText()}
-              </h1>
-            </div>
-            <div className="text-xs text-slate-500 font-mono self-end shrink-0 hidden sm:block">
-              {getFormattedDate()}
-            </div>
-          </div>
 
-          {/* Search bar inside feed on mobile/tablet */}
-          <div className="google-search-bar w-full mb-6 flex md:hidden items-center">
-            <Search size={16} className="text-slate-400 mr-3 shrink-0" />
-            <input
-              type="text"
-              placeholder="Search feed..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-transparent text-sm border-none outline-none text-[var(--text-primary)] placeholder-slate-400"
-            />
-            {searchQuery && (
-              <button 
-                onClick={() => setSearchQuery('')}
-                className="p-1 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full text-slate-400 cursor-pointer"
-              >
-                <X size={14} />
-              </button>
-            )}
-          </div>
 
           {/* Router Views */}
           <div className="w-full">
@@ -363,6 +359,7 @@ export default function App() {
                 onLogout={handleLogout}
                 theme={theme}
                 setTheme={setTheme}
+                refreshTrigger={refreshTrigger}
               />
             )}
             
@@ -372,8 +369,12 @@ export default function App() {
               />
             )}
             
-            {activeTab === 'llm' && (
-              <LlmComponents />
+            {activeTab === 'search' && (
+              <SearchPage 
+                authToken={token}
+                userEmail={userEmail}
+                onBack={() => setActiveTab(previousTab)}
+              />
             )}
           </div>
         </main>

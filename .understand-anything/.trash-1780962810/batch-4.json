@@ -1,0 +1,17 @@
+{
+  "nodes": [
+    {
+      "id": "service:backend/Dockerfile",
+      "type": "service",
+      "name": "Dockerfile",
+      "filePath": "backend/Dockerfile",
+      "summary": "FROM python:3.11-slim",
+      "tags": [
+        "infra",
+        "dockerfile"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

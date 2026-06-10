@@ -1,0 +1,97 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 1,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "frontend/Dockerfile",
+      "language": "dockerfile",
+      "fileCategory": "infra",
+      "totalLines": 29,
+      "nonEmptyLines": 19,
+      "services": [
+        {
+          "name": "build",
+          "image": "node:20-alpine",
+          "ports": [],
+          "startLine": 2,
+          "endLine": 18
+        },
+        {
+          "name": "nginx",
+          "image": "nginx:alpine",
+          "ports": [
+            80
+          ],
+          "startLine": 19,
+          "endLine": 30
+        }
+      ],
+      "steps": [
+        {
+          "name": "FROM node:20-alpine AS build",
+          "startLine": 2,
+          "endLine": 2
+        },
+        {
+          "name": "WORKDIR /app",
+          "startLine": 4,
+          "endLine": 4
+        },
+        {
+          "name": "COPY package.json package-lock.json ./",
+          "startLine": 7,
+          "endLine": 7
+        },
+        {
+          "name": "RUN npm ci",
+          "startLine": 10,
+          "endLine": 10
+        },
+        {
+          "name": "COPY . .",
+          "startLine": 13,
+          "endLine": 13
+        },
+        {
+          "name": "RUN npm run build",
+          "startLine": 16,
+          "endLine": 16
+        },
+        {
+          "name": "FROM nginx:alpine",
+          "startLine": 19,
+          "endLine": 19
+        },
+        {
+          "name": "COPY --from=build /app/dist /usr/share/nginx/html",
+          "startLine": 22,
+          "endLine": 22
+        },
+        {
+          "name": "COPY nginx.conf /etc/nginx/conf.d/default.conf",
+          "startLine": 25,
+          "endLine": 25
+        },
+        {
+          "name": "EXPOSE 80",
+          "startLine": 27,
+          "endLine": 27
+        },
+        {
+          "name": "CMD [\"nginx\", \"-g\", \"daemon off;\"]",
+          "startLine": 29,
+          "endLine": 29
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "serviceCount": 2,
+        "stepCount": 11
+      }
+    }
+  ]
+}

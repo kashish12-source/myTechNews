@@ -1,0 +1,703 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/app/aggregator.py",
+      "type": "file",
+      "name": "aggregator.py",
+      "filePath": "backend/app/aggregator.py",
+      "summary": "Core tech news scraper. Handles fetching and parsing RSS feeds and HTML pages, pre-filtering out non-tech items, deduplicating articles, and generating AI summaries via Gemini.",
+      "tags": [
+        "utility",
+        "scraper",
+        "gemini"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:backend/app/aggregator.py:classify_category",
+      "type": "function",
+      "name": "classify_category",
+      "filePath": "backend/app/aggregator.py",
+      "lineRange": [
+        28,
+        54
+      ],
+      "summary": "Function defining code execution logic for classify_category.",
+      "tags": [
+        "function",
+        "utility",
+        "scraper",
+        "gemini"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/aggregator.py:pre_filter_articles",
+      "type": "function",
+      "name": "pre_filter_articles",
+      "filePath": "backend/app/aggregator.py",
+      "lineRange": [
+        64,
+        88
+      ],
+      "summary": "Function defining code execution logic for pre_filter_articles.",
+      "tags": [
+        "function",
+        "utility",
+        "scraper",
+        "gemini"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/aggregator.py:deduplicate_articles",
+      "type": "function",
+      "name": "deduplicate_articles",
+      "filePath": "backend/app/aggregator.py",
+      "lineRange": [
+        90,
+        109
+      ],
+      "summary": "Function defining code execution logic for deduplicate_articles.",
+      "tags": [
+        "function",
+        "utility",
+        "scraper",
+        "gemini"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/aggregator.py:scrape_paul_graham",
+      "type": "function",
+      "name": "scrape_paul_graham",
+      "filePath": "backend/app/aggregator.py",
+      "lineRange": [
+        112,
+        139
+      ],
+      "summary": "Function defining code execution logic for scrape_paul_graham.",
+      "tags": [
+        "function",
+        "utility",
+        "scraper",
+        "gemini"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/aggregator.py:scrape_niti_aayog",
+      "type": "function",
+      "name": "scrape_niti_aayog",
+      "filePath": "backend/app/aggregator.py",
+      "lineRange": [
+        141,
+        168
+      ],
+      "summary": "Function defining code execution logic for scrape_niti_aayog.",
+      "tags": [
+        "function",
+        "utility",
+        "scraper",
+        "gemini"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/aggregator.py:fetch_open_review",
+      "type": "function",
+      "name": "fetch_open_review",
+      "filePath": "backend/app/aggregator.py",
+      "lineRange": [
+        170,
+        199
+      ],
+      "summary": "Function defining code execution logic for fetch_open_review.",
+      "tags": [
+        "function",
+        "utility",
+        "scraper",
+        "gemini"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/aggregator.py:fetch_rss_feed",
+      "type": "function",
+      "name": "fetch_rss_feed",
+      "filePath": "backend/app/aggregator.py",
+      "lineRange": [
+        201,
+        235
+      ],
+      "summary": "Function defining code execution logic for fetch_rss_feed.",
+      "tags": [
+        "function",
+        "utility",
+        "scraper",
+        "gemini"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/aggregator.py:enrich_with_gemini",
+      "type": "function",
+      "name": "enrich_with_gemini",
+      "filePath": "backend/app/aggregator.py",
+      "lineRange": [
+        238,
+        320
+      ],
+      "summary": "Function defining code execution logic for enrich_with_gemini.",
+      "tags": [
+        "function",
+        "utility",
+        "scraper",
+        "gemini"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:backend/app/aggregator.py:aggregate_news",
+      "type": "function",
+      "name": "aggregate_news",
+      "filePath": "backend/app/aggregator.py",
+      "lineRange": [
+        323,
+        425
+      ],
+      "summary": "Function defining code execution logic for aggregate_news.",
+      "tags": [
+        "function",
+        "utility",
+        "scraper",
+        "gemini"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:backend/app/database.py",
+      "type": "file",
+      "name": "database.py",
+      "filePath": "backend/app/database.py",
+      "summary": "Database connection layer. Configures SQLAlchemy engine and session factory with PostgreSQL/SQLite fallback.",
+      "tags": [
+        "utility",
+        "database",
+        "sqlalchemy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/database.py:get_db",
+      "type": "function",
+      "name": "get_db",
+      "filePath": "backend/app/database.py",
+      "lineRange": [
+        48,
+        53
+      ],
+      "summary": "Function defining code execution logic for get_db.",
+      "tags": [
+        "function",
+        "utility",
+        "database",
+        "sqlalchemy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/models.py",
+      "type": "file",
+      "name": "models.py",
+      "filePath": "backend/app/models.py",
+      "summary": "SQLAlchemy database models definition. Defines schemas for User, Article, SystemStatus, and VerificationCode tables.",
+      "tags": [
+        "data-model",
+        "database",
+        "sqlalchemy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models.py:User",
+      "type": "class",
+      "name": "User",
+      "filePath": "backend/app/models.py",
+      "lineRange": [
+        4,
+        10
+      ],
+      "summary": "Class structuring code abstractions for User.",
+      "tags": [
+        "class",
+        "data-model",
+        "database",
+        "sqlalchemy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models.py:Article",
+      "type": "class",
+      "name": "Article",
+      "filePath": "backend/app/models.py",
+      "lineRange": [
+        12,
+        24
+      ],
+      "summary": "Class structuring code abstractions for Article.",
+      "tags": [
+        "class",
+        "data-model",
+        "database",
+        "sqlalchemy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models.py:SystemStatus",
+      "type": "class",
+      "name": "SystemStatus",
+      "filePath": "backend/app/models.py",
+      "lineRange": [
+        26,
+        31
+      ],
+      "summary": "Class structuring code abstractions for SystemStatus.",
+      "tags": [
+        "class",
+        "data-model",
+        "database",
+        "sqlalchemy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models.py:VerificationCode",
+      "type": "class",
+      "name": "VerificationCode",
+      "filePath": "backend/app/models.py",
+      "lineRange": [
+        33,
+        40
+      ],
+      "summary": "Class structuring code abstractions for VerificationCode.",
+      "tags": [
+        "class",
+        "data-model",
+        "database",
+        "sqlalchemy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/scrape_cli.py",
+      "type": "file",
+      "name": "scrape_cli.py",
+      "filePath": "backend/app/scrape_cli.py",
+      "summary": "CLI entry point to execute the scraper pipeline manually from the command line.",
+      "tags": [
+        "entry-point",
+        "utility",
+        "cli"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/scrape_cli.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "backend/app/scrape_cli.py",
+      "lineRange": [
+        13,
+        57
+      ],
+      "summary": "Function defining code execution logic for main.",
+      "tags": [
+        "function",
+        "entry-point",
+        "utility",
+        "cli"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/tests/test_aggregator.py",
+      "type": "file",
+      "name": "test_aggregator.py",
+      "filePath": "backend/tests/test_aggregator.py",
+      "summary": "import pytest",
+      "tags": [
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_aggregator.py:test_classify_category_heuristics",
+      "type": "function",
+      "name": "test_classify_category_heuristics",
+      "filePath": "backend/tests/test_aggregator.py",
+      "lineRange": [
+        4,
+        20
+      ],
+      "summary": "Function defining code execution logic for test_classify_category_heuristics.",
+      "tags": [
+        "function",
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_aggregator.py:test_pre_filter_articles",
+      "type": "function",
+      "name": "test_pre_filter_articles",
+      "filePath": "backend/tests/test_aggregator.py",
+      "lineRange": [
+        22,
+        33
+      ],
+      "summary": "Function defining code execution logic for test_pre_filter_articles.",
+      "tags": [
+        "function",
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_aggregator.py:test_deduplicate_articles",
+      "type": "function",
+      "name": "test_deduplicate_articles",
+      "filePath": "backend/tests/test_aggregator.py",
+      "lineRange": [
+        35,
+        46
+      ],
+      "summary": "Function defining code execution logic for test_deduplicate_articles.",
+      "tags": [
+        "function",
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:classify_category",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:classify_category",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:pre_filter_articles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:pre_filter_articles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:deduplicate_articles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:deduplicate_articles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:scrape_paul_graham",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:scrape_paul_graham",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:scrape_niti_aayog",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:scrape_niti_aayog",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:fetch_open_review",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:fetch_open_review",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:fetch_rss_feed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:fetch_rss_feed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:enrich_with_gemini",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:enrich_with_gemini",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:aggregate_news",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "function:backend/app/aggregator.py:aggregate_news",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "file:backend/app/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/aggregator.py",
+      "target": "file:backend/app/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/database.py",
+      "target": "function:backend/app/database.py:get_db",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/database.py",
+      "target": "function:backend/app/database.py:get_db",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/database.py",
+      "target": "file:backend/app/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/models.py",
+      "target": "class:backend/app/models.py:User",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models.py",
+      "target": "class:backend/app/models.py:User",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models.py",
+      "target": "class:backend/app/models.py:Article",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models.py",
+      "target": "class:backend/app/models.py:Article",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models.py",
+      "target": "class:backend/app/models.py:SystemStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models.py",
+      "target": "class:backend/app/models.py:SystemStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models.py",
+      "target": "class:backend/app/models.py:VerificationCode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models.py",
+      "target": "class:backend/app/models.py:VerificationCode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models.py",
+      "target": "file:backend/app/database.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/scrape_cli.py",
+      "target": "function:backend/app/scrape_cli.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/scrape_cli.py",
+      "target": "function:backend/app/scrape_cli.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/scrape_cli.py",
+      "target": "file:backend/app/aggregator.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/scrape_cli.py",
+      "target": "file:backend/app/database.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/scrape_cli.py",
+      "target": "file:backend/app/models.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/test_aggregator.py",
+      "target": "function:backend/tests/test_aggregator.py:test_classify_category_heuristics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_aggregator.py",
+      "target": "function:backend/tests/test_aggregator.py:test_classify_category_heuristics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_aggregator.py",
+      "target": "function:backend/tests/test_aggregator.py:test_pre_filter_articles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_aggregator.py",
+      "target": "function:backend/tests/test_aggregator.py:test_pre_filter_articles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_aggregator.py",
+      "target": "function:backend/tests/test_aggregator.py:test_deduplicate_articles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_aggregator.py",
+      "target": "function:backend/tests/test_aggregator.py:test_deduplicate_articles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_aggregator.py",
+      "target": "file:backend/app/aggregator.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

@@ -1,0 +1,1463 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 6,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "api/index.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 5,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "backend/app/auth.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 84,
+      "nonEmptyLines": 78,
+      "functions": [
+        {
+          "name": "hash_password",
+          "startLine": 12,
+          "endLine": 16,
+          "params": [
+            "password"
+          ]
+        },
+        {
+          "name": "verify_password",
+          "startLine": 18,
+          "endLine": 24,
+          "params": [
+            "password",
+            "hashed_password"
+          ]
+        },
+        {
+          "name": "create_access_token",
+          "startLine": 26,
+          "endLine": 30,
+          "params": [
+            "email",
+            "expires_delta"
+          ]
+        },
+        {
+          "name": "validate_password_strength",
+          "startLine": 32,
+          "endLine": 57,
+          "params": [
+            "password"
+          ]
+        },
+        {
+          "name": "get_current_user_email",
+          "startLine": 59,
+          "endLine": 84,
+          "params": [
+            "credentials"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "hash_password",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "verify_password",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "create_access_token",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "validate_password_strength",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "get_current_user_email",
+          "line": 59,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "hash_password",
+          "callee": "password.encode",
+          "lineNumber": 13
+        },
+        {
+          "caller": "hash_password",
+          "callee": "bcrypt.gensalt",
+          "lineNumber": 14
+        },
+        {
+          "caller": "hash_password",
+          "callee": "bcrypt.hashpw",
+          "lineNumber": 15
+        },
+        {
+          "caller": "hash_password",
+          "callee": "hashed.decode",
+          "lineNumber": 16
+        },
+        {
+          "caller": "verify_password",
+          "callee": "password.encode",
+          "lineNumber": 20
+        },
+        {
+          "caller": "verify_password",
+          "callee": "hashed_password.encode",
+          "lineNumber": 21
+        },
+        {
+          "caller": "verify_password",
+          "callee": "bcrypt.checkpw",
+          "lineNumber": 22
+        },
+        {
+          "caller": "create_access_token",
+          "callee": "timedelta",
+          "lineNumber": 26
+        },
+        {
+          "caller": "create_access_token",
+          "callee": "datetime.now",
+          "lineNumber": 27
+        },
+        {
+          "caller": "create_access_token",
+          "callee": "jwt.encode",
+          "lineNumber": 29
+        },
+        {
+          "caller": "validate_password_strength",
+          "callee": "len",
+          "lineNumber": 33
+        },
+        {
+          "caller": "validate_password_strength",
+          "callee": "HTTPException",
+          "lineNumber": 34
+        },
+        {
+          "caller": "validate_password_strength",
+          "callee": "re.search",
+          "lineNumber": 38
+        },
+        {
+          "caller": "validate_password_strength",
+          "callee": "HTTPException",
+          "lineNumber": 39
+        },
+        {
+          "caller": "validate_password_strength",
+          "callee": "re.search",
+          "lineNumber": 43
+        },
+        {
+          "caller": "validate_password_strength",
+          "callee": "HTTPException",
+          "lineNumber": 44
+        },
+        {
+          "caller": "validate_password_strength",
+          "callee": "re.search",
+          "lineNumber": 48
+        },
+        {
+          "caller": "validate_password_strength",
+          "callee": "HTTPException",
+          "lineNumber": 49
+        },
+        {
+          "caller": "validate_password_strength",
+          "callee": "re.search",
+          "lineNumber": 53
+        },
+        {
+          "caller": "validate_password_strength",
+          "callee": "HTTPException",
+          "lineNumber": 54
+        },
+        {
+          "caller": "get_current_user_email",
+          "callee": "Depends",
+          "lineNumber": 59
+        },
+        {
+          "caller": "get_current_user_email",
+          "callee": "HTTPException",
+          "lineNumber": 61
+        },
+        {
+          "caller": "get_current_user_email",
+          "callee": "jwt.decode",
+          "lineNumber": 67
+        },
+        {
+          "caller": "get_current_user_email",
+          "callee": "payload.get",
+          "lineNumber": 68
+        },
+        {
+          "caller": "get_current_user_email",
+          "callee": "HTTPException",
+          "lineNumber": 70
+        },
+        {
+          "caller": "get_current_user_email",
+          "callee": "HTTPException",
+          "lineNumber": 76
+        },
+        {
+          "caller": "get_current_user_email",
+          "callee": "HTTPException",
+          "lineNumber": 81
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "backend/app/config.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 39,
+      "nonEmptyLines": 33,
+      "classes": [
+        {
+          "name": "Settings",
+          "startLine": 15,
+          "endLine": 31,
+          "methods": [],
+          "properties": [
+            "ENVIRONMENT",
+            "PORT",
+            "DATABASE_URL",
+            "JWT_SECRET",
+            "GEMINI_API_KEY",
+            "SMTP_HOST",
+            "SMTP_PORT",
+            "SMTP_USER",
+            "SMTP_PASSWORD",
+            "SMTP_FROM"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Settings",
+          "line": 15,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "backend/app/email.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 91,
+      "nonEmptyLines": 83,
+      "functions": [
+        {
+          "name": "send_email_via_smtp",
+          "startLine": 9,
+          "endLine": 52,
+          "params": [
+            "to_email",
+            "subject",
+            "html_body"
+          ]
+        },
+        {
+          "name": "send_welcome_email",
+          "startLine": 54,
+          "endLine": 70,
+          "params": [
+            "to_email"
+          ]
+        },
+        {
+          "name": "send_verification_email",
+          "startLine": 72,
+          "endLine": 91,
+          "params": [
+            "to_email",
+            "code"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "send_email_via_smtp",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "send_welcome_email",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "send_verification_email",
+          "line": 72,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "logger.info",
+          "lineNumber": 15
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "logger.info",
+          "lineNumber": 16
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "logger.info",
+          "lineNumber": 17
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "logger.info",
+          "lineNumber": 18
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "logger.info",
+          "lineNumber": 19
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "logger.info",
+          "lineNumber": 20
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "logger.info",
+          "lineNumber": 21
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "MIMEMultipart",
+          "lineNumber": 25
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "MIMEText",
+          "lineNumber": 30
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "msg.attach",
+          "lineNumber": 31
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "smtplib.SMTP",
+          "lineNumber": 34
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "server.ehlo",
+          "lineNumber": 35
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "server.starttls",
+          "lineNumber": 37
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "server.ehlo",
+          "lineNumber": 38
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "server.login",
+          "lineNumber": 40
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "server.sendmail",
+          "lineNumber": 41
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "msg.as_string",
+          "lineNumber": 41
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "server.quit",
+          "lineNumber": 42
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "logger.info",
+          "lineNumber": 43
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "logger.error",
+          "lineNumber": 46
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "logger.info",
+          "lineNumber": 48
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "logger.info",
+          "lineNumber": 49
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "logger.info",
+          "lineNumber": 50
+        },
+        {
+          "caller": "send_email_via_smtp",
+          "callee": "logger.info",
+          "lineNumber": 51
+        },
+        {
+          "caller": "send_welcome_email",
+          "callee": "send_email_via_smtp",
+          "lineNumber": 70
+        },
+        {
+          "caller": "send_verification_email",
+          "callee": "send_email_via_smtp",
+          "lineNumber": 91
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "backend/app/main.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 291,
+      "nonEmptyLines": 247,
+      "functions": [
+        {
+          "name": "startup_db_setup",
+          "startLine": 30,
+          "endLine": 100,
+          "params": []
+        },
+        {
+          "name": "run_background_scrape",
+          "startLine": 103,
+          "endLine": 114,
+          "params": []
+        },
+        {
+          "name": "register_user",
+          "startLine": 118,
+          "endLine": 138,
+          "params": [
+            "user_in",
+            "background_tasks",
+            "db"
+          ]
+        },
+        {
+          "name": "login_user",
+          "startLine": 141,
+          "endLine": 173,
+          "params": [
+            "user_in",
+            "background_tasks",
+            "db"
+          ]
+        },
+        {
+          "name": "verify_code",
+          "startLine": 176,
+          "endLine": 212,
+          "params": [
+            "req",
+            "db"
+          ]
+        },
+        {
+          "name": "get_news",
+          "startLine": 216,
+          "endLine": 258,
+          "params": [
+            "background_tasks",
+            "db",
+            "current_user"
+          ]
+        },
+        {
+          "name": "force_refresh",
+          "startLine": 261,
+          "endLine": 291,
+          "params": [
+            "db",
+            "current_user"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "startup_db_setup",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "run_background_scrape",
+          "line": 103,
+          "isDefault": false
+        },
+        {
+          "name": "register_user",
+          "line": 117,
+          "isDefault": false
+        },
+        {
+          "name": "login_user",
+          "line": 140,
+          "isDefault": false
+        },
+        {
+          "name": "verify_code",
+          "line": 175,
+          "isDefault": false
+        },
+        {
+          "name": "get_news",
+          "line": 215,
+          "isDefault": false
+        },
+        {
+          "name": "force_refresh",
+          "line": 260,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "startup_db_setup",
+          "callee": "Base.metadata.create_all",
+          "lineNumber": 31
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "next",
+          "lineNumber": 32
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "get_db",
+          "lineNumber": 32
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.query(User).filter(User.email == admin_email).first",
+          "lineNumber": 36
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.query(User).filter",
+          "lineNumber": 36
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.query",
+          "lineNumber": 36
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "hash_password",
+          "lineNumber": 38
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "User",
+          "lineNumber": 39
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.add",
+          "lineNumber": 40
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.commit",
+          "lineNumber": 41
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "print",
+          "lineNumber": 42
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.query(Article).count",
+          "lineNumber": 45
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.query",
+          "lineNumber": 45
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "os.path.join",
+          "lineNumber": 49
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "os.path.dirname",
+          "lineNumber": 49
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "os.path.dirname",
+          "lineNumber": 49
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "os.path.abspath",
+          "lineNumber": 49
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "os.path.join",
+          "lineNumber": 51
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "os.path.dirname",
+          "lineNumber": 51
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "os.path.dirname",
+          "lineNumber": 51
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "os.path.abspath",
+          "lineNumber": 51
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "os.path.exists",
+          "lineNumber": 56
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "open",
+          "lineNumber": 58
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "json.load",
+          "lineNumber": 59
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "data.get",
+          "lineNumber": 61
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "Article",
+          "lineNumber": 63
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "art.get",
+          "lineNumber": 64
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "art.get",
+          "lineNumber": 65
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "art.get",
+          "lineNumber": 66
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "art.get",
+          "lineNumber": 67
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "art.get",
+          "lineNumber": 68
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "art.get",
+          "lineNumber": 69
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "art.get",
+          "lineNumber": 70
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "art.get",
+          "lineNumber": 71
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "art.get",
+          "lineNumber": 72
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.add",
+          "lineNumber": 74
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.query(SystemStatus).first",
+          "lineNumber": 77
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.query",
+          "lineNumber": 77
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "SystemStatus",
+          "lineNumber": 79
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "data.get",
+          "lineNumber": 79
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.add",
+          "lineNumber": 80
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "data.get",
+          "lineNumber": 82
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.commit",
+          "lineNumber": 85
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "print",
+          "lineNumber": 86
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "len",
+          "lineNumber": 86
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "print",
+          "lineNumber": 90
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.rollback",
+          "lineNumber": 91
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.query(SystemStatus).first",
+          "lineNumber": 94
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.query",
+          "lineNumber": 94
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "SystemStatus",
+          "lineNumber": 96
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.add",
+          "lineNumber": 97
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.commit",
+          "lineNumber": 98
+        },
+        {
+          "caller": "startup_db_setup",
+          "callee": "db.close",
+          "lineNumber": 100
+        },
+        {
+          "caller": "run_background_scrape",
+          "callee": "SessionLocal",
+          "lineNumber": 105
+        },
+        {
+          "caller": "run_background_scrape",
+          "callee": "asyncio.new_event_loop",
+          "lineNumber": 107
+        },
+        {
+          "caller": "run_background_scrape",
+          "callee": "asyncio.set_event_loop",
+          "lineNumber": 108
+        },
+        {
+          "caller": "run_background_scrape",
+          "callee": "loop.run_until_complete",
+          "lineNumber": 109
+        },
+        {
+          "caller": "run_background_scrape",
+          "callee": "aggregate_news",
+          "lineNumber": 109
+        },
+        {
+          "caller": "run_background_scrape",
+          "callee": "loop.close",
+          "lineNumber": 110
+        },
+        {
+          "caller": "run_background_scrape",
+          "callee": "print",
+          "lineNumber": 112
+        },
+        {
+          "caller": "run_background_scrape",
+          "callee": "db.close",
+          "lineNumber": 114
+        },
+        {
+          "caller": "register_user",
+          "callee": "Depends",
+          "lineNumber": 118
+        },
+        {
+          "caller": "register_user",
+          "callee": "user_in.email.strip().lower",
+          "lineNumber": 119
+        },
+        {
+          "caller": "register_user",
+          "callee": "user_in.email.strip",
+          "lineNumber": 119
+        },
+        {
+          "caller": "register_user",
+          "callee": "validate_password_strength",
+          "lineNumber": 120
+        },
+        {
+          "caller": "register_user",
+          "callee": "db.query(User).filter(User.email == email).first",
+          "lineNumber": 122
+        },
+        {
+          "caller": "register_user",
+          "callee": "db.query(User).filter",
+          "lineNumber": 122
+        },
+        {
+          "caller": "register_user",
+          "callee": "db.query",
+          "lineNumber": 122
+        },
+        {
+          "caller": "register_user",
+          "callee": "HTTPException",
+          "lineNumber": 124
+        },
+        {
+          "caller": "register_user",
+          "callee": "hash_password",
+          "lineNumber": 129
+        },
+        {
+          "caller": "register_user",
+          "callee": "User",
+          "lineNumber": 130
+        },
+        {
+          "caller": "register_user",
+          "callee": "db.add",
+          "lineNumber": 131
+        },
+        {
+          "caller": "register_user",
+          "callee": "db.commit",
+          "lineNumber": 132
+        },
+        {
+          "caller": "register_user",
+          "callee": "background_tasks.add_task",
+          "lineNumber": 135
+        },
+        {
+          "caller": "register_user",
+          "callee": "create_access_token",
+          "lineNumber": 137
+        },
+        {
+          "caller": "register_user",
+          "callee": "Token",
+          "lineNumber": 138
+        },
+        {
+          "caller": "login_user",
+          "callee": "Depends",
+          "lineNumber": 141
+        },
+        {
+          "caller": "login_user",
+          "callee": "user_in.email.strip().lower",
+          "lineNumber": 142
+        },
+        {
+          "caller": "login_user",
+          "callee": "user_in.email.strip",
+          "lineNumber": 142
+        },
+        {
+          "caller": "login_user",
+          "callee": "db.query(User).filter(User.email == email).first",
+          "lineNumber": 143
+        },
+        {
+          "caller": "login_user",
+          "callee": "db.query(User).filter",
+          "lineNumber": 143
+        },
+        {
+          "caller": "login_user",
+          "callee": "db.query",
+          "lineNumber": 143
+        },
+        {
+          "caller": "login_user",
+          "callee": "verify_password",
+          "lineNumber": 145
+        },
+        {
+          "caller": "login_user",
+          "callee": "HTTPException",
+          "lineNumber": 146
+        },
+        {
+          "caller": "login_user",
+          "callee": "\"\".join",
+          "lineNumber": 155
+        },
+        {
+          "caller": "login_user",
+          "callee": "secrets.choice",
+          "lineNumber": 155
+        },
+        {
+          "caller": "login_user",
+          "callee": "range",
+          "lineNumber": 155
+        },
+        {
+          "caller": "login_user",
+          "callee": "datetime.now",
+          "lineNumber": 156
+        },
+        {
+          "caller": "login_user",
+          "callee": "timedelta",
+          "lineNumber": 156
+        },
+        {
+          "caller": "login_user",
+          "callee": "db.query(VerificationCode).filter(VerificationCode.email == email).delete",
+          "lineNumber": 159
+        },
+        {
+          "caller": "login_user",
+          "callee": "db.query(VerificationCode).filter",
+          "lineNumber": 159
+        },
+        {
+          "caller": "login_user",
+          "callee": "db.query",
+          "lineNumber": 159
+        },
+        {
+          "caller": "login_user",
+          "callee": "VerificationCode",
+          "lineNumber": 161
+        },
+        {
+          "caller": "login_user",
+          "callee": "db.add",
+          "lineNumber": 162
+        },
+        {
+          "caller": "login_user",
+          "callee": "db.commit",
+          "lineNumber": 163
+        },
+        {
+          "caller": "login_user",
+          "callee": "background_tasks.add_task",
+          "lineNumber": 166
+        },
+        {
+          "caller": "login_user",
+          "callee": "Token",
+          "lineNumber": 168
+        },
+        {
+          "caller": "verify_code",
+          "callee": "Depends",
+          "lineNumber": 176
+        },
+        {
+          "caller": "verify_code",
+          "callee": "req.email.strip().lower",
+          "lineNumber": 177
+        },
+        {
+          "caller": "verify_code",
+          "callee": "req.email.strip",
+          "lineNumber": 177
+        },
+        {
+          "caller": "verify_code",
+          "callee": "req.code.strip",
+          "lineNumber": 178
+        },
+        {
+          "caller": "verify_code",
+          "callee": "db.query(VerificationCode).filter(\n        VerificationCode.email == email,\n        VerificationCode.code == code\n    ).first",
+          "lineNumber": 180
+        },
+        {
+          "caller": "verify_code",
+          "callee": "db.query(VerificationCode).filter",
+          "lineNumber": 180
+        },
+        {
+          "caller": "verify_code",
+          "callee": "db.query",
+          "lineNumber": 180
+        },
+        {
+          "caller": "verify_code",
+          "callee": "HTTPException",
+          "lineNumber": 186
+        },
+        {
+          "caller": "verify_code",
+          "callee": "datetime.now",
+          "lineNumber": 193
+        },
+        {
+          "caller": "verify_code",
+          "callee": "expires_at.replace",
+          "lineNumber": 196
+        },
+        {
+          "caller": "verify_code",
+          "callee": "db.delete",
+          "lineNumber": 199
+        },
+        {
+          "caller": "verify_code",
+          "callee": "db.commit",
+          "lineNumber": 200
+        },
+        {
+          "caller": "verify_code",
+          "callee": "HTTPException",
+          "lineNumber": 201
+        },
+        {
+          "caller": "verify_code",
+          "callee": "db.delete",
+          "lineNumber": 207
+        },
+        {
+          "caller": "verify_code",
+          "callee": "db.commit",
+          "lineNumber": 208
+        },
+        {
+          "caller": "verify_code",
+          "callee": "create_access_token",
+          "lineNumber": 211
+        },
+        {
+          "caller": "verify_code",
+          "callee": "Token",
+          "lineNumber": 212
+        },
+        {
+          "caller": "get_news",
+          "callee": "Depends",
+          "lineNumber": 216
+        },
+        {
+          "caller": "get_news",
+          "callee": "Depends",
+          "lineNumber": 216
+        },
+        {
+          "caller": "get_news",
+          "callee": "db.query(Article).all",
+          "lineNumber": 217
+        },
+        {
+          "caller": "get_news",
+          "callee": "db.query",
+          "lineNumber": 217
+        },
+        {
+          "caller": "get_news",
+          "callee": "db.query(SystemStatus).first",
+          "lineNumber": 218
+        },
+        {
+          "caller": "get_news",
+          "callee": "db.query",
+          "lineNumber": 218
+        },
+        {
+          "caller": "get_news",
+          "callee": "datetime.fromisoformat",
+          "lineNumber": 226
+        },
+        {
+          "caller": "get_news",
+          "callee": "last_updated_dt.replace",
+          "lineNumber": 229
+        },
+        {
+          "caller": "get_news",
+          "callee": "datetime.now",
+          "lineNumber": 230
+        },
+        {
+          "caller": "get_news",
+          "callee": "(now_dt - last_updated_dt).total_seconds",
+          "lineNumber": 232
+        },
+        {
+          "caller": "get_news",
+          "callee": "print",
+          "lineNumber": 234
+        },
+        {
+          "caller": "get_news",
+          "callee": "db.commit",
+          "lineNumber": 237
+        },
+        {
+          "caller": "get_news",
+          "callee": "background_tasks.add_task",
+          "lineNumber": 239
+        },
+        {
+          "caller": "get_news",
+          "callee": "print",
+          "lineNumber": 242
+        },
+        {
+          "caller": "get_news",
+          "callee": "print",
+          "lineNumber": 245
+        },
+        {
+          "caller": "get_news",
+          "callee": "db.commit",
+          "lineNumber": 247
+        },
+        {
+          "caller": "get_news",
+          "callee": "background_tasks.add_task",
+          "lineNumber": 248
+        },
+        {
+          "caller": "get_news",
+          "callee": "ArticleOut.from_orm",
+          "lineNumber": 252
+        },
+        {
+          "caller": "get_news",
+          "callee": "NewsFeedResponse",
+          "lineNumber": 254
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "Depends",
+          "lineNumber": 261
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "Depends",
+          "lineNumber": 261
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "db.query(SystemStatus).first",
+          "lineNumber": 262
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "db.query",
+          "lineNumber": 262
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "db.query(Article).all",
+          "lineNumber": 265
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "db.query",
+          "lineNumber": 265
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "ArticleOut.from_orm",
+          "lineNumber": 266
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "NewsFeedResponse",
+          "lineNumber": 267
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "print",
+          "lineNumber": 273
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "aggregate_news",
+          "lineNumber": 275
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "print",
+          "lineNumber": 277
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "HTTPException",
+          "lineNumber": 278
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "str",
+          "lineNumber": 280
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "db.query(Article).all",
+          "lineNumber": 283
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "db.query",
+          "lineNumber": 283
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "ArticleOut.from_orm",
+          "lineNumber": 284
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "db.query(SystemStatus).first",
+          "lineNumber": 285
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "db.query",
+          "lineNumber": 285
+        },
+        {
+          "caller": "force_refresh",
+          "callee": "NewsFeedResponse",
+          "lineNumber": 287
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 7,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "backend/app/schemas.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 39,
+      "nonEmptyLines": 32,
+      "classes": [
+        {
+          "name": "UserRegister",
+          "startLine": 4,
+          "endLine": 6,
+          "methods": [],
+          "properties": [
+            "email",
+            "password"
+          ]
+        },
+        {
+          "name": "UserLogin",
+          "startLine": 8,
+          "endLine": 10,
+          "methods": [],
+          "properties": [
+            "email",
+            "password"
+          ]
+        },
+        {
+          "name": "Token",
+          "startLine": 12,
+          "endLine": 16,
+          "methods": [],
+          "properties": [
+            "token",
+            "email",
+            "status",
+            "message"
+          ]
+        },
+        {
+          "name": "CodeVerificationRequest",
+          "startLine": 18,
+          "endLine": 20,
+          "methods": [],
+          "properties": [
+            "email",
+            "code"
+          ]
+        },
+        {
+          "name": "ArticleOut",
+          "startLine": 22,
+          "endLine": 34,
+          "methods": [],
+          "properties": [
+            "id",
+            "title",
+            "url",
+            "source",
+            "date",
+            "category",
+            "summary",
+            "importance",
+            "sentiment"
+          ]
+        },
+        {
+          "name": "NewsFeedResponse",
+          "startLine": 36,
+          "endLine": 39,
+          "methods": [],
+          "properties": [
+            "articles",
+            "lastUpdated",
+            "isSystemUpdating"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "UserRegister",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "UserLogin",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "Token",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "CodeVerificationRequest",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "ArticleOut",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "NewsFeedResponse",
+          "line": 36,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 6,
+        "functionCount": 0,
+        "classCount": 6
+      }
+    }
+  ]
+}

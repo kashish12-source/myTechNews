@@ -1,0 +1,182 @@
+{
+  "projectRoot": "c:\\Users\\Kashish\\myTechNews",
+  "batchFiles": [
+    {
+      "path": ".agent/skills/find-docs/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 154,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand-chat/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 55,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand-dashboard/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 105,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand-diff/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 72,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand-domain/extract-domain-context.py",
+      "language": "python",
+      "sizeLines": 428,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".agent/skills/understand-domain/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 140,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand-explain/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 58,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand-knowledge/merge-knowledge-graph.py",
+      "language": "python",
+      "sizeLines": 397,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".agent/skills/understand-knowledge/parse-knowledge-base.py",
+      "language": "python",
+      "sizeLines": 509,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".agent/skills/understand-knowledge/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 132,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand-onboard/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 55,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/build-fingerprints.mjs",
+      "language": "javascript",
+      "sizeLines": 95,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".agent/skills/understand/compute-batches.mjs",
+      "language": "javascript",
+      "sizeLines": 593,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".agent/skills/understand/extract-import-map.mjs",
+      "language": "javascript",
+      "sizeLines": 1632,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".agent/skills/understand/extract-structure.mjs",
+      "language": "javascript",
+      "sizeLines": 339,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".agent/skills/understand/merge-batch-graphs.py",
+      "language": "python",
+      "sizeLines": 1164,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".agent/skills/understand/merge-subdomain-graphs.py",
+      "language": "python",
+      "sizeLines": 308,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".agent/skills/understand/scan-project.mjs",
+      "language": "javascript",
+      "sizeLines": 807,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".agent/skills/understand/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 860,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".understand-anything/knowledge-graph.json",
+      "language": "json",
+      "sizeLines": 153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/.env",
+      "language": "config",
+      "sizeLines": 5,
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/requirements.txt",
+      "language": "txt",
+      "sizeLines": 15,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "frontend/eslint.config.js",
+      "language": "javascript",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/nginx.conf",
+      "language": "conf",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/public/manifest.json",
+      "language": "json",
+      "sizeLines": 22,
+      "fileCategory": "config"
+    }
+  ],
+  "batchImportData": {
+    ".agent/skills/find-docs/SKILL.md": [],
+    ".agent/skills/understand-chat/SKILL.md": [],
+    ".agent/skills/understand-dashboard/SKILL.md": [],
+    ".agent/skills/understand-diff/SKILL.md": [],
+    ".agent/skills/understand-domain/extract-domain-context.py": [],
+    ".agent/skills/understand-domain/SKILL.md": [],
+    ".agent/skills/understand-explain/SKILL.md": [],
+    ".agent/skills/understand-knowledge/merge-knowledge-graph.py": [],
+    ".agent/skills/understand-knowledge/parse-knowledge-base.py": [],
+    ".agent/skills/understand-knowledge/SKILL.md": [],
+    ".agent/skills/understand-onboard/SKILL.md": [],
+    ".agent/skills/understand/build-fingerprints.mjs": [],
+    ".agent/skills/understand/compute-batches.mjs": [],
+    ".agent/skills/understand/extract-import-map.mjs": [],
+    ".agent/skills/understand/extract-structure.mjs": [],
+    ".agent/skills/understand/merge-batch-graphs.py": [],
+    ".agent/skills/understand/merge-subdomain-graphs.py": [],
+    ".agent/skills/understand/scan-project.mjs": [],
+    ".agent/skills/understand/SKILL.md": [],
+    ".understand-anything/knowledge-graph.json": [],
+    "backend/.env": [],
+    "backend/requirements.txt": [],
+    "frontend/eslint.config.js": [],
+    "frontend/nginx.conf": [],
+    "frontend/public/manifest.json": []
+  }
+}

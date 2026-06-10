@@ -1,0 +1,147 @@
+{
+  "projectRoot": "c:\\Users\\Kashish\\myTechNews",
+  "batchFiles": [
+    {
+      "path": ".agent/skills/understand/languages/cpp.md",
+      "language": "markdown",
+      "sizeLines": 47,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/csharp.md",
+      "language": "markdown",
+      "sizeLines": 46,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/css.md",
+      "language": "markdown",
+      "sizeLines": 37,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/dockerfile.md",
+      "language": "markdown",
+      "sizeLines": 34,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/go.md",
+      "language": "markdown",
+      "sizeLines": 47,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/graphql.md",
+      "language": "markdown",
+      "sizeLines": 35,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/html.md",
+      "language": "markdown",
+      "sizeLines": 34,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/java.md",
+      "language": "markdown",
+      "sizeLines": 45,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/javascript.md",
+      "language": "markdown",
+      "sizeLines": 46,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/json.md",
+      "language": "markdown",
+      "sizeLines": 34,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/kotlin.md",
+      "language": "markdown",
+      "sizeLines": 45,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/markdown.md",
+      "language": "markdown",
+      "sizeLines": 34,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/php.md",
+      "language": "markdown",
+      "sizeLines": 46,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/protobuf.md",
+      "language": "markdown",
+      "sizeLines": 34,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/python.md",
+      "language": "markdown",
+      "sizeLines": 48,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/ruby.md",
+      "language": "markdown",
+      "sizeLines": 46,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/rust.md",
+      "language": "markdown",
+      "sizeLines": 47,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/shell.md",
+      "language": "markdown",
+      "sizeLines": 35,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/sql.md",
+      "language": "markdown",
+      "sizeLines": 36,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/languages/swift.md",
+      "language": "markdown",
+      "sizeLines": 46,
+      "fileCategory": "docs"
+    }
+  ],
+  "batchImportData": {
+    ".agent/skills/understand/languages/cpp.md": [],
+    ".agent/skills/understand/languages/csharp.md": [],
+    ".agent/skills/understand/languages/css.md": [],
+    ".agent/skills/understand/languages/dockerfile.md": [],
+    ".agent/skills/understand/languages/go.md": [],
+    ".agent/skills/understand/languages/graphql.md": [],
+    ".agent/skills/understand/languages/html.md": [],
+    ".agent/skills/understand/languages/java.md": [],
+    ".agent/skills/understand/languages/javascript.md": [],
+    ".agent/skills/understand/languages/json.md": [],
+    ".agent/skills/understand/languages/kotlin.md": [],
+    ".agent/skills/understand/languages/markdown.md": [],
+    ".agent/skills/understand/languages/php.md": [],
+    ".agent/skills/understand/languages/protobuf.md": [],
+    ".agent/skills/understand/languages/python.md": [],
+    ".agent/skills/understand/languages/ruby.md": [],
+    ".agent/skills/understand/languages/rust.md": [],
+    ".agent/skills/understand/languages/shell.md": [],
+    ".agent/skills/understand/languages/sql.md": [],
+    ".agent/skills/understand/languages/swift.md": []
+  }
+}

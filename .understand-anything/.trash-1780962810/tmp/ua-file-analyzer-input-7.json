@@ -1,0 +1,77 @@
+{
+  "projectRoot": "c:\\Users\\Kashish\\myTechNews",
+  "batchFiles": [
+    {
+      "path": ".agent/skills/understand/frameworks/django.md",
+      "language": "markdown",
+      "sizeLines": 67,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/frameworks/express.md",
+      "language": "markdown",
+      "sizeLines": 57,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/frameworks/fastapi.md",
+      "language": "markdown",
+      "sizeLines": 58,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/frameworks/flask.md",
+      "language": "markdown",
+      "sizeLines": 53,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/frameworks/gin.md",
+      "language": "markdown",
+      "sizeLines": 59,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/frameworks/nextjs.md",
+      "language": "markdown",
+      "sizeLines": 59,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/frameworks/rails.md",
+      "language": "markdown",
+      "sizeLines": 65,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/frameworks/react.md",
+      "language": "markdown",
+      "sizeLines": 55,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/frameworks/spring.md",
+      "language": "markdown",
+      "sizeLines": 59,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agent/skills/understand/frameworks/vue.md",
+      "language": "markdown",
+      "sizeLines": 59,
+      "fileCategory": "docs"
+    }
+  ],
+  "batchImportData": {
+    ".agent/skills/understand/frameworks/django.md": [],
+    ".agent/skills/understand/frameworks/express.md": [],
+    ".agent/skills/understand/frameworks/fastapi.md": [],
+    ".agent/skills/understand/frameworks/flask.md": [],
+    ".agent/skills/understand/frameworks/gin.md": [],
+    ".agent/skills/understand/frameworks/nextjs.md": [],
+    ".agent/skills/understand/frameworks/rails.md": [],
+    ".agent/skills/understand/frameworks/react.md": [],
+    ".agent/skills/understand/frameworks/spring.md": [],
+    ".agent/skills/understand/frameworks/vue.md": []
+  }
+}

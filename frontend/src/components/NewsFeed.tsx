@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { RefreshCw, ExternalLink, AlertCircle, Sparkles, Cpu, Building2, Code, Workflow, Server, ChevronDown, ChevronUp, Clock, Globe } from 'lucide-react';
+import { RefreshCw, ExternalLink, AlertCircle, Clock, Bookmark } from 'lucide-react';
 import fallbackData from '../data/news-cache.json';
 import { getApiUrl } from '../utils/api';
 
@@ -22,18 +22,21 @@ interface NewsFeedProps {
   setSelectedCategory?: (cat: string) => void;
   searchQuery: string;
   setSearchQuery?: (q: string) => void;
-  setActiveTab?: (tab: 'feed' | 'llm' | 'matrix') => void;
+  setActiveTab?: (tab: 'feed' | 'matrix' | 'search') => void;
   userEmail?: string | null;
   onLogout?: () => void;
   theme?: 'dark' | 'light';
   setTheme?: (theme: 'dark' | 'light') => void;
+  refreshTrigger?: number;
 }
 
 export default function NewsFeed({ 
   authToken, 
   onAuthError, 
   selectedCategory,
-  searchQuery
+  searchQuery,
+  userEmail,
+  refreshTrigger
 }: NewsFeedProps) {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(false);
@@ -41,16 +44,82 @@ export default function NewsFeed({
   const [error, setError] = useState<string | null>(null);
   const [expandedArticle, setExpandedArticle] = useState<string | null>(null);
 
-  const categories = [
-    { id: 'all', label: 'All Updates', icon: Globe },
-    { id: 'ai-models', label: 'ML Models & AI', icon: Cpu },
-    { id: 'big-tech', label: 'Big Tech', icon: Building2 },
-    { id: 'dev-tools', label: 'Dev Tools & Coding', icon: Code },
-    { id: 'mlops-devops', label: 'MLOps & DevOps', icon: Workflow },
-    { id: 'hardware-gpus', label: 'Hardware & GPUs', icon: Server }
-  ];
+  // Bookmarking states
+  const [watchLaterIds, setWatchLaterIds] = useState<string[]>([]);
+  const [readLaterIds, setReadLaterIds] = useState<string[]>([]);
 
-  // Date parsers
+  const loadSavedArticles = async () => {
+    const emailKey = userEmail || 'guest';
+    
+    // Load local storage fallback immediately for offline/guest mode
+    const wl = localStorage.getItem(`watch_later_${emailKey}`);
+    const rl = localStorage.getItem(`read_later_${emailKey}`);
+    if (wl) setWatchLaterIds(JSON.parse(wl));
+    if (rl) setReadLaterIds(JSON.parse(rl));
+
+    if (!authToken || !userEmail) return;
+    try {
+      const response = await fetch(getApiUrl('/api/saved'), {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${authToken}`
+        }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setWatchLaterIds(data.watch_later || []);
+        setReadLaterIds(data.read_later || []);
+        localStorage.setItem(`watch_later_${emailKey}`, JSON.stringify(data.watch_later || []));
+        localStorage.setItem(`read_later_${emailKey}`, JSON.stringify(data.read_later || []));
+        return;
+      }
+    } catch (err) {
+      console.warn('Backend server offline, loading bookmarks from local storage', err);
+    }
+  };
+
+  const toggleSaved = async (articleId: string, listType: 'watch_later' | 'read_later') => {
+    const emailKey = userEmail || 'guest';
+    
+    // Dynamic optimistic local updates
+    let updatedIds: string[] = [];
+    if (listType === 'watch_later') {
+      updatedIds = watchLaterIds.includes(articleId)
+        ? watchLaterIds.filter(id => id !== articleId)
+        : [...watchLaterIds, articleId];
+      setWatchLaterIds(updatedIds);
+      localStorage.setItem(`watch_later_${emailKey}`, JSON.stringify(updatedIds));
+    } else {
+      updatedIds = readLaterIds.includes(articleId)
+        ? readLaterIds.filter(id => id !== articleId)
+        : [...readLaterIds, articleId];
+      setReadLaterIds(updatedIds);
+      localStorage.setItem(`read_later_${emailKey}`, JSON.stringify(updatedIds));
+    }
+
+    if (!authToken || !userEmail) return;
+
+    try {
+      const response = await fetch(getApiUrl('/api/saved/toggle'), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
+        body: JSON.stringify({ article_id: articleId, list_type: listType })
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setWatchLaterIds(data.watch_later || []);
+        setReadLaterIds(data.read_later || []);
+        localStorage.setItem(`watch_later_${emailKey}`, JSON.stringify(data.watch_later || []));
+        localStorage.setItem(`read_later_${emailKey}`, JSON.stringify(data.read_later || []));
+      }
+    } catch (err) {
+      console.warn('Failed to sync bookmark toggle with server, saved locally', err);
+    }
+  };
+
   const formatDate = (dateStr: string) => {
     try {
       if (!dateStr) return 'Recent';
@@ -97,7 +166,7 @@ export default function NewsFeed({
       setArticles(data.articles || []);
       setUpdating(!!data.isSystemUpdating);
     } catch (err) {
-      console.warn('Backend server not running. Falling back to static pre-seeded news database.', err);
+      console.warn('Backend server not running. Falling back to static pre-seeded daily archive.', err);
       setArticles(fallbackData.articles || []);
       setUpdating(false);
       if (forceRefresh) {
@@ -112,7 +181,8 @@ export default function NewsFeed({
 
   useEffect(() => {
     fetchNews();
-  }, []);
+    loadSavedArticles();
+  }, [authToken, userEmail]);
 
   useEffect(() => {
     let timeoutId: number;
@@ -128,165 +198,78 @@ export default function NewsFeed({
     };
   }, [updating]);
 
+  useEffect(() => {
+    if (refreshTrigger !== undefined && refreshTrigger > 0) {
+      fetchNews(true);
+    }
+  }, [refreshTrigger]);
+
   const filteredArticles = articles.filter(article => {
-    const matchesCategory = selectedCategory === 'all' || article.category === selectedCategory;
+    let matchesCategory = false;
+    if (selectedCategory === 'watch-later') {
+      matchesCategory = watchLaterIds.includes(article.id);
+    } else if (selectedCategory === 'read-later') {
+      matchesCategory = readLaterIds.includes(article.id);
+    } else {
+      matchesCategory = selectedCategory === 'all' || article.category === selectedCategory;
+    }
     const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           article.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           article.source.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
-  const getCategoryBadgeTheme = (cat: string) => {
-    switch(cat) {
-      case 'ai-models': 
-        return 'text-[#1a73e8] bg-[#e8f0fe] dark:text-[#8ab4f8] dark:bg-[#182a4d] border-blue-500/10';
-      case 'big-tech': 
-        return 'text-[#0f9d58] bg-[#e6f4ea] dark:text-[#81c995] dark:bg-[#133022] border-green-500/10';
-      case 'dev-tools': 
-        return 'text-[#ab47bc] bg-[#fae3fc] dark:text-[#d7aef2] dark:bg-[#341b42] border-purple-500/10';
-      case 'mlops-devops': 
-        return 'text-[#00acc1] bg-[#e2f7f9] dark:text-[#78d9ec] dark:bg-[#152e35] border-cyan-500/10';
-      case 'hardware-gpus': 
-        return 'text-[#e67c73] bg-[#feeeee] dark:text-[#f28b82] dark:bg-[#421b19] border-red-500/10';
-      default: 
-        return 'text-slate-500 bg-slate-100 dark:text-slate-400 dark:bg-slate-800 border-slate-500/10';
-    }
+  const getCategoryBadgeTheme = (_cat: string) => {
+    return 'text-[var(--text-secondary)] border-[var(--border-color)] bg-[var(--bg-secondary)]';
   };
 
-  const getSentimentStyle = (sentiment?: string) => {
-    if (!sentiment) return 'text-slate-400 bg-slate-100 dark:bg-slate-800/50';
-    switch (sentiment) {
-      case 'positive': return 'text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-950/20 border-emerald-500/10';
-      case 'negative': return 'text-rose-500 bg-rose-50 dark:text-rose-400 dark:bg-rose-950/20 border-rose-500/10';
-      default: return 'text-slate-500 bg-slate-50 dark:text-slate-400 dark:bg-slate-900 border-slate-500/10';
-    }
-  };
+
 
   const calculateReadingTime = (text: string) => {
     const chars = text.length || 0;
     return Math.max(1, Math.ceil(chars / 180));
   };
 
-  // Grouping structures
-  const heroArticle = filteredArticles.find(a => a.importance === 'high') || filteredArticles[0];
-  const secondaryArticles = filteredArticles.filter(a => a.id !== heroArticle?.id);
-
-
   return (
-    <div className="flex flex-col gap-6 animate-fade-in">
+    <div className="flex flex-col gap-8 animate-fade-in">
       
-      {/* Dynamic aggregation/refresh feedback */}
       {error && (
-        <div className="flex items-center gap-3 p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-500 text-xs">
+        <div className="flex items-center gap-3 p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-500 text-xs font-semibold">
           <AlertCircle size={16} className="shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
-      {updating && (
-        <div className="flex items-center gap-3 p-3.5 bg-[#e8f0fe] dark:bg-[#182a4d] border border-blue-500/20 rounded-xl text-[#1a73e8] dark:text-[#8ab4f8] text-xs animate-pulse font-medium">
-          <RefreshCw size={14} className="animate-spin shrink-0" />
-          <span>News pipeline is crawling technical RSS feeds in the background...</span>
-        </div>
-      )}
+      <div className="w-full max-w-none flex flex-col gap-8">
 
-      {/* Centered Articles Stream Container */}
-      <div className="max-w-4xl mx-auto w-full flex flex-col gap-6">
-          
           {loading ? (
             <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-20 text-center flex flex-col items-center justify-center shadow-sm">
-              <RefreshCw size={36} className="animate-spin text-[#1a73e8] mb-4" />
+              <RefreshCw size={36} className="animate-spin text-brand-primary mb-4" />
               <p className="text-sm font-semibold text-[var(--text-secondary)]">Retrieving updates...</p>
             </div>
           ) : filteredArticles.length === 0 ? (
             <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-20 text-center text-slate-400 shadow-sm">
               <AlertCircle size={40} className="mx-auto mb-4 text-slate-500" />
-              <p className="font-semibold text-lg text-[var(--text-primary)]">No articles found</p>
-              <p className="text-xs text-[var(--text-secondary)] mt-1">Try matching other keywords or select another category.</p>
+              <p className="font-semibold text-lg text-[var(--text-primary)]">
+                {selectedCategory === 'watch-later' 
+                  ? 'No watch later articles saved' 
+                  : selectedCategory === 'read-later' 
+                    ? 'No read later articles saved' 
+                    : 'No articles found'}
+              </p>
+              <p className="text-xs text-[var(--text-secondary)] mt-1">
+                {selectedCategory === 'watch-later'
+                  ? 'Click the Clock icon on any news card to add it to this list.'
+                  : selectedCategory === 'read-later'
+                    ? 'Click the Bookmark icon on any news card to add it to this list.'
+                    : 'Try matching other keywords or select another category.'}
+              </p>
             </div>
           ) : (
-            <div className="flex flex-col gap-6">
-              
-              {/* Spotlight Lead Article (Google News Spotlight styling) */}
-              {heroArticle && (
-                <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
-                  {/* Decorative glowing header graph container */}
-                  <div className="h-40 w-full bg-[#03060a] relative overflow-hidden border-b border-[var(--border-color)]">
-                    <div className="absolute inset-0 opacity-20">
-                      <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                          <pattern id="grid-spotlight" width="20" height="20" patternUnits="userSpaceOnUse">
-                            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1"/>
-                          </pattern>
-                        </defs>
-                        <rect width="100%" height="100%" fill="url(#grid-spotlight)" />
-                        <path d="M -10 90 Q 150 20 300 110 T 600 70" fill="none" stroke="#1a73e8" strokeWidth="2" />
-                      </svg>
-                    </div>
-                    
-                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-card)] to-transparent"></div>
-                    
-                    <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-mono font-bold tracking-wider uppercase bg-[#1a73e8]/10 border border-[#1a73e8]/20 text-[#1a73e8] dark:text-[#8ab4f8]">
-                      <Sparkles size={10} className="animate-pulse text-[#1a73e8] dark:text-[#8ab4f8]" />
-                      <span>Spotlight Story</span>
-                    </div>
-                  </div>
-
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 text-xs mb-3 flex-wrap text-[var(--text-secondary)]">
-                      <span className="font-bold text-[#1a73e8] dark:text-[#8ab4f8] tracking-wide uppercase">{heroArticle.source}</span>
-                      <span>•</span>
-                      <span className="flex items-center gap-1"><Clock size={11} /> {formatDate(heroArticle.date)}</span>
-                      <span>•</span>
-                      <span>{calculateReadingTime(heroArticle.summary)} min read</span>
-                      {heroArticle.sentiment && (
-                        <span className={`text-[9px] uppercase font-bold px-2 py-0.5 rounded border ${getSentimentStyle(heroArticle.sentiment)}`}>
-                          {heroArticle.sentiment}
-                        </span>
-                      )}
-                    </div>
-
-                    <a 
-                      href={heroArticle.url} 
-                      target="_blank" 
-                      rel="noreferrer" 
-                      className="group"
-                    >
-                      <h2 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] transition-colors leading-snug mb-3">
-                        {heroArticle.title}
-                      </h2>
-                    </a>
-
-                    <p className={`text-[var(--text-secondary)] text-sm leading-relaxed ${expandedArticle === heroArticle.id ? '' : 'line-clamp-3'}`}>
-                      {heroArticle.summary}
-                    </p>
-
-                    <div className="flex justify-between items-center mt-5 pt-4 border-t border-[var(--border-color)]">
-                      <button 
-                        onClick={() => setExpandedArticle(expandedArticle === heroArticle.id ? null : heroArticle.id)}
-                        className="text-xs font-semibold text-[#1a73e8] dark:text-[#8ab4f8] hover:underline flex items-center gap-0.5 cursor-pointer"
-                      >
-                        <span>{expandedArticle === heroArticle.id ? 'Hide summary' : 'Show brief'}</span>
-                        {expandedArticle === heroArticle.id ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-                      </button>
-
-                      <a 
-                        href={heroArticle.url} 
-                        target="_blank" 
-                        rel="noreferrer" 
-                        className="flex items-center gap-1 text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-color)] hover:border-slate-400 dark:hover:border-slate-700 px-3 py-1.5 rounded-lg transition-all shadow-sm"
-                      >
-                        <span>View Source</span>
-                        <ExternalLink size={11} />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Grid of normal news items */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {secondaryArticles.map((article, idx) => {
+            <div className="flex flex-col gap-8">
+              {/* Grid of news items taking complete space */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {filteredArticles.map((article, idx) => {
                   const badgeClass = getCategoryBadgeTheme(article.category);
                   const readingTime = calculateReadingTime(article.summary);
                   const isExpanded = expandedArticle === article.id;
@@ -299,16 +282,29 @@ export default function NewsFeed({
                     >
                       <div>
                         {/* Source and Category Badges */}
-                        <div className="flex justify-between items-center mb-3 text-[10px] text-slate-500 font-mono">
-                          <span className={`px-2 py-0.5 rounded border text-[9px] font-semibold tracking-wide ${badgeClass}`}>
-                            {categories.find(c => c.id === article.category)?.label.split(' ')[0] || article.category}
+                        <div className="flex items-center justify-between mb-3.5 pb-2.5 border-b border-[var(--border-color)]/60">
+                          <div className="flex items-center gap-2">
+                            <div className={`w-6.5 h-6.5 rounded-full flex items-center justify-center text-[10px] font-bold text-white uppercase select-none ${
+                              article.source.toLowerCase().includes('hacker') ? 'bg-orange-500' :
+                              article.source.toLowerCase().includes('lobster') ? 'bg-rose-500' :
+                              article.source.toLowerCase().includes('crunch') ? 'bg-emerald-500' :
+                              article.source.toLowerCase().includes('wired') ? 'bg-cyan-600' : 'bg-brand-primary'
+                            }`}>
+                              {article.source.charAt(0)}
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="font-bold text-[10px] text-[var(--text-primary)] leading-none">{article.source}</span>
+                              <span className="text-[8.5px] text-[var(--text-muted)] mt-0.5">{formatDate(article.date).split(',')[0]}</span>
+                            </div>
+                          </div>
+                          <span className={`px-2.5 py-0.5 rounded-full border text-[9px] font-bold tracking-wide ${badgeClass}`}>
+                            {article.category.replace('-', ' ')}
                           </span>
-                          <span>{formatDate(article.date).split(',')[0]}</span>
                         </div>
 
                         {/* Title */}
                         <a href={article.url} target="_blank" rel="noreferrer">
-                          <h3 className="text-sm md:text-base font-bold text-[var(--text-primary)] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] transition-colors leading-snug line-clamp-2 mb-2">
+                          <h3 className="text-base font-serif font-bold text-[var(--text-primary)] hover:text-brand-primary transition-colors leading-snug line-clamp-2 mb-2.5">
                             {article.title}
                           </h3>
                         </a>
@@ -320,18 +316,45 @@ export default function NewsFeed({
                       </div>
 
                       {/* Footer */}
-                      <div className="flex justify-between items-center mt-4 pt-3 border-t border-[var(--border-color)] text-[10px]">
+                      <div className="flex justify-between items-center mt-5 pt-3 border-t border-[var(--border-color)] text-[10px]">
                         <button 
                           onClick={() => setExpandedArticle(isExpanded ? null : article.id)}
-                          className="font-bold text-[#1a73e8] dark:text-[#8ab4f8] hover:underline flex items-center gap-0.5 cursor-pointer"
+                          className="font-bold text-brand-primary hover:underline flex items-center gap-0.5 cursor-pointer bg-transparent border-none p-0"
                         >
                           <span>{isExpanded ? 'Collapse' : 'Read summary'}</span>
-                          {isExpanded ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
                         </button>
 
-                        <div className="flex items-center gap-2 text-[10px] text-slate-500">
-                          <span className="flex items-center gap-0.5"><Clock size={9} /> {readingTime} min</span>
-                          <span>•</span>
+                        <div className="flex items-center gap-1.5 text-[10px] text-[var(--text-muted)]">
+                          <button
+                            onClick={() => toggleSaved(article.id, 'watch_later')}
+                            className={`p-1 border rounded hover:bg-[var(--border-hover)] cursor-pointer transition-all ${
+                              watchLaterIds.includes(article.id)
+                                ? 'bg-amber-500/10 border-amber-500/25 text-amber-500 hover:bg-amber-500/20'
+                                : 'bg-transparent border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                            }`}
+                            title={watchLaterIds.includes(article.id) ? "Remove from Watch Later" : "Watch Later"}
+                          >
+                            <Clock size={10} className={watchLaterIds.includes(article.id) ? "fill-amber-500/25" : ""} />
+                          </button>
+
+                          <button
+                            onClick={() => toggleSaved(article.id, 'read_later')}
+                            className={`p-1 border rounded hover:bg-[var(--border-hover)] cursor-pointer transition-all ${
+                              readLaterIds.includes(article.id)
+                                ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-500 hover:bg-emerald-500/20'
+                                : 'bg-transparent border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                            }`}
+                            title={readLaterIds.includes(article.id) ? "Remove from Read Later" : "Read Later"}
+                          >
+                            <Bookmark size={10} className={readLaterIds.includes(article.id) ? "fill-emerald-500/25" : ""} />
+                          </button>
+
+                          <span className="text-[var(--text-muted)] opacity-50">•</span>
+
+                          <span className="flex items-center gap-0.5"><Clock size={10} /> {readingTime} min</span>
+                          
+                          <span className="text-[var(--text-muted)] opacity-50">•</span>
+                          
                           <a 
                             href={article.url} 
                             target="_blank" 
@@ -354,5 +377,3 @@ export default function NewsFeed({
     </div>
   );
 }
-
-
