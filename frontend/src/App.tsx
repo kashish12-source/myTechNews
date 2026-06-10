@@ -217,7 +217,7 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-150 font-sans selection:bg-[var(--accent-blue)] selection:text-white dark:selection:text-black">
       
       {/* 1. Thicker & Contrasting Center Logo Header */}
-      <header className="bg-slate-950 dark:bg-black text-white sticky top-0 z-50 px-6 py-4 flex items-center justify-between border-b border-[var(--border-color)] select-none h-16 shadow-md transition-all duration-300">
+      <header className="bg-slate-950 dark:bg-black text-white sticky top-0 z-50 px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between border-b border-[var(--border-color)] select-none h-14 sm:h-16 shadow-md transition-all duration-300">
         
         {/* Left Section: Mobile Menu Button */}
         <div className="flex items-center w-1/4">
@@ -233,7 +233,7 @@ export default function App() {
         {/* Center Section: Logo & Brand Name Centered */}
         <div className="flex items-center justify-center gap-2.5 select-none w-2/4">
           <BrandLogo size={34} className="rounded-xl shadow-xs transition-all duration-300" />
-          <span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+          <span className="text-lg sm:text-2xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
             myTechNews
           </span>
         </div>
@@ -264,7 +264,7 @@ export default function App() {
       <div className="flex-1 flex w-full relative">
         
         {/* Left Sidebar Navigation (Desktop) */}
-        <aside className="w-[280px] shrink-0 border-r border-[var(--border-color)] py-6 px-4 hidden md:flex flex-col gap-1 bg-[var(--bg-primary)] h-[calc(100vh-56px)] sticky top-[56px]">
+        <aside className="w-[280px] shrink-0 border-r border-[var(--border-color)] py-6 px-4 hidden md:flex flex-col gap-1 bg-[var(--bg-primary)] h-[calc(100vh-56px)] sticky top-14 sm:top-16">
           <div className="flex-grow flex flex-col gap-1 overflow-y-auto pr-1">
             {sidebarItems.map((item, index) => {
               if ('divider' in item) {
@@ -340,7 +340,7 @@ export default function App() {
         )}
 
         {/* Right Main Content Pane */}
-        <main className="flex-grow p-4 md:p-6 lg:p-8 overflow-y-auto max-w-full">
+        <main className="flex-grow p-3 sm:p-4 md:p-6 lg:p-8 overflow-y-auto max-w-full">
           {/* Header context indicator */}
 
 
