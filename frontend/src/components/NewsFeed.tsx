@@ -154,17 +154,24 @@ export default function NewsFeed({
         headers
       });
 
-      if (response.status === 401 || response.status === 403) {
-        onAuthError();
+      if (response.ok) {
+        const data = await response.json();
+        setArticles(data.articles || []);
+        setUpdating(!!data.isSystemUpdating);
         return;
       }
 
-      if (!response.ok) {
-        throw new Error('Failed to connect to local aggregator server.');
+      // If auth fails on a hosted deployment (no local backend), fall back to cache
+      if (response.status === 401 || response.status === 403) {
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        if (isLocalhost) {
+          onAuthError();
+          return;
+        }
+        // On Vercel/hosted: fall through to fallback data
       }
-      const data = await response.json();
-      setArticles(data.articles || []);
-      setUpdating(!!data.isSystemUpdating);
+
+      throw new Error('Failed to connect to local aggregator server.');
     } catch (err) {
       console.warn('Backend server not running. Falling back to static pre-seeded daily archive.', err);
       setArticles(fallbackData.articles || []);
