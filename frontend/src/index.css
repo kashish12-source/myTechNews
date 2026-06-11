@@ -405,3 +405,13 @@ body.light-theme .google-news-card {
   border-color: var(--card-hover-border);
   box-shadow: 0 12px 28px -8px var(--shadow-main-hover, rgba(0, 0, 0, 0.5)), 0 0 15px -3px var(--card-hover-glow);
 }
+
+/* Hide scrollbars for cleaner layouts */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+

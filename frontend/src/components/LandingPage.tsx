@@ -395,15 +395,14 @@ export default function LandingPage({ onAccess, theme, setTheme }: LandingPagePr
         <div className="flex flex-col lg:flex-row gap-6">
 
           {/* Left: Step List */}
-          <div className="flex flex-col gap-2 lg:w-72 shrink-0">
+          <div className="flex flex-row overflow-x-auto gap-2 lg:flex-col lg:w-72 shrink-0 pb-3 lg:pb-0 scrollbar-none snap-x snap-mandatory">
             {pipeline.map((step, idx) => {
-              const Icon = step.icon;
               const isActive = activeStep === idx;
               return (
                 <button
                   key={idx}
                   onClick={() => setActiveStep(idx)}
-                  className={`group w-full text-left flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-300 cursor-pointer ${
+                  className={`group shrink-0 snap-start w-[220px] lg:w-full text-left flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-300 cursor-pointer ${
                     isActive
                       ? `bg-white/[0.06] ${step.border} shadow-lg ${step.glow}`
                       : 'bg-white/[0.02] border-white/[0.04] hover:bg-white/[0.04] hover:border-white/[0.08]'
@@ -446,7 +445,7 @@ export default function LandingPage({ onAccess, theme, setTheme }: LandingPagePr
             return (
               <div
                 key={activeStep}
-                className={`flex-1 relative bg-white/[0.03] border ${step.border} rounded-2xl p-6 sm:p-8 backdrop-blur-sm overflow-hidden`}
+                className={`w-full max-w-full flex-1 relative bg-white/[0.03] border ${step.border} rounded-2xl p-5 sm:p-8 backdrop-blur-sm overflow-hidden`}
                 style={{ animation: 'fadeSlideIn 0.4s ease-out' }}
               >
                 {/* Background glow */}
@@ -457,12 +456,12 @@ export default function LandingPage({ onAccess, theme, setTheme }: LandingPagePr
                   <div className={`shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-black shadow-xl`}>
                     <Icon size={22} />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="text-[10px] font-black text-white/30 tracking-widest">STEP {step.step}</span>
                       <span className={`text-[9px] px-2 py-0.5 rounded-full border ${step.border} text-white/50 font-mono`}>{step.tag}</span>
                     </div>
-                    <h3 className="text-lg sm:text-xl font-extrabold text-white mt-1">{step.title}</h3>
+                    <h3 className="text-lg sm:text-xl font-extrabold text-white mt-1 truncate">{step.title}</h3>
                     <p className="text-xs text-white/40 mt-1 leading-relaxed max-w-xl">{step.description}</p>
                   </div>
                 </div>
@@ -470,9 +469,9 @@ export default function LandingPage({ onAccess, theme, setTheme }: LandingPagePr
                 {/* Bullet list */}
                 <ul className="space-y-2.5 mb-6">
                   {step.bullets.map((b, bi) => (
-                    <li key={bi} className="flex items-start gap-2 text-xs text-white/60 leading-relaxed">
+                    <li key={bi} className="flex items-start gap-2 text-xs text-white/60 leading-relaxed min-w-0">
                       <span className="shrink-0 mt-0.5">{b.slice(0, 2)}</span>
-                      <span>{b.slice(2)}</span>
+                      <span className="break-words min-w-0 flex-1">{b.slice(2)}</span>
                     </li>
                   ))}
                 </ul>
