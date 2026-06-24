@@ -18,7 +18,7 @@ async def main():
         print("Aggregation finished successfully in database.")
         
         # Fetch all articles and export to frontend's news-cache.json
-        articles = db.query(Article).all()
+        articles = db.query(Article).order_by(Article.date.desc()).all()
         status = db.query(SystemStatus).first()
         last_updated = status.last_updated if status else ""
         
@@ -49,6 +49,46 @@ async def main():
             json.dump(cache_data, f, indent=2)
             
         print(f"Successfully exported {len(articles_list)} articles to: {cache_path}")
+        
+        # Build the hierarchical chronological archive grouped by date YYYY-MM-DD
+        from collections import defaultdict
+        from datetime import datetime, timezone
+        
+        grouped = defaultdict(list)
+        for art in articles:
+            try:
+                dt = datetime.fromisoformat(art.date)
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=timezone.utc)
+            except Exception:
+                dt = datetime.now(timezone.utc)
+                
+            date_key = dt.strftime("%Y-%m-%d")
+            time_key = dt.strftime("%H:%M:%S")
+            
+            grouped[date_key].append({
+                "title": art.title,
+                "exact_time": time_key,
+                "reference_url": art.url,
+                "summary": art.summary
+            })
+            
+        # Convert to the requested list schema (sorted by date descending)
+        chronological_list = []
+        for date_val in sorted(grouped.keys(), reverse=True):
+            # Sort articles within the same day by time descending
+            day_articles = sorted(grouped[date_val], key=lambda x: x["exact_time"], reverse=True)
+            chronological_list.append({
+                "date": date_val,
+                "articles": day_articles
+            })
+            
+        # Write to frontend/src/data/news-chronological.json
+        chrono_path = os.path.join(root_dir, "frontend", "src", "data", "news-chronological.json")
+        with open(chrono_path, "w", encoding="utf-8") as f:
+            json.dump(chronological_list, f, indent=2)
+            
+        print(f"Successfully exported chronological archive to: {chrono_path}")
         
     except Exception as e:
         print(f"Aggregation script failed with error: {e}")

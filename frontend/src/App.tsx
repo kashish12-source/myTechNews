@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon, LogOut, User, Search, Globe, Cpu, Building2, Code, Workflow, Server, TableProperties, BookOpen, Clock, RefreshCw } from 'lucide-react';
+import { Menu, X, LogOut, User, Search, Globe, Cpu, Building2, Code, Workflow, Server, TableProperties, BookOpen, Clock, RefreshCw } from 'lucide-react';
 import NewsFeed from './components/NewsFeed';
 import ReplacementMatrix from './components/ReplacementMatrix';
 import Login from './components/Login';
@@ -42,8 +42,7 @@ export default function App() {
     localStorage.removeItem('email');
   };
 
-  // Theme state: light by default, persists in local storage
-  const [theme, setTheme] = useState<'dark' | 'light'>('light');
+
 
   // Dynamic time state for navigation bottom panel
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -55,15 +54,7 @@ export default function App() {
     return () => clearInterval(timer);
   }, []);
 
-  // Apply theme class to document body
-  useEffect(() => {
-    if (theme === 'light') {
-      document.body.classList.add('light-theme');
-    } else {
-      document.body.classList.remove('light-theme');
-    }
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+
 
 
 
@@ -72,23 +63,11 @@ export default function App() {
       return (
         <LandingPage 
           onAccess={() => setShowLogin(true)} 
-          theme={theme}
-          setTheme={setTheme}
         />
       );
     }
     return (
       <div className="min-h-screen flex flex-col justify-center items-center bg-[var(--bg-primary)] transition-colors duration-150">
-        {/* Top Header Toggle to allow changing theme on login */}
-        <div className="absolute top-4 right-4 z-50">
-          <button 
-            className="p-2.5 border border-[var(--border-color)] hover:border-[var(--border-hover)] rounded-full text-[var(--text-secondary)] bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer shadow-sm"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            title={theme === 'dark' ? "Toggle Light Mode" : "Toggle Dark Mode"}
-          >
-            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
-        </div>
         <Login 
           onLoginSuccess={handleLoginSuccess} 
           onBack={() => setShowLogin(false)}
@@ -135,15 +114,6 @@ export default function App() {
     return (
       <div className="mt-auto pt-2 flex items-center justify-start select-none relative shrink-0">
         <div className="flex items-center gap-4">
-          {/* Theme Switcher */}
-          <button 
-            className="p-2 hover:bg-[var(--border-hover)] rounded-full text-[var(--text-secondary)] cursor-pointer transition-all border border-[var(--border-color)]"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            title={theme === 'dark' ? "Toggle Light Mode" : "Toggle Dark Mode"}
-          >
-            {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
-          </button>
-
           {/* Search Trigger Icon */}
           <button 
             className={`p-2 hover:bg-[var(--border-hover)] rounded-full text-[var(--text-secondary)] cursor-pointer transition-all border border-[var(--border-color)] ${activeTab === 'search' ? 'text-brand-primary bg-brand-primary/10 border-brand-primary/20' : ''}`}
@@ -357,8 +327,6 @@ export default function App() {
                 setActiveTab={setActiveTab}
                 userEmail={userEmail}
                 onLogout={handleLogout}
-                theme={theme}
-                setTheme={setTheme}
                 refreshTrigger={refreshTrigger}
               />
             )}

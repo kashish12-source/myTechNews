@@ -25,9 +25,43 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Startup events: create tables, seed users, seed initial cache
+# Lightweight /ping endpoint for health checks and self-pings
+@app.get("/ping")
+def ping():
+    return {
+        "status": "ok",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "environment": settings.ENVIRONMENT
+    }
+
+# Background self-ping task to prevent Render free-tier containers from idling
+async def self_ping_loop():
+    # Wait 30 seconds after startup before starting to ping
+    await asyncio.sleep(30)
+    self_url = os.environ.get("SELF_PING_URL")
+    if not self_url:
+        print("Self-ping: SELF_PING_URL is not configured. Self-ping daemon is inactive.")
+        return
+    
+    print(f"Self-ping: Started self-ping daemon targeting: {self_url}")
+    import httpx
+    while True:
+        try:
+            async with httpx.AsyncClient() as client:
+                response = await client.get(f"{self_url.rstrip('/')}/ping", timeout=10.0)
+                print(f"Self-ping: Pinged {self_url}/ping. Response status: {response.status_code}")
+        except Exception as e:
+            print(f"Self-ping daemon error: {e}")
+        
+        # Ping every 10 minutes (600 seconds)
+        await asyncio.sleep(600)
+
+# Startup events: create tables, seed users, seed initial cache, start self-ping
 @app.on_event("startup")
 def startup_db_setup():
+    # Start the self-ping background daemon task
+    asyncio.create_task(self_ping_loop())
+    
     Base.metadata.create_all(bind=engine)
     db = next(get_db())
     
@@ -215,7 +249,7 @@ def verify_code(req: CodeVerificationRequest, db: Session = Depends(get_db)):
 # News Feed API Routes
 @app.get("/api/news", response_model=NewsFeedResponse)
 def get_news(background_tasks: BackgroundTasks, db: Session = Depends(get_db), current_user: str = Depends(get_current_user_email)):
-    articles = db.query(Article).all()
+    articles = db.query(Article).order_by(Article.date.desc()).all()
     status = db.query(SystemStatus).first()
     
     last_updated = status.last_updated if status else ""
@@ -263,7 +297,7 @@ def force_refresh(background_tasks: BackgroundTasks, db: Session = Depends(get_d
     status = db.query(SystemStatus).first()
     if status and status.is_updating:
         # Already updating
-        articles = db.query(Article).all()
+        articles = db.query(Article).order_by(Article.date.desc()).all()
         articles_out = [ArticleOut.from_orm(art) for art in articles]
         return NewsFeedResponse(
             articles=articles_out,
@@ -284,7 +318,7 @@ def force_refresh(background_tasks: BackgroundTasks, db: Session = Depends(get_d
     # Trigger crawling in background
     background_tasks.add_task(run_background_scrape)
     
-    articles = db.query(Article).all()
+    articles = db.query(Article).order_by(Article.date.desc()).all()
     articles_out = [ArticleOut.from_orm(art) for art in articles]
     
     return NewsFeedResponse(

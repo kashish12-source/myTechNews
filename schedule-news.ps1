@@ -7,7 +7,7 @@ if (-not $InstallDir) {
     $InstallDir = Get-Location
 }
 
-$ScriptPath = Join-Path $InstallDir "scripts\update-news.mjs"
+$ScriptPath = "backend\app\scrape_cli.py"
 
 Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host "   Scheduling Daily Tech News Scraper" -ForegroundColor Cyan
@@ -15,18 +15,22 @@ Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host "Target Workspace: $InstallDir" -ForegroundColor Gray
 Write-Host "Target Aggregator: $ScriptPath" -ForegroundColor Gray
 
-# Verify Node.js is installed
-$NodePath = Get-Command node -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source
-if (-not $NodePath) {
-    Write-Host "WARNING: Node.exe was not found in your PATH." -ForegroundColor Yellow
-    Write-Host "Ensure Node.js is installed. Falling back to default system call." -ForegroundColor Yellow
-    $NodePath = "node"
+# Verify Python virtualenv is present, otherwise fallback to system Python
+$PythonPath = Join-Path $InstallDir "venv\Scripts\python.exe"
+if (-not (Test-Path $PythonPath)) {
+    $PythonPath = Get-Command python -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source
+    if (-not $PythonPath) {
+        Write-Host "WARNING: python.exe was not found in virtualenv or your PATH." -ForegroundColor Yellow
+        $PythonPath = "python"
+    } else {
+        Write-Host "Detected System Python path: $PythonPath" -ForegroundColor Gray
+    }
 } else {
-    Write-Host "Detected Node.js path: $NodePath" -ForegroundColor Gray
+    Write-Host "Detected Virtualenv Python path: $PythonPath" -ForegroundColor Gray
 }
 
 # Create Scheduled Task parameters
-$Action = New-ScheduledTaskAction -Execute $NodePath -Argument "`"$ScriptPath`"" -WorkingDirectory $InstallDir
+$Action = New-ScheduledTaskAction -Execute $PythonPath -Argument "`"$ScriptPath`"" -WorkingDirectory $InstallDir
 $Trigger = New-ScheduledTaskTrigger -Daily -At "5:50 AM"
 
 # Ensure task can run on laptop battery and executes immediately if missed (e.g. computer was asleep)

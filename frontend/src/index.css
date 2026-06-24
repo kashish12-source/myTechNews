@@ -51,78 +51,42 @@
   color: #cbd5e1;
   background-color: #000000;
 
-  /* Theme variables (Dark theme default - Green & Black Matrix Theme) */
+  /* Theme variables (Dark theme default - Solid Black & Slate theme) */
   --bg-primary: #000000;
-  --bg-secondary: #050806;
-  --bg-card: #0b110e;
-  --bg-card-hover: #121c17;
-  --bg-code: #030504;
+  --bg-secondary: #000000;
+  --bg-card: #080808;
+  --bg-card-hover: #0f0f0f;
+  --bg-code: #040404;
   
-  --border-color: rgba(34, 197, 94, 0.08);
-  --border-hover: rgba(34, 197, 94, 0.18);
+  --border-color: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(255, 255, 255, 0.1);
   
-  --accent-cyan: #22c55e;
+  --accent-cyan: #10b981;
   --accent-blue: #10b981; /* Primary Green */
   --accent-brand: #00ff87; /* Neon green highlight */
   --accent-emerald: #10b981;
   --accent-amber: #f59e0b;
   --accent-rose: #f43f5e;
   
-  --text-primary: #f0fdf4;
+  --text-primary: #ffffff;
   --text-secondary: #cbd5e1;
-  --text-muted: #5e7e6f;
+  --text-muted: #64748b;
   
   --shadow-main: 0 10px 30px -10px rgba(0, 0, 0, 0.9);
-  --shadow-glow: 0 0 25px 0 rgba(16, 185, 129, 0.12);
+  --shadow-glow: 0 0 25px 0 rgba(255, 255, 255, 0.02);
   
   --focus-ring: rgba(16, 185, 129, 0.15);
   --btn-primary-hover: #059669;
-  --btn-primary-shadow: rgba(16, 185, 129, 0.2);
-  --btn-primary-shadow-hover: rgba(16, 185, 129, 0.3);
-  --card-hover-border: rgba(34, 197, 94, 0.35);
-  --card-hover-glow: rgba(34, 197, 94, 0.1);
-  --shadow-main-hover: 0 12px 28px -8px rgba(0, 0, 0, 0.5);
+  --btn-primary-shadow: rgba(16, 185, 129, 0.1);
+  --btn-primary-shadow-hover: rgba(16, 185, 129, 0.15);
+  --card-hover-border: rgba(255, 255, 255, 0.15);
+  --card-hover-glow: rgba(255, 255, 255, 0.01);
+  --shadow-main-hover: 0 12px 28px -8px rgba(0, 0, 0, 0.6);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Light Theme Variables - Clean Minimal Editorial */
-body.light-theme {
-  color-scheme: light;
-  color: #1e293b;
-  background-color: #f8fafc;
-
-  --bg-primary: #f8fafc;
-  --bg-secondary: #ffffff;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f1f5f9;
-  --bg-code: #f1f5f9;
-  
-  --border-color: #e2e8f0;
-  --border-hover: #cbd5e1;
-  
-  --accent-cyan: #16a34a; /* Green */
-  --accent-blue: #1877f2; /* Light Blue (Kabar blue) */
-  --accent-brand: #22c55e; /* Bright Green */
-  --accent-rose: #ef4444;
-  
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
-  
-  --shadow-main: 0 8px 30px rgba(0, 0, 0, 0.04);
-  --shadow-glow: 0 0 20px rgba(24, 119, 242, 0.05);
-
-  --focus-ring: rgba(24, 119, 242, 0.15);
-  --btn-primary-hover: #1565c0;
-  --btn-primary-shadow: rgba(24, 119, 242, 0.15);
-  --btn-primary-shadow-hover: rgba(24, 119, 242, 0.25);
-  --card-hover-border: rgba(24, 119, 242, 0.25);
-  --card-hover-glow: rgba(24, 119, 242, 0.05);
-  --shadow-main-hover: 0 12px 28px -8px rgba(15, 23, 42, 0.08);
 }
 
 * {
@@ -248,11 +212,7 @@ input:focus, select:focus, textarea:focus {
   box-shadow: var(--shadow-main), var(--shadow-glow);
 }
 
-body.light-theme .google-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  box-shadow: var(--shadow-main);
-}
+
 
 /* Floating Input Group */
 .google-input-group {
@@ -275,10 +235,7 @@ body.light-theme .google-card {
   font-family: inherit;
 }
 
-body.light-theme .google-input {
-  border: 1px solid #cbd5e1;
-  background-color: #ffffff;
-}
+
 
 .google-input:focus {
   border-color: var(--accent-blue);
@@ -286,11 +243,7 @@ body.light-theme .google-input {
   box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
-body.light-theme .google-input:focus {
-  border-color: var(--accent-blue);
-  box-shadow: 0 0 0 3px var(--focus-ring);
-  background-color: #ffffff;
-}
+
 
 .google-label {
   position: absolute;
@@ -326,10 +279,7 @@ body.light-theme .google-input:focus {
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body.light-theme .google-search-bar {
-  background-color: #f1f5f9;
-  border-color: #e2e8f0;
-}
+
 
 .google-search-bar:focus-within {
   background-color: var(--bg-card);
@@ -337,11 +287,7 @@ body.light-theme .google-search-bar {
   border-color: var(--accent-blue);
 }
 
-body.light-theme .google-search-bar:focus-within {
-  background-color: #ffffff;
-  box-shadow: 0 4px 20px -5px rgba(15,23,42,0.1);
-  border-color: var(--accent-blue);
-}
+
 
 /* Navigation Sidebar capsule layout */
 .sidebar-nav-item {
@@ -363,10 +309,7 @@ body.light-theme .google-search-bar:focus-within {
   color: var(--accent-blue);
 }
 
-body.light-theme .sidebar-nav-item.active {
-  background-color: rgba(15, 118, 110, 0.07);
-  color: var(--accent-blue);
-}
+
 
 .sidebar-nav-item:hover:not(.active) {
   background-color: rgba(255, 255, 255, 0.03);
@@ -374,10 +317,7 @@ body.light-theme .sidebar-nav-item.active {
   transform: translateX(3px);
 }
 
-body.light-theme .sidebar-nav-item:hover:not(.active) {
-  background-color: #f1f5f9;
-  color: var(--text-primary);
-}
+
 
 /* Premium News Cards - The Verge / Editorial layout */
 .google-news-card {
@@ -394,11 +334,7 @@ body.light-theme .sidebar-nav-item:hover:not(.active) {
   transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-body.light-theme .google-news-card {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
-  box-shadow: 0 4px 20px -10px rgba(15, 23, 42, 0.05);
-}
+
 
 .google-news-card:hover {
   transform: translateY(-3px);

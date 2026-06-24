@@ -5,5 +5,12 @@
  *   which modern browsers exempt from Mixed Content secure/insecure connection blocks.
  */
 export const getApiUrl = (path: string): string => {
+  const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  // If we are on localhost in a built production environment (PM2 static serve),
+  // route API requests directly to the FastAPI server on port 3001.
+  if (isLocalhost && !import.meta.env.DEV) {
+    return `http://${window.location.hostname}:3001${path}`;
+  }
+  // Fall back to relative path for Vite dev server proxy or Vercel deployments
   return path;
 };

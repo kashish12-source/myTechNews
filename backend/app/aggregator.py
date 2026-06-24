@@ -244,6 +244,12 @@ async def enrich_with_gemini(articles: list) -> list:
         for art in articles:
             char_pool = string.ascii_lowercase + string.digits
             uid = ''.join(random.choices(char_pool, k=7))
+            
+            # Generate high-quality fallback summary if the raw snippet is missing or trivial (like "Comments")
+            snippet = art.get('contentSnippet', '')
+            if not snippet or len(snippet.strip()) < 15 or snippet.strip().lower() == "comments":
+                snippet = f"Latest technical updates, releases, and discussions from {art['source']} covering \"{art['title']}\". Tap the link to view the full details and community commentary."
+                
             enriched.append({
                 'id': uid,
                 'title': art['title'],
@@ -251,7 +257,7 @@ async def enrich_with_gemini(articles: list) -> list:
                 'source': art['source'],
                 'date': art['date'],
                 'category': classify_category(art['title'], art['contentSnippet']),
-                'summary': art['contentSnippet'][:280] + '...' if len(art['contentSnippet']) > 280 else art['contentSnippet'],
+                'summary': snippet[:280] + '...' if len(snippet) > 280 else snippet,
                 'importance': 'medium',
                 'sentiment': 'neutral'
             })
@@ -306,6 +312,12 @@ Respond ONLY with a JSON object in this exact format:
             logger.warning(f"Gemini failed for \"{art['title']}\", falling back: {e}")
             char_pool = string.ascii_lowercase + string.digits
             uid = ''.join(random.choices(char_pool, k=7))
+            
+            # Generate high-quality fallback summary if the raw snippet is missing or trivial (like "Comments")
+            snippet = art.get('contentSnippet', '')
+            if not snippet or len(snippet.strip()) < 15 or snippet.strip().lower() == "comments":
+                snippet = f"Latest technical updates, releases, and discussions from {art['source']} covering \"{art['title']}\". Tap the link to view the full details and community commentary."
+                
             enriched.append({
                 'id': uid,
                 'title': art['title'],
@@ -313,7 +325,7 @@ Respond ONLY with a JSON object in this exact format:
                 'source': art['source'],
                 'date': art['date'],
                 'category': classify_category(art['title'], art['contentSnippet']),
-                'summary': art['contentSnippet'][:280] + '...' if len(art['contentSnippet']) > 280 else art['contentSnippet'],
+                'summary': snippet[:280] + '...' if len(snippet) > 280 else snippet,
                 'importance': 'medium',
                 'sentiment': 'neutral'
             })
@@ -403,11 +415,16 @@ async def aggregate_news(db: Session):
     
     # 5. Save to database
     try:
-        # Clear existing articles
-        db.query(Article).delete()
+        # Get existing URLs in database to prevent duplicates
+        existing_urls = {a.url.lower().strip() for a in db.query(Article.url).all()}
         
+        new_count = 0
         # Insert new articles
         for art in enriched:
+            url_clean = art['url'].lower().strip()
+            if url_clean in existing_urls:
+                continue
+                
             db_art = Article(
                 id=art['id'],
                 title=art['title'],
@@ -420,11 +437,38 @@ async def aggregate_news(db: Session):
                 sentiment=art['sentiment']
             )
             db.add(db_art)
+            existing_urls.add(url_clean)
+            new_count += 1
+            
+        # Commit new articles first
+        db.commit()
+        logger.info(f"Aggregation: Inserted {new_count} new articles.")
+        
+        # Purge articles older than 5 days to maintain a rolling window of history
+        from datetime import timedelta
+        cutoff_date = datetime.now(timezone.utc) - timedelta(days=5)
+        
+        all_articles = db.query(Article).all()
+        deleted_count = 0
+        for art in all_articles:
+            try:
+                art_date = datetime.fromisoformat(art.date)
+                if art_date.tzinfo is None:
+                    art_date = art_date.replace(tzinfo=timezone.utc)
+                if art_date < cutoff_date:
+                    db.delete(art)
+                    deleted_count += 1
+            except Exception as parse_err:
+                logger.warning(f"Could not parse date '{art.date}' for article {art.id}: {parse_err}")
+                
+        if deleted_count > 0:
+            db.commit()
+            logger.info(f"Purged {deleted_count} articles older than 5 days.")
             
         status.last_updated = datetime.now(timezone.utc).isoformat()
         status.is_updating = False
         db.commit()
-        logger.info(f"Aggregation complete. Saved {len(enriched)} articles to DB.")
+        logger.info("Aggregation complete and database updated.")
     except Exception as e:
         db.rollback()
         status.is_updating = False
